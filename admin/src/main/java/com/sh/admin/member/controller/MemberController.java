@@ -7,13 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/order")
 @Slf4j
 public class MemberController {
 
-    @GetMapping("/list")
-    public String list(Model model) {
-        log.info("GET /order/list");
-        return "/orderlist";
-    }
 }
