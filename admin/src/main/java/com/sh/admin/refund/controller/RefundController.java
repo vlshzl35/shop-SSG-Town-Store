@@ -9,8 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Slf4j
 @RequiredArgsConstructor
 public class RefundController {
-    @GetMapping("/refund/refundlist")
+//    @GetMapping("/refundList")
+//    public String refundList() {
+//        return "refundList";
+//    }
+
+    @GetMapping("/refund-list")
     public String refundList() {
-        return "refund/refundlist";
+        return "refund-list";
     }
+
 }
