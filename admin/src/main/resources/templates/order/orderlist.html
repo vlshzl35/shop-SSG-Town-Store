@@ -38,6 +38,11 @@
     <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+    <script type="text/javascript">
+      function showHideRow(row) {
+        $("#" + row).toggle();
+      }
+    </script>
   </head>
   <body>
     <!-- tap on top starts-->
@@ -67,7 +72,7 @@
             </div>
           </form>
           <div class="header-logo-wrapper col-auto p-0">  
-            <div class="logo-wrapper"> <a href="index.html"><img class="img-fluid for-light" src="../assets/images/logo/logo_dark.png" alt="logo-light"><img class="img-fluid for-dark" src="../assets/images/logo/logo.png" alt="logo-dark"></a></div>
+            <div class="logo-wrapper"> <a href="../index.html"><img class="img-fluid for-light" src="../assets/images/logo/logo_dark.png" alt="logo-light"><img class="img-fluid for-dark" src="../assets/images/logo/logo.png" alt="logo-dark"></a></div>
             <div class="toggle-sidebar"> <i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
           </div>
           <div class="left-header col-xxl-5 col-xl-6 col-lg-5 col-md-4 col-sm-3 p-0">
@@ -336,7 +341,7 @@
                   <li><a href="user-profile.html"><i data-feather="user"></i><span>My Profile</span></a></li>
                   <li><a href="letter-box.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
                   <li> <a href="edit-profile.html"> <i data-feather="settings"></i><span>Settings</span></a></li>
-                  <li><a class="btn btn-pill btn-outline-primary btn-sm" href="login.html">Log Out</a></li>
+                  <li><a class="btn btn-pill btn-outline-primary btn-sm" href="../login.html">Log Out</a></li>
                 </ul>
               </li>
             </ul>
@@ -357,16 +362,16 @@
       <div class="page-body-wrapper">
         <!-- Page Sidebar Start-->
         <div class="sidebar-wrapper" data-layout="stroke-svg">
-          <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo.png" alt=""></a>
+          <div class="logo-wrapper"><a href="../index.html"><img class="img-fluid" src="../assets/images/logo/logo.png" alt=""></a>
             <div class="back-btn"><i class="fa fa-angle-left"> </i></div>
             <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i></div>
           </div>
-          <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo-icon.png" alt=""></a></div>
+          <div class="logo-icon-wrapper"><a href="../index.html"><img class="img-fluid" src="../assets/images/logo/logo-icon.png" alt=""></a></div>
           <nav class="sidebar-main">
             <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
             <div id="sidebar-menu">
               <ul class="sidebar-links" id="simple-bar">
-                <li class="back-btn"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo-icon.png" alt=""></a>
+                <li class="back-btn"><a href="../index.html"><img class="img-fluid" src="../assets/images/logo/logo-icon.png" alt=""></a>
                   <div class="mobile-back text-end"> <span>Back </span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                 </li>
                 <li class="pin-title sidebar-main-title">
@@ -387,7 +392,7 @@
                       <use href="../assets/svg/icon-sprite.svg#fill-home"></use>
                     </svg><span class="lan-3">Dashboard          </span></a>
                   <ul class="sidebar-submenu">
-                    <li><a href="index.html">Default</a></li>
+                    <li><a href="../index.html">Default</a></li>
                     <li><a href="dashboard-02.html">Ecommerce</a></li>
                     <li><a href="dashboard-03.html">Project</a></li>
                   </ul>
@@ -457,11 +462,11 @@
                       <use href="../assets/svg/icon-sprite.svg#fill-ecommerce"></use>
                     </svg><span>Ecommerce</span></a>
                   <ul class="sidebar-submenu">
-                    <li> <a href="add-products.html">Add Products</a></li>
+                    <li> <a href="../add-products.html">Add Products</a></li>
                     <li><a href="product.html">Product</a></li>
                     <li><a href="category.html">Category page</a></li>
                     <li><a href="product-page.html">Product page</a></li>
-                    <li><a href="list-products.html">Product list</a></li>
+                    <li><a href="../list-products.html">Product list</a></li>
                     <li><a href="payment-details.html">Payment Details</a></li>
                     <li><a href="order-history.html">Order History</a></li>
                     <li><a class="submenu-title" href="#">Invoices<span class="sub-arrow"><i class="fa fa-angle-right"></i></span></a>
@@ -625,7 +630,7 @@
                     </li>
                     <li><a class="submenu-title" href="#">Data Tables<span class="sub-arrow"><i class="fa fa-angle-right"></i></span></a>
                       <ul class="nav-sub-childmenu submenu-content">
-                        <li><a href="datatable-basic-init.html">Basic Init</a></li>
+                        <li><a href="../datatable-basic-init.html">Basic Init</a></li>
                         <li> <a href="datatable-advance.html">Advance Init </a></li>
                         <li> <a href="datatable-API.html">API </a></li>
                         <li><a href="datatable-data-source.html">Data Sources</a></li>
@@ -822,7 +827,7 @@
                               <h5> Authentication</h5>
                             </div>
                             <ul class="submenu-content opensubmegamenu">
-                              <li><a href="login.html" target="_blank">Login Simple</a></li>
+                              <li><a href="../login.html" target="_blank">Login Simple</a></li>
                               <li><a href="login_one.html" target="_blank">Login bg image</a></li>
                               <li><a href="login_two.html" target="_blank">Login image two                      </a></li>
                               <li><a href="login-bs-validation.html" target="_blank">Login validation</a></li>
@@ -986,7 +991,7 @@
               <div class="row">
                 <div class="col-6">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">                                       
+                    <li class="breadcrumb-item"><a href="../index.html">
                         <svg class="stroke-icon">
                           <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>
                         </svg></a></li>
@@ -1003,60 +1008,37 @@
                   </div>
                   <div class="card-body">
                     <div class="dt-ext table-responsive custom-scrollbar">
-                      <table class="display" id="export-button">
+                      <table class="display" id="export-button" border="1px solid">
                         <thead>
-                          <tr>
-                            <th>주문ID</th>
-                            <th>회원ID</th>
-                            <th>주문날짜</th>
-                            <th>총 합계</th>
-                            <th>주문상태</th>
-                            <th>송장번호</th>
-                            <th>발송날짜</th>
-                          </tr>
+                        <tr>
+                          <th>주문ID</th>
+                          <th>회원ID</th>
+                          <th>접수날짜</th>
+                          <th>주문상태</th>
+                          <th>송장번호</th>
+                          <th>발송상태</th>
+                          <th>버튼</th>
+                        </tr>
                         </thead>
                         <tbody>
+                        <form action="" method="post">
+                          <tr th:each="orderDto:${orderList}" th:object="${orderDto}">
+                            <td th:text="${orderDto.orderId}"></td>
+                            <td th:text="${orderDto.memberId}"></td>
+                            <td th:text="${#temporals.format(orderDto.orderDate,'yyyy-MM-dd')}"></td>
+                            <td th:text="${orderDto.orderStatus}"></td>
+                            <td th:text="${orderDto.trackNumber == 0 ? '' :orderDto.trackNumber}"></td>
+                            <td th:text="${orderDto.shipmentDate == 0 ? '발송전':shipment}"></td>
 
-                          <tr th:each="orderList : ${orderList}" th:object="${orderList}" >
-                            <form action="" method="post"  >
-
-                              <td th:text="${orderList.orderId}" >
-                                <ul>
-                                  <li>asdasd</li>
-                                  <li>asdasd</li>
-                                  <li>asdasd</li>
-                                  <li>asdasd</li>
-                                  <li>asdasd</li>
-                                  <li>asdasd</li>
-                                </ul><!-- 이걸 클릭하면 상세 페이지 출력--></td>
-                              <td th:text="${orderList.memberId}"></td>
-                              <td th:text="${#temporals.format(orderList.orderDate,'yyyy-MM-dd')}"></td>
-                              <td th:text="${orderList.sumPrice}"></td>
-                              <td th:text="${orderList.orderStatus}"></td>
-                              <td th:text="${orderList.trackNumber == 0 ? '':orderList.trackNumber}"></td>
-                              <td th:text="${orderList.shipmentDate == null ? '발송전' : shipment}"></td>
-
-                              <td>
+                            <td>
+                              <ul>
                                 <button type="submit">발송완료</button>
                                 <button type="submit">취소완료</button>
-                              </td>
-
-                            </form>
-
+                              </ul>
+                            </td>
                           </tr>
-
+                        </form>
                         </tbody>
-                        <tfoot>
-                          <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Assign To</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                            <th>Action</th>
-                          </tr>
-                        </tfoot>
                       </table>
                     </div>
                   </div>

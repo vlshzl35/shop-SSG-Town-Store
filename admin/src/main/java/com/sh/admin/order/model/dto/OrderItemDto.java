@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderItemDto {
-    private int oderItemId; // 주문상세 id _ autoincrement
+    private int orderItemId; // 주문상세 id _ autoincrement
     private int orderId; // 주문id
     private int itemId; // 상품 id
     private int itemQuantity; // 수량
