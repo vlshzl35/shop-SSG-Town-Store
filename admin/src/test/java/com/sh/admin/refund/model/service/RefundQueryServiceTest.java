@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class RefundQueryServiceTest {
 
-    private static final Logger log = LoggerFactory.getLogger(RefundQueryServiceTest.class);
     @Autowired
     RefundMapper refundMapper;
 
@@ -26,7 +25,8 @@ class RefundQueryServiceTest {
     @DisplayName("전체 조회")
     public void findAll() {
         List<RefundDto> refunds = refundMapper.findAll();
-        System.out.println(refunds);
+        refunds.forEach((refund) -> {
+            System.out.println(refund.getOrderId());});
         Assertions.assertThat(refunds).isNotNull();
     }
 

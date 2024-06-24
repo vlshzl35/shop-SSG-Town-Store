@@ -1048,13 +1048,13 @@
                         <tr>
                           <td th:text="*{refundId}"></td>
                           <td th:text="*{orderId}"></td>
-                          <td th:text="*{memberId}">yeahjin311</td>
-                          <td th:text="*{sumPrice}">45,300</td>
-                          <td th:text="*{refundStatus}">환불요청</td>
-                          <td th:text="*{lastUpdated}">24-06-23</td>
-                          <td th:text="*{requestDate}">null</td>
+                          <td th:text="*{memberId}"></td>
+                          <td th:text="*{sumPrice}"></td>
+                          <td th:text="*{refundStatus}"></td>
+                          <td th:text="*{requestDate}"></td>
+                          <td th:text="*{lastUpdated}"></td>
                           <td  th:text="*{refundReason}" class="list-group-numbered"></td>
-                          <td  onclick="showHideRow('hidden_row1');">펼치기</td>
+                          <td th:hideRow="|list*{refundId}|" onclick="showHideRow(this.getAttribute('hideRow'))">펼치기</td>
                           <td>
                             <ul class="action">
                               <button class="btn btn-primary" type="submit">승인</button>
@@ -1062,7 +1062,7 @@
                             </ul>
                           </td>
                         </tr>
-                        <tr id="hidden_row1" class="hidden_row">
+                        <tr th:id="|list*{refundId}|" class="hidden_row">
                           <td colspan="8">
                             <h6>설명</h6><br>
                             <p th:text="*{description}"></p>
