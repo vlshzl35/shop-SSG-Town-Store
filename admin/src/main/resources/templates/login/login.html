@@ -40,19 +40,19 @@
     <div class="col-12 p-0">
       <div class="login-card login-dark">
         <div>
-          <div><a class="logo" href="index.html"><img class="img-fluid for-dark" src="../assets/images/logo/logo.png" alt="looginpage"><img class="img-fluid for-light" src="../assets/images/logo/logo_dark.png" alt="looginpage"></a></div>
+          <div><a class="logo" href="../index.html"><img class="img-fluid for-dark" src="../assets/images/logo/logo.png" alt="loginpage"><img class="img-fluid for-light" src="../assets/images/logo/logo_dark.png" alt="looginpage"></a></div>
           <div class="login-main">
             <form class="theme-form" method="POST" action="/admin/loginExecute">
               <h4>Sign in to account </h4>
               <p>Enter your email & password to login</p>
               <div class="form-group">
                 <label class="col-form-label">Email Address</label>
-                <input class="form-control" type="email" required="" name="userId" id="userId" placeholder="input your email">
+                <input class="form-control" type="email" required="" name="adminId" id="adminId" placeholder="input your email">
               </div>
               <div class="form-group">
                 <label class="col-form-label">Password </label>
                 <div class="form-input position-relative">
-                  <input class="form-control" type="password" name="userPassword" id="userPassword" required="" placeholder="input your password">
+                  <input class="form-control" type="password" name="adminPassword" id="adminPassword" required="" placeholder="input your password">
                   <div class="show-hide"> <span class="show"></span></div>
                 </div>
               </div>
@@ -62,7 +62,7 @@
                   <label class="text-muted" for="checkbox1">Remember password</label>
                 </div><a class="link" href="forget-password.html">Forgot password?</a>
                 <div class="text-end mt-3">
-                  <button class="btn btn-primary btn-block w-100" type="submit" id="loginBtn">Sign in</button>
+                  <button class="btn btn-primary btn-block w-100" onclick="loginAccess()">로그인</button>
                 </div>
               </div>
               <h6 class="text-muted mt-4 or">Or Sign in with</h6>
@@ -92,46 +92,48 @@
   <!-- Theme js-->
   <script src="../assets/js/script.js"></script>
   <script>
-    // const loginAccess = () => {
-    //   // jquery
-    //   const userId = $('#userId').val();
-    //   const userPassword = $('#userPassword').val();
-    //
-    //   // jqeury 아이디 비밀번호 예외처리
-    //   if(userId === '' || userPassword === ''){
-    //     alert("아이디 혹은 비밀번호를 입력해주세요");
-    //     $('.form-control').focus();
-    //     return;
-    //   }
-    //
-    //   // 예외처리에서 안걸리면 ajax 통신 날리세요.
-    //   $.ajax({
-    //     url : '/admin/loginExecute',
-    //     method : 'post',
-    //     data : {
-    //       // get방식에서는 url뒤에 queryString형태로 추가한다.
-    //       userId : userId,
-    //       userPassword : userPassword
-    //     },
-    //     success: function(responseText, textStatus, jqXhr) {
-    //       // 정상처리
-    //       console.log(responseText);
-    //       const response = JSON.parse(responseText);
-    //       if (response.status === "200") {
-    //         // 로그인 성공 처리
-    //         console.log("로그인 성공");
-    //       } else {
-    //         // 로그인 실패 처리
-    //         console.log("로그인 실패");
-    //       }
-    //     },
-    //     error: function(jqXhr, textStatus, error) {
-    //       // 오류발생시
-    //       console.log(jqXhr, textStatus, error);
-    //     }
-    //   });
+    const loginAccess = () => {
+      console.log("들어왔다.")
+      // jquery
+      const adminId = $('#adminId').val();
+      const adminPassword = $('#adminPassword').val();
 
+      // jqeury 아이디 비밀번호 예외처리
+      if(adminId === '' || adminPassword === ''){
+        alert("아이디 혹은 비밀번호를 입력해주세요");
+        $('.form-control').focus();
+        return;
+      }
 
+      // 예외처리에서 안걸리면 ajax 통신 날리세요.
+      $.ajax({
+        url : '/admin/loginExecute',
+        method : 'post',
+        data : {
+          // get방식에서는 url뒤에 queryString형태로 추가한다.
+          adminId : adminId,
+          adminPassword : adminPassword
+        },
+        success: function(responseText, textStatus, jqXhr) {
+          // 정상처리
+          console.log(responseText);
+          const response = JSON.parse(responseText);
+          if (response.status === "200") {
+            // 로그인 성공 처리
+            alert("성공")
+            window.location.href='/index';
+            console.log("로그인 성공");
+          } else {
+            // 로그인 실패 처리
+            alert("실패")
+            console.log("로그인 실패");
+          }
+        },
+        error: function(jqXhr, textStatus, error) {
+          // 오류발생시
+          console.log(jqXhr, textStatus, error);
+        }
+      })};
   </script>
 </div>
 </body>
