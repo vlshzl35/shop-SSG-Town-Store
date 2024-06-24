@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -406,13 +406,13 @@
                     <h6 class="lan-8">Applications</h6>
                   </div>
                 </li>
-                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="kanban.html">
+                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" th:href="@{/refund-list}">
                     <svg class="stroke-icon">
-                      <use href="../assets/svg/icon-sprite.svg#stroke-board"></use>
+                      <usㅣe href="../assets/svg/icon-sprite.svg#stroke-board"></usㅣe>
                     </svg>
                     <svg class="fill-icon">
                       <use href="../assets/svg/icon-sprite.svg#fill-board"></use>
-                    </svg><span>kanban Board</span></a></li>
+                    </svg><span>환불 관리</span></a></li>
                 <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title" href="#">
                     <svg class="stroke-icon">
                       <use href="../assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
@@ -554,7 +554,6 @@
                     <li><a href="tab-bootstrap.html">Tabs</a></li>
                     <li><a href="list.html">Lists</a></li>
                   </ul>
-                </li>
                   <ul class="sidebar-submenu">
                     <li><a href="scrollable.html">Scrollable</a></li>
                     <li><a href="tree.html">Tree view</a></li>
@@ -600,8 +599,8 @@
                     <h6>Pages</h6>
                   </div>
                 </li>
-
-                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="sample-page.html">
+                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i>
+                  <a class="sidebar-link sidebar-title link-nav" href="sample-page.html">
                     <svg class="stroke-icon">
                       <use href="../assets/svg/icon-sprite.svg#stroke-sample-page"></use>
                     </svg>
@@ -610,87 +609,6 @@
                     </svg><span>Sample page</span>
                 </a>
                 </li>
-                  <div class="mega-menu-container menu-content">
-                    <div class="container-fluid">
-                      <div class="row">
-                        <div class="col mega-box">
-                          <div class="link-section">
-                            <div class="submenu-title">
-                              <h5>Error Page</h5>
-                            </div>
-                            <ul class="submenu-content opensubmegamenu">
-                              <li><a href="error-400.html">Error 400</a></li>
-                              <li><a href="error-401.html">Error 401</a></li>
-                              <li><a href="error-403.html">Error 403</a></li>
-                              <li><a href="error-404.html">Error 404</a></li>
-                              <li><a href="error-500.html">Error 500</a></li>
-                              <li><a href="error-503.html">Error 503</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="col mega-box">
-                          <div class="link-section">
-                            <div class="submenu-title">
-                              <h5> Authentication</h5>
-                            </div>
-                            <ul class="submenu-content opensubmegamenu">
-                              <li><a href="login.html" target="_blank">Login Simple</a></li>
-                              <li><a href="login_one.html" target="_blank">Login bg image</a></li>
-                              <li><a href="login_two.html" target="_blank">Login image two                      </a></li>
-                              <li><a href="login-bs-validation.html" target="_blank">Login validation</a></li>
-                              <li><a href="login-bs-tt-validation.html" target="_blank">Login tooltip</a></li>
-                              <li><a href="login-sa-validation.html" target="_blank">Login sweetalert</a></li>
-                              <li><a href="sign-up.html" target="_blank">Register Simple</a></li>
-                              <li><a href="sign-up-one.html" target="_blank">Register Bg-Image</a></li>
-                              <li><a href="sign-up-two.html" target="_blank">Register two-image </a></li>
-                              <li><a href="sign-up-wizard.html" target="_blank">Register wizard</a></li>
-                              <li><a href="unlock.html">Unlock User</a></li>
-                              <li><a href="forget-password.html">Forget Password</a></li>
-                              <li><a href="reset-password.html">Reset Password</a></li>
-                              <li><a href="maintenance.html">Maintenance</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="col mega-box">
-                          <div class="link-section">
-                            <div class="submenu-title">
-                              <h5>Coming Soon</h5>
-                            </div>
-                            <ul class="submenu-content opensubmegamenu">
-                              <li><a href="comingsoon.html">Coming Simple</a></li>
-                              <li><a href="comingsoon-bg-video.html">Coming with Bg video</a></li>
-                              <li><a href="comingsoon-bg-img.html">Coming with Bg Image</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="col mega-box">
-                          <div class="link-section">
-                            <div class="submenu-title">
-                              <h5>Email templates</h5>
-                            </div>
-                            <ul class="submenu-content opensubmegamenu">
-                              <li><a href="basic-template.html">Basic Email</a></li>
-                              <li><a href="email-header.html">Basic With Header</a></li>
-                              <li><a href="template-email.html">Ecomerce Tem...</a></li>
-                              <li><a href="template-email-2.html">Email Template 2</a></li>
-                              <li><a href="ecommerce-templates.html">Ecommerce Email</a></li>
-                              <li><a href="email-order-success.html">Order Success</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-
-
-
-
-
-
-
-
               </ul>
               <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
             </div>
