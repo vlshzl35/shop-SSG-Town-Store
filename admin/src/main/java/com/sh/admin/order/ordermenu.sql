@@ -6,8 +6,9 @@ where sale_status='판매중';
 select *
 from tbl_member;
 
-select *
-from tbl_order;
+select tbl_order.order_id, member_id, order_date, sum_price, order_status, track_number, shipment_date, order_item_id,tbl_order.order_id, item_id, item_quantity, order_item_price
+from tbl_order join tbl_orderitem on tbl_order.order_id = tbl_orderitem.order_id
+where tbl_order.order_id=3 ;
 
 select *
 from tbl_orderitem
