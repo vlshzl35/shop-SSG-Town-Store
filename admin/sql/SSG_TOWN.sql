@@ -1,4 +1,13 @@
-﻿CREATE TABLE `tbl_member` (
+﻿DROP TABLE IF EXISTS tbl_order;
+DROP TABLE IF EXISTS tbl_refund;
+DROP TABLE IF EXISTS tbl_member;
+DROP TABLE IF EXISTS tbl_item;
+DROP TABLE IF EXISTS tbl_admin;
+DROP TABLE IF EXISTS tbl_orderItem;
+DROP TABLE IF EXISTS tbl_daily_sales;
+DROP TABLE IF EXISTS tbl_sales;
+
+CREATE TABLE `tbl_member` (
                               `member_id`	VARCHAR(10)	NOT NULL	COMMENT 'ex) yeahjin311',
                               `member_name`	VARCHAR(10)	NOT NULL,
                               `member_gender`	ENUM('M', 'F')	NOT NULL,
@@ -46,19 +55,19 @@ CREATE TABLE `tbl_refund` (
 );
 
 CREATE TABLE `tbl_item` (
-                            `item_id`	bigint	NOT NULL  AUTO_INCREMENT,
-                            `item_name`	varchar(30)	NOT NULL,
-                            `category_name`	ENUM('CD','응원봉','의류','잡화')	NOT NULL	COMMENT 'CD,응원봉,의류,잡화',
-                            `artist_name`	ENUM('에스파','샤이니')	NOT NULL	COMMENT '에스파/샤이니',
-                            `img_url`	varchar(100)	NOT NULL,
-                            `seller`	varchar(30)	NOT NULL	DEFAULT 'SSG',
-                            `details`	varchar(255)	NULL,
-                            `quantity`	int	NOT NULL,
-                            `sale_price`	int	NOT NULL,
-                            `sale_status`	ENUM('판매중/품절/판매중지')	NOT NULL	COMMENT '판매중/품절/판매중지',
+                            `item_id` bigint NOT NULL AUTO_INCREMENT,
+                            `item_name` varchar(30) NOT NULL,
+                            `category_name` ENUM('CD','응원봉','의류','잡화') NOT NULL COMMENT 'CD,응원봉,의류,잡화',
+                            `artist_name` ENUM('에스파','샤이니') NOT NULL COMMENT '에스파/샤이니',
+                            `img_url` varchar(100) NOT NULL,
+                            `seller` varchar(30) NOT NULL DEFAULT 'SSG',
+                            `details` varchar(255) NULL,
+                            `quantity` int NOT NULL,
+                            `sale_price` int NOT NULL,
+                            `sale_status` ENUM('판매중','품절','판매중지') NOT NULL COMMENT '판매중/품절/판매중지',
                             PRIMARY KEY (`item_id`)
-
 );
+
 
 CREATE TABLE `tbl_admin` (
                              `admin_id`	VARCHAR(10)	NOT NULL	COMMENT 'ex) wook123',
@@ -102,4 +111,3 @@ CREATE TABLE `tbl_sales` (
                              CONSTRAINT `fk_sales_refund_id` FOREIGN KEY (`refund_id`) REFERENCES `tbl_refund`(`refund_id`)
 
 );
-
