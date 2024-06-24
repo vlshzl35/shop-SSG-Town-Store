@@ -1021,9 +1021,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <form action="" method="post">
-                          <tr th:each="orderDto:${orderList}" th:object="${orderDto}">
-                            <td th:text="${orderDto.orderId}"></td>
+
+                          <tr th:each="orderDto:${orderList}" th:object="${orderList}">
+                            <form action="" method="post">
+                            <td>
+                              <a th:text="${orderDto.orderId}"></a>
+<!--                              th:href="@{|/order/detail/*{orderList.orderId}|}" -->
+                            </td>
                             <td th:text="${orderDto.memberId}"></td>
                             <td th:text="${#temporals.format(orderDto.orderDate,'yyyy-MM-dd')}"></td>
                             <td th:text="${orderDto.orderStatus}"></td>
@@ -1031,13 +1035,15 @@
                             <td th:text="${orderDto.shipmentDate == 0 ? '발송전':shipment}"></td>
 
                             <td>
-                              <ul>
-                                <button type="submit">발송완료</button>
-                                <button type="submit">취소완료</button>
-                              </ul>
+                                <button type="submit" value="발송" style="color: #0a53be" >발송처리</button>
+                                <button type="submit" value="취소" style="color: #6a1a21">취소처리</button>
                             </td>
+                            </form>
+
                           </tr>
-                        </form>
+
+                        </tr>
+
                         </tbody>
                       </table>
                     </div>

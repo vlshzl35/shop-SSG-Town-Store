@@ -53,6 +53,13 @@ public class OrderController {
         model.addAttribute("orderList", orderDtoList);
         System.out.println("orderDtoList = " + orderDtoList);
         log.info("GET /order/list");
-        return "/orderlist";
+        return "order/orderlist";
+    }
+
+    @GetMapping("/detail")
+    public void detail(Model model)
+    {
+        System.out.println("도착했어요");
+        System.out.println("model = " + model);
     }
 }
