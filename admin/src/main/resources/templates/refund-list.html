@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -51,19 +51,6 @@
     }
   </script>
   <style>
-    /*#table_detail {*/
-    /*  !*width: 500px;*!*/
-    /*  !*text-align: left;*!*/
-    /*  border-collapse: collapse;*/
-    /*  color: #2E2E2E;*/
-    /*  border: #A4A4A4;*/
-    /*}*/
-    /*#table_detail tr:hover {*/
-    /*  background-color: #F2F2F2;*/
-    /*}*/
-    /*#table_detail .hidden_row {*/
-    /*  display: none;*/
-    /*}*/
     #basic-1 .hidden_row {
       display: none;
     }
@@ -1056,33 +1043,33 @@
                       <th>요청처리</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>yeahjin311</td>
-                      <td>45,300</td>
-                      <td>환불요청</td>
-                      <td>24-06-23</td>
-                      <td>null</td>
-                      <td class="list-group-numbered">제품하자</td>
-                      <td  onclick="showHideRow('hidden_row1');">펼치기</td>
-                      <td>
-                        <ul class="action">
-                          <button class="btn btn-primary" type="submit">승인</button>
-                          <button class="btn btn-danger" type="submit">거부</button>
-                        </ul>
-                      </td>
-                    </tr>
-                    </tbody>
-                    <tr id="hidden_row1" class="hidden_row">
-                      <td colspan="8">
-                        <h6>설명</h6><br>
-                        Person-1 is 24 years old and
-                        he is a computer programmer
-                        he earns 60000 per month
-                      </td>
-                    </tr>
+                      <tbody>
+                      <th:block th:each="refund, stat : ${refunds}" th:object="${refund}">
+                        <tr>
+                          <td th:text="*{refundId}"></td>
+                          <td th:text="*{orderId}"></td>
+                          <td th:text="*{memberId}">yeahjin311</td>
+                          <td th:text="*{sumPrice}">45,300</td>
+                          <td th:text="*{refundStatus}">환불요청</td>
+                          <td th:text="*{lastUpdated}">24-06-23</td>
+                          <td th:text="*{requestDate}">null</td>
+                          <td  th:text="*{refundReason}" class="list-group-numbered"></td>
+                          <td  onclick="showHideRow('hidden_row1');">펼치기</td>
+                          <td>
+                            <ul class="action">
+                              <button class="btn btn-primary" type="submit">승인</button>
+                              <button class="btn btn-danger" type="submit">거부</button>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr id="hidden_row1" class="hidden_row">
+                          <td colspan="8">
+                            <h6>설명</h6><br>
+                            <p th:text="*{description}"></p>
+                          </td>
+                        </tr>
+                      </th:block>
+                      </tbody>
                   </table>
                 </div>
               </div>
