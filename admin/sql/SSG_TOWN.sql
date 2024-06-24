@@ -99,7 +99,7 @@ CREATE TABLE `tbl_daily_sales` (
 );
 
 CREATE TABLE `tbl_sales` (
-                             `sales_id`	int	NOT NULL AUTO_INCREMENT,
+                             `sales_id`	bigint	NOT NULL AUTO_INCREMENT,
                              `order_id`	bigint	NOT NULL	 ,
                              `order_item_id`	bigint	NULL	,
                              `refund_id`	bigint	NULL	 ,
