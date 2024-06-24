@@ -103,33 +103,3 @@ CREATE TABLE `tbl_sales` (
 
 );
 
-/* 회원 인서트문 */
-INSERT INTO `tbl_member` (
-    `member_id`,
-    `member_name`,
-    `member_gender`,
-    `member_birth`,
-    `member_address`,
-    `member_email`,
-    `created_at`,
-    `member_bank`,
-    `member_account`,
-    `member_status`
-) VALUES
-      ('rlaskrud1', '김나경', 'F', '900101-1234567', '경기도 수원시', 'sh@gmail.com', '2024-01-01 10:15:30', '기업은행', '152-0712-0508-13', 'N'),
-      ('didgmldbs2', '양희윤', 'F', '850512-2345678', '경기도 안양시', 'ssg@daum.net', '2023-06-23 14:45:00', '신한은행', '252-0712-0508-13', 'N'),
-      ('dbsehdghks3', '윤도환', 'M', '780921-3456789', '서울특별시', 'dbsehghks@naver.com', '2022-12-31 23:59:59', '국민은행', '352-0712-0508-13', 'N'),
-      ('dldydwns4', '이용준', 'M', '960318-4567890', '경기도 이천시', 'dldydwns2020@naver.com', '2021-08-15 08:30:45', '농협', '452-0712-0508-13', 'N'),
-      ('wjddPwls5', '정예진', 'F', '830629-5678901', '경기도 용인시', 'wjddPwls@gmail.com', '2020-03-01 12:00:00', '수협', '552-0712-0508-13', 'Y'),
-      ('chlckddnr6', '최창욱', 'M', '770404-6789012', '서울특별시', 'chlckddnr123@naver.com', '2019-11-11 11:11:11', '새마을금고', '652-0712-0508-13', 'N');
-
-
-/* 관리자 인서트문 */
-INSERT INTO `tbl_admin` (
-    `admin_id`,
-    `admin_name`,
-    `admin_pw`,
-    `created_at`
-) VALUES
-      ('AD-01', '김동현', '12345678', '2023-06-23 14:45:00'),
-      ('AD-02', '이어진', '11223344', '2022-12-31 23:59:59');
