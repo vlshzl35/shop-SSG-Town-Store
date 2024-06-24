@@ -7,7 +7,6 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-
 public class ItemDto {
     private int itemId; // 상품ID
     private String itemName; // 상품명
@@ -17,6 +16,6 @@ public class ItemDto {
     private String seller; // 판매원
     private String details; // 세부설명
     private int quantity;  // 수량
-    private int sale_price; // 가격
+    private int salePrice; // 가격
     private SaleStatus saleStatus;
 }
