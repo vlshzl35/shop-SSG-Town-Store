@@ -3,5 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sh.admin.refund.model.dao.RefundMapper">
-
+    <resultMap id="refundDtoMap" type="refundDto">
+        <id column="refund_id" property="refundId"/>
+        <result column="order_id" property="orderId"/>
+        <result column="member_id" property="memberId"/>
+        <result column="sum_price" property="sumPrice"/>
+        <result column="refund_status" property="refundStatus"/>
+        <result column="last_updated" property="lastUpdated"/>
+        <result column="request_date" property="requestDate"/>
+        <result column="description" property="description"/>
+        <result column="reason" property="refundReason"/>
+    </resultMap>
+    <select id="findAll" resultMap="refundDtoMap">
+        select
+            *
+        from
+            tbl_refund
+    </select>
 </mapper>
