@@ -1,10 +1,12 @@
 package com.sh.admin.item.model.dao;
 
 import com.sh.admin.item.model.dto.ItemDto;
+import com.sh.admin.item.model.dto.SaleStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Transactional
 class ItemMapperTest {
 
     @Autowired
@@ -33,11 +36,12 @@ class ItemMapperTest {
                 .allMatch((item) -> item != null); // 모든 요소가 다 true
 
     }
+//    나경작업시작
     @Test
     @DisplayName("상품아이디로 한건조회")
     void findById() {
         //given
-        int itemId = 1;
+        long itemId = 1;
         //when
         ItemDto itemDto = itemMapper.findById(itemId);
 
@@ -72,4 +76,26 @@ class ItemMapperTest {
                 );
 
     }
+    @Test
+    @DisplayName("품절상태인걸 판매중지로 바꿔지는가?")
+    void updateSaleStatus() {
+        // given
+        Long itemId = 30L; // 품절상태
+
+
+        // when
+        int updatedRows = itemMapper.updateSaleStatus(itemId);
+
+        // then
+        assertThat(updatedRows).isEqualTo(1); // 업데이트된 행의 수가 0보다 큰지 확인합니다.
+
+
+
+    }
+
+
+
+
+
+//    나경작업끝
 }

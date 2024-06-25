@@ -429,16 +429,36 @@
                                                         </svg>
                                                     </a>
 <!--                                                    나경작업시작-->
-                                                    <a>
+                                                    <a href="javascript:void(0);" th:onclick="|updateSaleStatus(${item.itemId});|">
                                                         <svg>
                                                             <use href="../assets/svg/icon-sprite.svg#trash1"></use>
                                                         </svg>
                                                     </a>
-<!--                                                    나경작업끝-->
+                                                    <!--                                                    나경작업끝-->
                                                 </div>
                                             </td>
                                         </tr>
                                         </tbody>
+                                        <script>
+                                            function updateSaleStatus(itemId) {
+                                                fetch('/item/updateSaleStatus?itemId=' + itemId, {
+                                                    method: 'POST'
+                                                })
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        if (data == true) {
+                                                            alert("상태가 '판매중지'로 변경되었습니다.");
+                                                            window.location.href = '/item/list';
+                                                        } else {
+                                                            alert("품절상태가 아닙니다.");
+                                                            window.location.href = '/item/list';
+                                                        }
+                                                    })
+                                                    .catch(error => {
+                                                        console.error('Error:', error);
+                                                    });
+                                            }
+                                        </script>
                                     </table>
                                 </div>
                             </div>
