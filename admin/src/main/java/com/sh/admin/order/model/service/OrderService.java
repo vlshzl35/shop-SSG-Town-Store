@@ -2,6 +2,7 @@ package com.sh.admin.order.model.service;
 
 import com.sh.admin.order.model.dao.OrderMapper;
 import com.sh.admin.order.model.dto.OrderDto;
+import com.sh.admin.order.model.dto.OrderItemDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +19,11 @@ public class OrderService {
         this.orderMapper = orderMapper;
     }
 
-    public List<OrderDto> findOrderList(int orderid) {
-        return orderMapper.findOrderList(orderid);
+    public List<OrderDto> findOrderList() {
+        return orderMapper.findOrderList();
+    }
+
+    public List<OrderItemDto> findByOrderId(int orderId) {
+        return orderMapper.findByOrderId(orderId);
     }
 }

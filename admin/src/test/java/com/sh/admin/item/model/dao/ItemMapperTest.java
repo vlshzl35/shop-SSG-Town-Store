@@ -33,4 +33,43 @@ class ItemMapperTest {
                 .allMatch((item) -> item != null); // 모든 요소가 다 true
 
     }
+    @Test
+    @DisplayName("상품아이디로 한건조회")
+    void findById() {
+        //given
+        int itemId = 1;
+        //when
+        ItemDto itemDto = itemMapper.findById(itemId);
+
+        //then
+        assertThat(itemDto)
+                .isNotNull()
+                .satisfies(
+                        (_itemDto) -> assertThat(_itemDto.getItemId()).isEqualTo(itemId),
+                        (_itemDto) -> assertThat(_itemDto.getItemName()).isNotNull(),
+                        (_itemDto) -> assertThat(_itemDto.getImgUrl()).isNotNull(),
+                        (_itemDto) -> assertThat(_itemDto.getSeller()).isEqualTo("SSG"),
+                        (_itemDto) -> assertThat(_itemDto.getQuantity()).isPositive(),
+                        (_itemDto) -> assertThat(_itemDto.getSalePrice()).isPositive(),
+                        (_itemDto) -> assertThat(_itemDto.getSaleStatus()).satisfiesAnyOf(
+                                (saleStatus) -> assertThat(saleStatus).isEqualTo(saleStatus.판매중),
+                                (saleStatus) -> assertThat(saleStatus).isEqualTo(saleStatus.품절),
+                                (saleStatus) -> assertThat(saleStatus).isEqualTo(saleStatus.판매중지)
+                        ),
+                        (_itemDto) -> assertThat(_itemDto.getCategoryName()).satisfiesAnyOf(
+                                (categoryName) -> assertThat(categoryName).isEqualTo(categoryName.CD),
+                                (categoryName) -> assertThat(categoryName).isEqualTo(categoryName.응원봉),
+                                (categoryName) -> assertThat(categoryName).isEqualTo(categoryName.의류),
+                                (categoryName) -> assertThat(categoryName).isEqualTo(categoryName.잡화)
+                        ),
+                        (_itemDto) -> assertThat(_itemDto.getArtistName()).satisfiesAnyOf(
+                                (artist) -> assertThat(artist).isEqualTo(artist.에스파),
+                                (artist) -> assertThat(artist).isEqualTo(artist.샤이니)
+                        )
+
+
+
+                );
+
+    }
 }

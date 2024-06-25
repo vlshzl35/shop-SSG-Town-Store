@@ -21,7 +21,7 @@ class OrderControllerTest {
     void orderDto() {
         // given
 
-        List<OrderDto> orderList= orderService.findOrderList(1);
+        List<OrderDto> orderList= orderService.findOrderList();
         System.out.println(orderList);
 
         // when
