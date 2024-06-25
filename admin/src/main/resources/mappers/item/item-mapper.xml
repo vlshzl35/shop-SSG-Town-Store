@@ -26,4 +26,32 @@
         where item_id = #{itemId};
     </select>
 <!--    나경작업끝-->
+    <!-- 희윤 시작 -->
+    <!-- (카테고리명, 아티스트명, 가격, 판매상태) 상품 조건검색 -->
+    <select id="findAllMatch" resultMap="itemDtoMap">
+        select * from tbl_item
+        <where>
+            <if test="categoryName != null">
+                AND category_name = #{categoryName}
+            </if>
+            <if test="artistName != null">
+                AND artist_name = #{artistName}
+            </if>
+            <if test="salePrice != null and salePrice != 0">
+                <![CDATA[AND sale_price <= #{salePrice}]]>
+<!--                sale_price &lt; #{salePrice}-->
+            </if>
+            <if test="saleStatus != null">
+                AND sale_status = #{saleStatus}
+            </if>
+        </where>
+    </select>
+    <!-- 희윤 끝 -->
+<!--    나경작업시작-->
+    <update id="updateSaleStatus" >
+        UPDATE tbl_item
+        SET sale_status = '판매중지'
+        WHERE item_id = #{itemId} AND sale_status = '품절'
+    </update>
+<!--    나경작업끝-->
 </mapper>
