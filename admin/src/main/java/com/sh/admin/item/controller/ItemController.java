@@ -6,8 +6,7 @@ import com.sh.admin.item.model.service.ItemQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import java.util.List;
@@ -40,6 +39,13 @@ public class ItemController {
     public String update(){
         return "item/update";
     }
+
+//    @PostMapping("/updateSaleStatus")
+//    @ResponseBody
+//    public String updateSaleStatus(@RequestParam("itemId") Long itemId) {
+//        boolean updated = ItemCommandService.updateSaleStatus(itemId);
+//        return updated ? "success" : "failure";
+//    }
 
 
 }
