@@ -5,6 +5,7 @@ import com.sh.admin.item.model.service.ItemCommandService;
 import com.sh.admin.item.model.service.ItemQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
@@ -40,12 +41,14 @@ public class ItemController {
         return "item/update";
     }
 
-//    @PostMapping("/updateSaleStatus")
-//    @ResponseBody
-//    public String updateSaleStatus(@RequestParam("itemId") Long itemId) {
-//        boolean updated = ItemCommandService.updateSaleStatus(itemId);
-//        return updated ? "success" : "failure";
-//    }
+//    나경작업시작
+    @PostMapping("/updateSaleStatus")
+    @ResponseBody
+    public boolean updateSaleStatus(@RequestParam("itemId") Long itemId) {
+        boolean updated = itemCommandService.updateSaleStatus(itemId); // 서비스에서 itemId의 결과 (true 이면 품절상태)
+        return updated;
+    }
+//    나경작업완료
 
 
 }
