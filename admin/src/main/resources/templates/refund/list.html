@@ -57,9 +57,9 @@
             }
         }
 
-        function denyConfirm(refundId, orderId) {
+        function denyConfirm(refundId) {
             if (confirm("환불을 거부하시겠습니까?")) {
-                location.href=`/refund/list/deny?refundId=${refundId}&orderId=${orderId}`;
+                location.href=`/refund/list/deny?refundId=${refundId}`;
                 alert("환불이 거부되었습니다.")
             }
         }
@@ -847,7 +847,7 @@
                                                     <td>
                                                         <ul class="action">
                                                             <button th:id="|accept*{refundId}|" th:refundId="*{refundId}" th:orderId="*{orderId}" onclick="acceptConfirm(this.getAttribute('refundId'), this.getAttribute('orderId'))" class="btn btn-primary">승인</button>
-                                                            <button th:id="|deny*{refundId}|" th:refundId="*{refundId}" th:orderId="*{orderId}" onclick="denyConfirm(this.getAttribute('refundId'), this.getAttribute('orderId'))" class="btn btn-danger">거부</button>
+                                                            <button th:id="|deny*{refundId}|" th:refundId="*{refundId}" onclick="denyConfirm(this.getAttribute('refundId'))" class="btn btn-danger">거부</button>
                                                         </ul>
                                                     </td>
                                                 </tr>

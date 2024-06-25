@@ -51,4 +51,15 @@ public class RefundController {
         log.debug("{}, {} -- 모두 1이면 환불 성공", updateRefundResult, updateOrderResult);
         return "redirect:/refund/list";
     }
+
+    @GetMapping({"/list/deny", "deny?refundId={refundId}"})
+    public String denyRefund(
+            @RequestParam("refundId") String refundId,
+            Model model) {
+        log.info(refundId);
+        // 환불번호로 환불 테이블 상태 업데이트
+        int updateRefundResult = refundCommandService.update(Long.parseLong(refundId), RefundStatus.환불취소);
+        log.debug("{} -- 1이면 환불 성공", updateRefundResult);
+        return "redirect:/refund/list";
+    }
 }
