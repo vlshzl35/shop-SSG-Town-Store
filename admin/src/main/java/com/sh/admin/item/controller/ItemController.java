@@ -9,11 +9,8 @@ import com.sh.admin.item.model.service.ItemQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -29,24 +26,28 @@ public class ItemController {
     private final ItemQueryService itemQueryService;
 
 
-    @GetMapping("/list")
-    public String list(Model model) {
-        log.info("GET /item/list");
-        List<ItemDto> items = itemQueryService.findAll();
-        log.debug("items = {}", items);
-        model.addAttribute("items", items);
-        return "item/list";
-    }
+//    @GetMapping("/list")
+//    public String list(Model model) {
+//        log.info("GET /item/list");
+//        List<ItemDto> items = itemQueryService.findAll();
+//        log.debug("items = {}", items);
+//        model.addAttribute("items", items);
+//        return "item/list";
+//    }
 
     /* 희윤 시작 */
-    @PostMapping("/list") // 다중검색 조건 설정값 넘겨받기
-    public String regist(
-                @RequestParam(required = false) Category categoryName,
+    @GetMapping("/list") // 다중검색 조건 설정값 넘겨받기
+    public String getCondition(
                 @RequestParam(required = false) Artist artistName,
+                @RequestParam(required = false) Category categoryName,
                 @RequestParam(required = false) SaleStatus saleStatus,
-                @RequestParam(required = false) int salePrice,
+                @RequestParam(required = false, defaultValue = "0") Integer salePrice,
                 Model model){
-                log.info("POST /list");
+                log.info("GET /list");
+                log.debug("artistName = {}", artistName);
+                log.debug("categoryName = {}", categoryName);
+                log.debug("saleStatus = {}", saleStatus);
+                log.debug("salePrice = {}", salePrice);
 
                 // 검색 결과 가져오기
                 List<ItemDto> items = itemQueryService.findAllMatch(categoryName, artistName, salePrice, saleStatus);

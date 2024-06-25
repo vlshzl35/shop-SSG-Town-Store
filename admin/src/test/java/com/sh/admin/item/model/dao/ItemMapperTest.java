@@ -1,10 +1,13 @@
 package com.sh.admin.item.model.dao;
 
+import com.sh.admin.item.model.dto.Artist;
+import com.sh.admin.item.model.dto.Category;
 import com.sh.admin.item.model.dto.ItemDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,6 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Transactional
 class ItemMapperTest {
 
     @Autowired
@@ -36,6 +40,17 @@ class ItemMapperTest {
 
     @Test
     void findAllMatch() {
-        
+        // given
+        Category categoryName = Category.valueOf("CD");
+        Artist artistName = Artist.valueOf("샤이니");
+
+        // when
+        List<ItemDto> items = itemMapper.findAllMatch(categoryName,artistName,13000,null);
+        System.out.println(items);
+        // then
+        assertThat(items)
+                .isNotNull()
+                .isNotEmpty()
+                .allMatch((item) -> item != null); // 모든 요소가 다 true
     }
 }

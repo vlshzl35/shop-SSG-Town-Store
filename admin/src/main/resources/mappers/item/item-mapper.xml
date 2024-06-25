@@ -32,16 +32,17 @@
         select * from tbl_item
         <where>
             <if test="categoryName != null">
-                AND category_name like #{categoryName}
+                AND category_name = #{categoryName}
             </if>
             <if test="artistName != null">
-                AND artist_name like #{artistName}
+                AND artist_name = #{artistName}
             </if>
-            <if test="salePrice != null">
-                AND sale_price like #{salePrice}
+            <if test="salePrice != null and salePrice != 0">
+                <![CDATA[AND sale_price <= #{salePrice}]]>
+<!--                sale_price &lt; #{salePrice}-->
             </if>
             <if test="saleStatus != null">
-                AND sale_status like #{saleStatus}
+                AND sale_status = #{saleStatus}
             </if>
         </where>
     </select>
