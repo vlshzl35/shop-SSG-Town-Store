@@ -41,12 +41,12 @@ public class OrderController {
     }
 
     @GetMapping("/detail/{orderId}")
-    public void detail(@PathVariable int orderId, Model model)
+    public String  detail(@PathVariable int orderId, Model model)
     {
         log.info("GET/detail/{}",orderId);
         List<OrderItemDto> orderItemDtos=orderService.findByOrderId(orderId);
-        System.out.println("도착했어요");
-        System.out.println("model = " + model);
+        System.out.println("도착했어요-----------------");
         model.addAttribute("orderItemDto",orderItemDtos);
+        return "order/detail";
     }
 }

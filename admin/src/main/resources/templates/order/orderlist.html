@@ -38,11 +38,6 @@
     <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
-    <script type="text/javascript">
-      function showHideRow(row) {
-        $("#" + row).toggle();
-      }
-    </script>
   </head>
   <body>
     <!-- tap on top starts-->
@@ -936,10 +931,11 @@
                   <div class="card-body">
                     <div class="dt-ext table-responsive custom-scrollbar">
                       <table class="display" id="export-button" border="1px solid">
-                        <thead>
+                        <thead align="center">
                         <tr>
                           <th>주문ID</th>
                           <th>회원ID</th>
+                          <th>금액</th>
                           <th>접수날짜</th>
                           <th>주문상태</th>
                           <th>송장번호</th>
@@ -949,12 +945,14 @@
                         </thead>
                         <tbody>
 
-                          <tr th:each="orderDto:${orderList}" th:object="${orderList}">
+                          <tr th:each="orderDto:${orderList}" th:object="${orderList}" align="center">
                             <form action="" method="post">
                             <td>
-                              <a th:href="@{|/order/detail/${orderDto.orderId}|}" th:text="${orderDto.orderId}"></a>
+                              <a th:href="@{|/order/detail/${orderDto.orderId}|}"
+                                 onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;" th:text="${orderDto.orderId}"></a>
                             </td>
                             <td th:text="${orderDto.memberId}"></td>
+                            <td th:text="${#numbers.formatInteger(orderDto.sumPrice, 3, 'COMMA')+'원'}"></td>
                             <td th:text="${#temporals.format(orderDto.orderDate,'yyyy-MM-dd')}"></td>
                             <td th:text="${orderDto.orderStatus}"></td>
                             <td th:text="${orderDto.trackNumber == 0 ? '' :orderDto.trackNumber}"></td>
