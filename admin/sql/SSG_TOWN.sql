@@ -103,10 +103,10 @@ CREATE TABLE `tbl_sales` (
                              `order_id`	bigint	NOT NULL	 ,
                              `order_item_id`	bigint	NULL	,
                              `refund_id`	bigint	NULL	 ,
-                             `sales_price`	bigint	NOT NULL 	COMMENT '주문인경우 주문상세의가격 +, -',
+                             `sales_price`	bigint	NOT NULL 	COMMENT '주문상세의가격 +, -',
                              `last_updated`	DateTIME	NULL,
                              PRIMARY KEY (`sales_id`),
-                             CONSTRAINT `fk_sales_order_item_id` FOREIGN KEY (`order_item_id`) REFERENCES `tbl_orderitem`(`order_item_id`),
+                             CONSTRAINT `fk_sales_item_id` FOREIGN KEY (`order_item_id`) REFERENCES `tbl_orderitem`(`item_id`),
                              CONSTRAINT `fk_sales_order_id` FOREIGN KEY (`order_id`) REFERENCES `tbl_order`(`order_id`),
                              CONSTRAINT `fk_sales_refund_id` FOREIGN KEY (`refund_id`) REFERENCES `tbl_refund`(`refund_id`)
 

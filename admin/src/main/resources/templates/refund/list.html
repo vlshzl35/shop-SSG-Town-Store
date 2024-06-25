@@ -832,8 +832,8 @@
                                                 <td th:hideRow="|list*{refundId}|" onclick="showHideRow(this.getAttribute('hideRow'))">펼치기</td>
                                                 <td>
                                                     <ul class="action">
-                                                        <button class="btn btn-primary" type="submit">승인</button>
-                                                        <button class="btn btn-danger" type="submit">거부</button>
+                                                        <button th:onclick="|location.href='@{/refund/list/accept}?refundId=${refund.refundId}&orderId=${refund.orderId}';|" class="btn btn-primary" value="accept">승인</button>
+                                                        <button th:onclick="|location.href='@{/refund/list/deny}?refundId=${refund.refundId}&orderId=${refund.orderId}';|" class="btn btn-danger" value="deny">거부</button>
                                                     </ul>
                                                 </td>
                                             </tr>
