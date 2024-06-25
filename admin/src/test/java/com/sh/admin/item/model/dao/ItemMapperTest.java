@@ -109,7 +109,5 @@ class ItemMapperTest {
         // then
         assertThat(updatedRows).isEqualTo(1); // 업데이트된 행의 수가 0보다 큰지 확인합니다.
 
-
-
     }
 }
