@@ -314,46 +314,53 @@
                                         <a class="btn btn-primary" th:href="@{/item/create}"><i class="fa fa-plus"></i>상품
                                             등록</a>
                                     </div>
-                                    <div class="collapse" id="collapseProduct">
-                                        <div class="card card-body list-product-body">
-                                            <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-2 g-3">
-                                                <div class="col">
-                                                    <select class="form-select" aria-label="Default select example">
-                                                        <option selected="">카테고리</option>
-                                                        <option value="1">Furniture</option>
-                                                        <option value="2">Smart Gadgets</option>
-                                                        <option value="3">Electrics</option>
-                                                    </select>
+                                    <!-- 희윤 시작 -->
+                                    <form name="MultiCondition" action="" method="post">
+                                        <div class="collapse" id="collapseProduct">
+                                            <div class="card card-body list-product-body">
+                                                <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-2 g-3">
+                                                    <div class="col">
+                                                        <select class="form-select" aria-label="Default select example" name="category">
+                                                            <option selected="">카테고리</option>
+                                                            <option value="1">CD</option>
+                                                            <option value="2">응원봉</option>
+                                                            <option value="3">의류</option>
+                                                            <option value="4">잡화</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col">
+                                                        <select class="form-select" aria-label="Default select example" name="artist">
+                                                            <option selected="">아티스트</option>
+                                                            <option value="1">샤이니</option>
+                                                            <option value="2">에스파</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col">
+                                                        <select class="form-select" aria-label="Default select example" name="status">
+                                                            <option selected="">상태</option>
+                                                            <option value="1">판매중</option>
+                                                            <option value="2">품절</option>
+                                                            <option value="3">판매중지</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col">
+                                                        <select class="form-select" aria-label="Default select example" name="price">
+                                                            <option selected="">가격</option>
+                                                            <option value="1">10000</option>
+                                                            <option value="2">30000</option>
+                                                            <option value="3">50000</option>
+                                                            <option value="3">100000</option>
+                                                        </select>
+                                                    </div>
+                                                    <div>
+                                                        <input type="submit" value="검색">
+                                                    </div>
                                                 </div>
-                                                <div class="col">
-                                                    <select class="form-select" aria-label="Default select example">
-                                                        <option selected="">아티스트</option>
-                                                        <option value="1">샤이니</option>
-                                                        <option value="2">에스파</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col">
-                                                    <select class="form-select" aria-label="Default select example">
-                                                        <option selected="">상태</option>
-                                                        <option value="1">Sold Out</option>
-                                                        <option value="2">In Stock</option>
-                                                        <option value="3">Pre Order</option>
-                                                        <option value="4">Limited Stock</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col">
-                                                    <select class="form-select" aria-label="Default select example">
-                                                        <option selected="">가격</option>
-                                                        <option value="1">56000.00</option>
-                                                        <option value="2">19000.00</option>
-                                                        <option value="3">10000.00</option>
-                                                        <option value="3">15000.00</option>
-                                                        <option value="3">99000.00</option>
-                                                    </select>
-                                                </div>
+
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>
+                                   <!-- 희윤 끝 -->
                                 </div>
                                 <div class="list-product">
                                     <table class="table" id="project-status">
