@@ -9,7 +9,6 @@ import java.util.List;
 @Mapper
 public interface ItemMapper {
     List<ItemDto> findAll(); //  전체조회
-
     ItemDto findById(int itemId); // 아이디로 한건조회
 
 //    int updateSaleStatus(int itemId);

@@ -18,4 +18,11 @@ public class ItemQueryService {
     public List<ItemDto> findAll() {
         return itemMapper.findAll();
     }
+//나경작업시작
+
+    // 한건 조회
+    public ItemDto findById(int itemId) {
+        return itemMapper.findById(itemId);
+    }
+//    나경작업끝
 }
