@@ -17,3 +17,11 @@ values (null, 3, 'honggd', 90500, '환불요청', null, now(), '씨디에 스크
 select *
 from tbl_order;
 
+select *
+from tbl_orderitem;
+
+select *
+from tbl_refund;
+
+insert into tbl_refund
+values (null, 5, 'ggobugi', 179000, '환불요청', null, now(), '상품의 색이 조금 마음에 안 들어요! 사진과 실물이 이렇게 달라도 되나요????', '단순변심');
