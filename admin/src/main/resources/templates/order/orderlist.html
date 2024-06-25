@@ -38,11 +38,6 @@
     <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
-    <script type="text/javascript">
-      function showHideRow(row) {
-        $("#" + row).toggle();
-      }
-    </script>
   </head>
   <body>
     <!-- tap on top starts-->
@@ -485,30 +480,6 @@
                     <li><a href="pricing.html">Pricing      </a></li>
                   </ul>
                 </li>
-                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="letter-box.html">
-                    <svg class="stroke-icon">
-                      <use href="../assets/svg/icon-sprite.svg#stroke-email"></use>
-                    </svg>
-                    <svg class="fill-icon">
-                      <use href="../assets/svg/icon-sprite.svg#fill-email"></use>
-                    </svg><span>Letter Box   </span></a>
-                  <ul class="sidebar-submenu">
-                    <li><a href="email-application.html">Email App</a></li>
-                    <li><a href="email-compose.html">Email Compose</a></li>
-                  </ul>
-                </li>
-                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title" href="#">
-                    <svg class="stroke-icon">
-                      <use href="../assets/svg/icon-sprite.svg#stroke-chat"></use>
-                    </svg>
-                    <svg class="fill-icon">
-                      <use href="../assets/svg/icon-sprite.svg#fill-chat"></use>
-                    </svg><span>Chat</span></a>
-                  <ul class="sidebar-submenu">
-                    <li><a href="private-chat.html">Private Chat</a></li>
-                    <li> <a href="group-chat.html">Group Chat</a></li>
-                  </ul>
-                </li>
                 <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
                     <svg class="stroke-icon"> 
                       <use href="../assets/svg/icon-sprite.svg#stroke-user"></use>
@@ -522,55 +493,6 @@
                     <li><a href="user-cards.html">Users Cards</a></li>
                   </ul>
                 </li>
-                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="bookmark.html">
-                    <svg class="stroke-icon">
-                      <use href="../assets/svg/icon-sprite.svg#stroke-bookmark"></use>
-                    </svg>
-                    <svg class="fill-icon">
-                      <use href="../assets/svg/icon-sprite.svg#fill-bookmark"> </use>
-                    </svg><span>Bookmarks</span></a></li>
-                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="contacts.html">
-                    <svg class="stroke-icon">
-                      <use href="../assets/svg/icon-sprite.svg#stroke-contact"></use>
-                    </svg>
-                    <svg class="fill-icon">
-                      <use href="../assets/svg/icon-sprite.svg#fill-contact"> </use>
-                    </svg><span>Contacts</span></a></li>
-                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="task.html">
-                    <svg class="stroke-icon">
-                      <use href="../assets/svg/icon-sprite.svg#stroke-task"></use>
-                    </svg>
-                    <svg class="fill-icon">
-                      <use href="../assets/svg/icon-sprite.svg#fill-task"> </use>
-                    </svg><span>Tasks</span></a></li>
-                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="calendar-basic.html">
-                    <svg class="stroke-icon">
-                      <use href="../assets/svg/icon-sprite.svg#stroke-calendar"></use>
-                    </svg>
-                    <svg class="fill-icon">
-                      <use href="../assets/svg/icon-sprite.svg#fill-calender"></use>
-                    </svg><span>Calendar</span></a></li>
-                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="social-app.html">
-                    <svg class="stroke-icon">
-                      <use href="../assets/svg/icon-sprite.svg#stroke-social"></use>
-                    </svg>
-                    <svg class="fill-icon">
-                      <use href="../assets/svg/icon-sprite.svg#fill-social"> </use>
-                    </svg><span>Social App</span></a></li>
-                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="to-do.html">
-                    <svg class="stroke-icon">
-                      <use href="../assets/svg/icon-sprite.svg#stroke-to-do"></use>
-                    </svg>
-                    <svg class="fill-icon">
-                      <use href="../assets/svg/icon-sprite.svg#fill-to-do"> </use>
-                    </svg><span>To-Do</span></a></li>
-                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="search.html">
-                    <svg class="stroke-icon">
-                      <use href="../assets/svg/icon-sprite.svg#stroke-search"></use>
-                    </svg>
-                    <svg class="fill-icon">
-                      <use href="../assets/svg/icon-sprite.svg#fill-search"> </use>
-                    </svg><span>Search Result</span></a></li>
                 <li class="sidebar-main-title"> 
                   <div>
                     <h6>Forms & Table</h6>
@@ -1009,10 +931,11 @@
                   <div class="card-body">
                     <div class="dt-ext table-responsive custom-scrollbar">
                       <table class="display" id="export-button" border="1px solid">
-                        <thead>
+                        <thead align="center">
                         <tr>
                           <th>주문ID</th>
                           <th>회원ID</th>
+                          <th>금액</th>
                           <th>접수날짜</th>
                           <th>주문상태</th>
                           <th>송장번호</th>
@@ -1022,13 +945,14 @@
                         </thead>
                         <tbody>
 
-                          <tr th:each="orderDto:${orderList}" th:object="${orderList}">
+                          <tr th:each="orderDto:${orderList}" th:object="${orderList}" align="center">
                             <form action="" method="post">
                             <td>
-                              <a th:text="${orderDto.orderId}"></a>
-<!--                              th:href="@{|/order/detail/*{orderList.orderId}|}" -->
+                              <a th:href="@{|/order/detail/${orderDto.orderId}|}"
+                                 onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;" th:text="${orderDto.orderId}"></a>
                             </td>
                             <td th:text="${orderDto.memberId}"></td>
+                            <td th:text="${#numbers.formatInteger(orderDto.sumPrice, 3, 'COMMA')+'원'}"></td>
                             <td th:text="${#temporals.format(orderDto.orderDate,'yyyy-MM-dd')}"></td>
                             <td th:text="${orderDto.orderStatus}"></td>
                             <td th:text="${orderDto.trackNumber == 0 ? '' :orderDto.trackNumber}"></td>

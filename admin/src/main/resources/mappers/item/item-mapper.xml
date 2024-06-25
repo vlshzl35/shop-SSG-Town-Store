@@ -47,4 +47,11 @@
         </where>
     </select>
     <!-- 희윤 끝 -->
+<!--    나경작업시작-->
+    <update id="updateSaleStatus" >
+        UPDATE tbl_item
+        SET sale_status = '판매중지'
+        WHERE item_id = #{itemId} AND sale_status = '품절'
+    </update>
+<!--    나경작업끝-->
 </mapper>
