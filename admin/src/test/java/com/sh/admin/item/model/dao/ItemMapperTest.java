@@ -1,5 +1,8 @@
 package com.sh.admin.item.model.dao;
 
+import com.sh.admin.item.model.dto.Artist;
+import com.sh.admin.item.model.dto.Category;
+import com.sh.admin.item.model.dto.ItemDto;
 import com.sh.admin.item.model.dto.ItemDto;
 import com.sh.admin.item.model.dto.SaleStatus;
 import org.junit.jupiter.api.DisplayName;
@@ -36,6 +39,23 @@ class ItemMapperTest {
                 .allMatch((item) -> item != null); // 모든 요소가 다 true
 
     }
+  
+    @Test
+    void findAllMatch() {
+        // given
+        Category categoryName = Category.valueOf("CD");
+        Artist artistName = Artist.valueOf("샤이니");
+
+        // when
+        List<ItemDto> items = itemMapper.findAllMatch(categoryName,artistName,13000,null);
+        System.out.println(items);
+        // then
+        assertThat(items)
+                .isNotNull()
+                .isNotEmpty()
+                .allMatch((item) -> item != null); // 모든 요소가 다 true
+    }
+
 //    나경작업시작
     @Test
     @DisplayName("상품아이디로 한건조회")
@@ -92,10 +112,4 @@ class ItemMapperTest {
 
 
     }
-
-
-
-
-
-//    나경작업끝
 }

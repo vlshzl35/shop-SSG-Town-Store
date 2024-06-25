@@ -1,6 +1,3 @@
-package com.sh.admin.item.model.service;
-
-import com.sh.admin.item.model.dao.ItemMapper;
 import com.sh.admin.item.model.dto.ItemDto;
 import com.sh.admin.item.model.dto.SaleStatus;
 import lombok.RequiredArgsConstructor;
