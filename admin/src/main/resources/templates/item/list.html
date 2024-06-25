@@ -407,9 +407,12 @@
                                             <td>
                                                 <p class="f-light" th:text="*{details}"></p>
                                             </td>
+<!--                                            나경작업시작-->
                                             <td>
-                                                <p class="f-light" th:text="*{#numbers.formatInteger(salePrice, 2, 'COMMA')}"></p>
+                                                <p class="f-light"
+                                                   th:text="*{#numbers.formatInteger(salePrice, 2, 'COMMA')}"></p>
                                             </td>
+<!--                                            나경작업끝-->
                                             <td>
                                                 <p class="f-light" th:text="*{quantity}"></p>
                                             </td>
@@ -425,9 +428,13 @@
                                                             <use href="../assets/svg/icon-sprite.svg#edit-content"></use>
                                                         </svg>
                                                     </a>
-                                                    <svg>
-                                                        <use href="../assets/svg/icon-sprite.svg#trash1"></use>
-                                                    </svg>
+<!--                                                    나경작업시작-->
+                                                    <a>
+                                                        <svg>
+                                                            <use href="../assets/svg/icon-sprite.svg#trash1"></use>
+                                                        </svg>
+                                                    </a>
+<!--                                                    나경작업끝-->
                                                 </div>
                                             </td>
                                         </tr>
