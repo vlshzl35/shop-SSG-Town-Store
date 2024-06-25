@@ -19,11 +19,16 @@
         select *
         from tbl_item
     </select>
-<!--    나경작업시작-->
     <select id="findById" resultMap="itemDtoMap">
         select *
         from tbl_item
         where item_id = #{itemId};
     </select>
+<!--    나경작업시작-->
+    <update id="updateSaleStatus" >
+        UPDATE tbl_item
+        SET sale_status = '판매중지'
+        WHERE item_id = #{itemId} AND sale_status = '품절'
+    </update>
 <!--    나경작업끝-->
 </mapper>

@@ -21,7 +21,7 @@ public class ItemQueryService {
 //나경작업시작
 
     // 한건 조회
-    public ItemDto findById(int itemId) {
+    public ItemDto findById(long itemId) {
         return itemMapper.findById(itemId);
     }
 //    나경작업끝
