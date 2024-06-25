@@ -47,3 +47,7 @@ values ('honggd', '홍길동','M','1943-02-24','전라도 장성현 아차곡','
 
 insert into tbl_member(member_id, member_name, member_gender, member_birth, member_address, member_email, created_at, member_bank, member_account)
 values ('leess', '이순신','M','1545-07-24','조선시대 정읍현감','leess@naver.com',LOCALTIME,'1778849895','N');
+
+select *
+from tbl_orderitem
+where order_id=1;

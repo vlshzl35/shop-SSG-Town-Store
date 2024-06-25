@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
@@ -30,28 +31,8 @@ public class OrderController {
 
     @GetMapping("/list")
     public String list(Model model) {
-        List<OrderDto> orderList= orderService.findOrderList(1);
-        System.out.println(orderList);
-
-        //상세주문
-        List<OrderItemDto> orderItemDtoList =new ArrayList<>(List.of(
-                new OrderItemDto(1,1,1,10,25000),
-                new OrderItemDto(2,1,2,5,25000),
-                new OrderItemDto(3,1,3,7,25000)
-        ));
-
-        //상세 주문
-        List<OrderItemDto> orderItemDtoList2 =new ArrayList<>(List.of(
-                new OrderItemDto(1,2,3,16,25000),
-                new OrderItemDto(2,2,64,13,50000),
-                new OrderItemDto(3,2,32,21,50000)
-        ));
-
-        // 간략주문
-        List<OrderDto> orderDtoList=new ArrayList<>(List.of(
-                new OrderDto(1,"cstangga", LocalDate.of(2024,6,12),75_000,발송완료,0,null, orderItemDtoList),
-                new OrderDto(2,"sinsa", LocalDate.of(2024,6,16),125_000,주문요청,0,null, orderItemDtoList2)
-        ));
+        List<OrderDto> orderDtoList= orderService.findOrderList();
+        System.out.println(orderDtoList);
 
         model.addAttribute("orderList", orderDtoList);
         System.out.println("orderDtoList = " + orderDtoList);
@@ -59,10 +40,13 @@ public class OrderController {
         return "order/orderlist";
     }
 
-    @GetMapping("/detail")
-    public void detail(Model model)
+    @GetMapping("/detail/{orderId}")
+    public void detail(@PathVariable int orderId, Model model)
     {
+        log.info("GET/detail/{}",orderId);
+        List<OrderItemDto> orderItemDtos=orderService.findByOrderId(orderId);
         System.out.println("도착했어요");
         System.out.println("model = " + model);
+        model.addAttribute("orderItemDto",orderItemDtos);
     }
 }
