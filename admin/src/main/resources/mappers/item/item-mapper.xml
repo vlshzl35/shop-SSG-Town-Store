@@ -19,4 +19,11 @@
         select *
         from tbl_item
     </select>
+<!--    나경작업시작-->
+    <select id="findAll" resultMap="itemDtoMap">
+        select *
+        from tbl_item
+        where item_id = #{itemId};
+    </select>
+<!--    나경작업끝-->
 </mapper>
