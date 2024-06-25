@@ -1,17 +1,18 @@
 package com.sh.admin.refund.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class RefundDto {
-    private Long refundId;
-    private Long orderId;
+    private long refundId;
+    private long orderId;
     private String memberId;
     private int sumPrice;
     private RefundStatus refundStatus;
