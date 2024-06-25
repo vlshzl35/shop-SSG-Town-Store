@@ -49,6 +49,20 @@
         function showHideRow(row) {
             $("#" + row).toggle();
         }
+
+        function acceptConfirm(refundId, orderId) {
+            if (confirm("환불을 승인하시겠습니까?")) {
+                location.href=`/refund/list/accept?refundId=${refundId}&orderId=${orderId}`;
+                alert("환불이 완료되었습니다.")
+            }
+        }
+
+        function denyConfirm(refundId, orderId) {
+            if (confirm("환불을 거부하시겠습니까?")) {
+                location.href=`/refund/list/deny?refundId=${refundId}&orderId=${orderId}`;
+                alert("환불이 거부되었습니다.")
+            }
+        }
     </script>
     <style>
         #basic-1 .hidden_row {
@@ -799,7 +813,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header pb-0 card-no-border">
-                                <h4>환불 관리</h4><span>DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function:<code>$().DataTable();</code>.</span><span>Searching, ordering and paging goodness will be immediately added to the table, as shown in this example.</span>
+                                <h4>환불 관리</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive custom-scrollbar">
@@ -819,31 +833,31 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <th:block th:each="refund, stat : ${refunds}" th:object="${refund}">
-                                            <tr>
-                                                <td th:text="*{refundId}"></td>
-                                                <td th:text="*{orderId}"></td>
-                                                <td th:text="*{memberId}"></td>
-                                                <td th:text="*{sumPrice}"></td>
-                                                <td th:text="*{refundStatus}"></td>
-                                                <td th:text="*{requestDate}"></td>
-                                                <td th:text="*{lastUpdated}"></td>
-                                                <td  th:text="*{refundReason}" class="list-group-numbered"></td>
-                                                <td th:hideRow="|list*{refundId}|" onclick="showHideRow(this.getAttribute('hideRow'))">펼치기</td>
-                                                <td>
-                                                    <ul class="action">
-                                                        <button th:onclick="|location.href='@{/refund/list/accept}?refundId=${refund.refundId}&orderId=${refund.orderId}';|" class="btn btn-primary" value="accept">승인</button>
-                                                        <button th:onclick="|location.href='@{/refund/list/deny}?refundId=${refund.refundId}&orderId=${refund.orderId}';|" class="btn btn-danger" value="deny">거부</button>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr th:id="|list*{refundId}|" class="hidden_row">
-                                                <td colspan="8">
-                                                    <h6>설명</h6><br>
-                                                    <p th:text="*{description}"></p>
-                                                </td>
-                                            </tr>
-                                        </th:block>
+                                            <th:block th:each="refund, stat : ${refunds}" th:object="${refund}">
+                                                <tr>
+                                                    <td th:text="*{refundId}"></td>
+                                                    <td th:text="*{orderId}"></td>
+                                                    <td th:text="*{memberId}"></td>
+                                                    <td th:text="*{sumPrice}"></td>
+                                                    <td th:text="*{refundStatus}"></td>
+                                                    <td th:text="*{requestDate}"></td>
+                                                    <td th:text="*{lastUpdated}"></td>
+                                                    <td  th:text="*{refundReason}" class="list-group-numbered"></td>
+                                                    <td th:hideRow="|list*{refundId}|" onclick="showHideRow(this.getAttribute('hideRow'))">펼치기</td>
+                                                    <td>
+                                                        <ul class="action">
+                                                            <button th:id="|accept*{refundId}|" th:refundId="*{refundId}" th:orderId="*{orderId}" onclick="acceptConfirm(this.getAttribute('refundId'), this.getAttribute('orderId'))" class="btn btn-primary">승인</button>
+                                                            <button th:id="|deny*{refundId}|" th:refundId="*{refundId}" th:orderId="*{orderId}" onclick="denyConfirm(this.getAttribute('refundId'), this.getAttribute('orderId'))" class="btn btn-danger">거부</button>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr th:id="|list*{refundId}|" class="hidden_row">
+                                                    <td colspan="8">
+                                                        <h6>설명</h6><br>
+                                                        <p th:text="*{description}"></p>
+                                                    </td>
+                                                </tr>
+                                            </th:block>
                                         </tbody>
                                     </table>
                                 </div>
