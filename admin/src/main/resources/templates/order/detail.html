@@ -11,16 +11,37 @@
         <div class="card-header">
             <h2>메뉴상세보기</h2>
         </div>
-        <div class="card-body" th:object="${orderItemDto}">
-            <h5 class="card-title" th:text="*{orderItemId}">상세ID</h5>
-            <h5 class="card-title" th:text="*{orderId}">주문ID</h5>
-            <p class="card-text" th:text="*{#numbers.formatInteger(orderItemPrice, 3, 'COMMA')}">메뉴가격</p>
-            <p class="card-text" th:text="*{categoryCode}">카테고리코드</p>
-            <p class="card-text" th:text="*{orderableStatus}">주문가능여부</p>
-            <a th:href="@{/menu/list}" class="btn btn-primary">목록보기</a>
-        </div>
+        <a th:href="@{/order/list}" class="btn btn-primary">목록보기</a>
+        <table border="1px solid">
+            <thead>
+            <tr>
+                <td>주문상세ID</td>
+                <td>주문ID</td>
+                <td>상품ID</td>
+                <td>상품이름</td>
+                <td>주문수량</td>
+                <td>금액</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="orderItem : ${orderItemDto}" th:object="${orderItemDto}" align="center">
+                <form action="" method="post">
+                <td th:text="${orderItem.orderItemId}"></td>
+                <td th:text="${orderItem.orderId}"></td>
+                <td th:text="${orderItem.itemId}"></td>
+                <td th:text="${orderItem.itemName}"></td>
+                <td th:text="${orderItem.itemQuantity}"></td>
+                <td th:text="${#numbers.formatInteger(orderItem.orderItemPrice, 3, 'COMMA')+'원'}"></td>
+                </form>
+                <td>
+                    <button type="submit" value="발송">발송처리</button>
+                    <button type="submit" value="취소">취소처리</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-        </div>
+
 
 </main>
 </body>
