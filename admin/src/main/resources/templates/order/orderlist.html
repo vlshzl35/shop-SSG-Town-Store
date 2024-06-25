@@ -1025,8 +1025,7 @@
                           <tr th:each="orderDto:${orderList}" th:object="${orderList}">
                             <form action="" method="post">
                             <td>
-                              <a th:text="${orderDto.orderId}"></a>
-<!--                              th:href="@{|/order/detail/*{orderList.orderId}|}" -->
+                              <a th:href="@{|/order/detail/${orderDto}}" th:text="${orderDto.orderId}"></a>
                             </td>
                             <td th:text="${orderDto.memberId}"></td>
                             <td th:text="${#temporals.format(orderDto.orderDate,'yyyy-MM-dd')}"></td>

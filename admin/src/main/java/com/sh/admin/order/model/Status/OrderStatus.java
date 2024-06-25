@@ -1,5 +1,5 @@
 package com.sh.admin.order.model.Status;
 
 public enum OrderStatus {
-    ORDER,COMPLETE;
+    주문요청, 발송완료;
 }

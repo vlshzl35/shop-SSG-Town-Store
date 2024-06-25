@@ -13,7 +13,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.sh.admin.order.model.Status.OrderStatus.ORDER;
+import static com.sh.admin.order.model.Status.OrderStatus.발송완료;
+import static com.sh.admin.order.model.Status.OrderStatus.주문요청;
+
 
 @Controller
 @RequestMapping("/order")
@@ -28,7 +30,8 @@ public class OrderController {
 
     @GetMapping("/list")
     public String list(Model model) {
-//        List<OrderDto> orderList= orderService.findOrderList();
+        List<OrderDto> orderList= orderService.findOrderList(1);
+        System.out.println(orderList);
 
         //상세주문
         List<OrderItemDto> orderItemDtoList =new ArrayList<>(List.of(
@@ -46,8 +49,8 @@ public class OrderController {
 
         // 간략주문
         List<OrderDto> orderDtoList=new ArrayList<>(List.of(
-                new OrderDto(1,1, LocalDate.of(2024,6,12),75_000,ORDER,0,null, orderItemDtoList),
-                new OrderDto(2,123, LocalDate.of(2024,6,16),125_000,ORDER,0,null, orderItemDtoList2)
+                new OrderDto(1,"cstangga", LocalDate.of(2024,6,12),75_000,발송완료,0,null, orderItemDtoList),
+                new OrderDto(2,"sinsa", LocalDate.of(2024,6,16),125_000,주문요청,0,null, orderItemDtoList2)
         ));
 
         model.addAttribute("orderList", orderDtoList);
