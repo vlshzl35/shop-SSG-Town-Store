@@ -35,4 +35,12 @@ public class OrderService {
     public int shipmentByOrderId(int orderId, long trackNumber, LocalDate shipmentDate) {
         return orderMapper.shipmentByOrderId(orderId,trackNumber,shipmentDate);
     }
+
+    public List<OrderItemDto> findByOrderItemDto(String orderId) {
+        return orderMapper.findByOrderItemDto(orderId);
+    }
+
+    public int updateOrder(int itemId, int itemQuantity) {
+        return orderMapper.updateOrder(itemId,itemQuantity);
+    }
 }

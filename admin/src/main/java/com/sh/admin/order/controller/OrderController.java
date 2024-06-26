@@ -59,15 +59,29 @@ public class OrderController {
         String formattedDateTime = now.format(formatter);
         System.out.println(formattedDateTime);
         long trackNumber=Long.parseLong(formattedDateTime);
-        //
+
+        // 송장번호, 발송날짜 입력
         int result=orderService.shipmentByOrderId(shipmentOrderId,trackNumber,LocalDate.now());
-
-
-
+        if(result==1)
+            System.out.println("주문 번호 : "+orderId + " 발송처리 완료");
 
         // orderId값으로 쿼리는 조회해서 재고를 가져와서 다시 상품으로 가서 재고를 감소하게 한다
+        List<OrderItemDto> orderItemDtos = orderService.findByOrderItemDto(orderId);
+        for(OrderItemDto orderItemDto : orderItemDtos)
+        {
 
-        System.out.println("발송완료 입니다");
+            int itemId=orderItemDto.getItemId();
+            int itemQuantity=orderItemDto.getItemQuantity();
+            int shipmentResult= orderService.updateOrder(itemId,itemQuantity);
+
+            if(shipmentResult==1)
+            {
+                System.out.println("주문 번호 : "+orderItemDto.getOrderId());
+                System.out.println("제품 번호 : "+orderItemDto.getItemId());
+                System.out.println("재고량 감소 확인");
+            }
+
+        }
         return "redirect:/order/list";
     }
 
