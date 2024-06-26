@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/default}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <title>메뉴 상세보기</title>
 </head>
 <body>
-<main layout:fragment="main" class="container">
-    <div class="card mt-5">
-        <div class="card-header">
+
+        <div  class="card-header">
             <h2>메뉴상세보기</h2>
         </div>
-        <a th:href="@{/order/list}" class="btn btn-primary">목록보기</a>
+        <a th:href="@{/order/list}" class="btn btn-primary" onClick="window.close()">목록보기</a>
         <table border="1px solid">
             <thead>
             <tr>
@@ -33,15 +31,9 @@
                 <td th:text="${orderItem.itemQuantity}"></td>
                 <td th:text="${#numbers.formatInteger(orderItem.orderItemPrice, 3, 'COMMA')+'원'}"></td>
                 </form>
-                <td>
-                    <button type="submit" value="발송">발송처리</button>
-                    <button type="submit" value="취소">취소처리</button>
-                </td>
             </tr>
             </tbody>
         </table>
-    </div>
-
 
 </main>
 </body>
