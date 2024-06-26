@@ -1,9 +1,7 @@
 package com.sh.admin.refund.model.service;
 
 import com.sh.admin.refund.model.dao.RefundMapper;
-import com.sh.admin.refund.model.dto.RefundDto;
-import com.sh.admin.refund.model.dto.RefundItemDto;
-import com.sh.admin.refund.model.dto.RefundOrderDto;
+import com.sh.admin.refund.model.dto.*;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -50,4 +48,12 @@ class RefundQueryServiceTest {
         assertThat(refundItems).isNotNull();
     }
 
+    @Test
+    @DisplayName("환불할 주문 조건 조회")
+    void findByCondition() {
+        List<RefundDto> refunds = refundMapper.findByCondition(new SearchDto(null, null, null, "c"));
+        refunds.forEach((refund) -> {
+            System.out.println(refund.getMemberId());});
+        assertThat(refunds).isNotNull();
+    }
 }
