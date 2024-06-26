@@ -26,4 +26,8 @@ public class OrderService {
     public List<OrderItemDto> findByOrderId(int orderId) {
         return orderMapper.findByOrderId(orderId);
     }
+
+    public int orderCancelByOrderId(int cancelOrderId) {
+        return orderMapper.orderCancelByOrderId(cancelOrderId);
+    }
 }

@@ -7,6 +7,10 @@ select *
 from tbl_orderitem join tbl_item on tbl_orderitem.item_id = tbl_item.item_id
 where order_id=1;
 
+update tbl_order
+set order_status='주문취소'
+where order_id=6;
+
 select tbl_order.order_id, member_id, order_date, sum_price, order_status, track_number, shipment_date, order_item_id,tbl_order.order_id, item_id, item_quantity, order_item_price
 from tbl_order join tbl_orderitem on tbl_order.order_id = tbl_orderitem.order_id
 where tbl_order.order_id=3 ;

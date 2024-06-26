@@ -3,18 +3,12 @@ package com.sh.admin.order.controller;
 import com.sh.admin.order.model.dto.OrderDto;
 import com.sh.admin.order.model.dto.OrderItemDto;
 import com.sh.admin.order.model.service.OrderService;
-import com.sh.admin.refund.model.dto.RefundStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-
-import static com.sh.admin.order.model.Status.OrderStatus.발송완료;
-import static com.sh.admin.order.model.Status.OrderStatus.주문요청;
 
 
 @Controller
@@ -49,20 +43,26 @@ public class OrderController {
         return "order/detail";
     }
 
-    @PostMapping("/list/shipment")
-    public void shipment( @RequestParam(value = "orderId") String  orderId){
-        log.debug("order = {}",orderId);
-        System.out.println("발송왔어요");
-        System.out.println("orderId = " + orderId);
+
+    @PostMapping({"/list/shipment", "shipment?orderId={orderId}"})
+    public String shipment(
+            @RequestParam("orderId") String orderId) {
+        log.info(orderId);
+        // 주문번호를 받았으니 orderDto값은 발송완료로 처리
+        // orderId값으로 쿼리는 조회해서 재고를 가져와서 다시 상품으로 가서 재고를 감소하게 한다
+        System.out.println("발송완료 입니다");
+        return "redirect:/order/list";
     }
 
-//    @GetMapping({"/list/shipment", "shipment?orderId={orderId}"})
-//    public String shipment(
-//            @RequestParam("orderId") String orderId,
-//            Model model) {
-//        log.info(orderId);
-//        // 환불번호로 환불 테이블 상태 업데이트
-//
-//        return "redirect:/order/list";
-//    }
+    @PostMapping({"/list/cancel"})
+    public String cancel(
+            @RequestParam("orderId") String orderId) {
+        log.info(orderId);
+        // orderId값으로 취소만 하면된다
+        int cancelOrderId=Integer.parseInt(orderId);
+        int result=orderService.orderCancelByOrderId(cancelOrderId);
+        System.out.println("취소완료 입니다");
+        return "redirect:/order/list";
+    }
+
 }
