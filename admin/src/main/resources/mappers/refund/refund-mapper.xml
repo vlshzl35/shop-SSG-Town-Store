@@ -21,7 +21,7 @@
         from
             tbl_refund
         order by
-            request_date
+            request_date desc
     </select>
 
     <select id="findByCondition" resultMap="refundDtoMap">
