@@ -51,7 +51,7 @@ class RefundQueryServiceTest {
     @Test
     @DisplayName("환불할 주문 조건 조회")
     void findByCondition() {
-        List<RefundDto> refunds = refundMapper.findByCondition(new SearchDto(null, null, null, "c"));
+        List<RefundDto> refunds = refundMapper.findByCondition(new SearchDto(null, null, null, null, "c"));
         refunds.forEach((refund) -> {
             System.out.println(refund.getMemberId());});
         assertThat(refunds).isNotNull();
