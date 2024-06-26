@@ -24,7 +24,7 @@
             request_date
     </select>
 
-    <select id="findByCondition">
+    <select id="findByCondition" resultMap="refundDtoMap">
         select
             *
         from

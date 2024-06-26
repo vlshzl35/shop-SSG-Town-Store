@@ -385,12 +385,12 @@
                                                     <td th:text="*{refundStatus}"></td>
                                                     <td th:text="*{requestDate}"></td>
                                                     <td th:text="*{lastUpdated}"></td>
-                                                    <td  th:text="*{refundReason}" class="list-group-numbered"></td>
+                                                    <td  th:text="*{refundReason}"></td>
                                                     <td th:hideRow="|list*{refundId}|" onclick="showHideRow(this.getAttribute('hideRow'))">펼치기</td>
                                                     <td>
                                                         <ul class="action">
-                                                            <button th:id="|accept*{refundId}|" th:refundId="*{refundId}" th:orderId="*{orderId}" onclick="acceptConfirm(this.getAttribute('refundId'), this.getAttribute('orderId'))" class="btn btn-primary">승인</button>
-                                                            <button th:id="|deny*{refundId}|" th:refundId="*{refundId}" onclick="denyConfirm(this.getAttribute('refundId'))" class="btn btn-danger">거부</button>
+                                                            <button th:id="|accept*{refundId}|" th:refundId="*{refundId}" th:orderId="*{orderId}" onclick="acceptConfirm(this.getAttribute('refundId'), this.getAttribute('orderId'))" class="btn btn-primary" th:disabled="*{processed}" >승인</button>
+                                                            <button th:id="|deny*{refundId}|" th:refundId="*{refundId}" onclick="denyConfirm(this.getAttribute('refundId'))" class="btn btn-danger" th:disabled="*{processed}">거부</button>
                                                         </ul>
                                                     </td>
                                                 </tr>
