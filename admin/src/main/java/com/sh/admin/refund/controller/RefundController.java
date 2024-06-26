@@ -39,7 +39,11 @@ public class RefundController {
                                         Model model) {
         log.info("{}", searchDto);
         List<RefundDto> refunds2 = refundQueryService.findByCondition(searchDto);
-        System.out.println(refunds2);
+        refunds2.forEach((refund) -> {
+            if (!(refund.getRefundStatus() == RefundStatus.환불요청)) {
+                refund.setProcessed("disabled"); // 환불요청이 아닌 것들 -> 환불완료, 환불취소의 경우에는 처리 불가를 표시한다.
+            }
+        });
         model.addAttribute("refunds", refunds2);
         return "refund/list";
     }
