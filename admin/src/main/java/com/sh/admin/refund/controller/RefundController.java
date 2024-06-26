@@ -7,9 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +24,16 @@ public class RefundController {
     public String refundList(Model model) {
         List<RefundDto> refunds = refundQueryService.findAll();
         model.addAttribute("refunds", refunds);
+        return "refund/list";
+    }
+
+    @PostMapping("/list")
+    public String refundListByCondition(@ModelAttribute SearchDto searchDto,
+                                        Model model) {
+        log.info("{}", searchDto);
+        List<RefundDto> refunds2 = refundQueryService.findByCondition(searchDto);
+        System.out.println(refunds2);
+        model.addAttribute("refunds", refunds2);
         return "refund/list";
     }
 
