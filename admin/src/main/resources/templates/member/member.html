@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,24 +37,6 @@
   <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
   <!-- Responsive css-->
   <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
-  <!-- 따로 가져왔어요 -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js">
-  </script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
-<!--  <link rel="stylesheet"-->
-<!--        type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">-->
-  <script type="text/javascript">
-    function showHideRow(row) {
-      $("#" + row).toggle();
-    }
-  </script>
-  <style>
-    #basic-1 .hidden_row {
-      display: none;
-    }
-  </style>
 </head>
 <body>
 <!-- loader starts-->
@@ -642,7 +624,7 @@
                 </li>
                 <li><a class="submenu-title" href="#">Data Tables<span class="sub-arrow"><i class="fa fa-angle-right"></i></span></a>
                   <ul class="nav-sub-childmenu submenu-content">
-                    <li><a href="member/member.html">Basic Init</a></li>
+                    <li><a href="datatable-basic-init.html">Basic Init</a></li>
                     <li> <a href="datatable-advance.html">Advance Init </a></li>
                     <li> <a href="datatable-API.html">API </a></li>
                     <li><a href="datatable-data-source.html">Data Sources</a></li>
@@ -1023,72 +1005,48 @@
           <!-- Zero Configuration  Starts-->
           <div class="col-sm-12">
             <div class="card">
-              <div class="card-header pb-0 card-no-border">
-                <h4>환불 관리</h4><span>DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function:<code>$().DataTable();</code>.</span><span>Searching, ordering and paging goodness will be immediately added to the table, as shown in this example.</span>
-              </div>
               <div class="card-body">
                 <div class="table-responsive custom-scrollbar">
                   <table class="display" id="basic-1">
                     <thead>
                     <tr>
-                      <th>환불번호</th>
-                      <th>주문번호</th>
-                      <th>주문자</th>
-                      <th>총 가격</th>
-                      <th>환불 상태</th>
-                      <th>요청일자</th>
-                      <th>처리일자</th>
-                      <th>환불사유</th>
-                      <th>설명</th>
-                      <th>요청처리</th>
+                      <th>회원ID</th>
+                      <th>회원명</th>
+                      <th>성별</th>
+                      <th>생년월일</th>
+                      <th>회원주소</th>
+                      <th>회원이메일</th>
+                      <th>가입일짜</th>
+                      <th>회원은행명</th>
+                      <th>회원계좌번호</th>
+                      <th>회원탈퇴여부</th>
                     </tr>
                     </thead>
-                      <tbody>
-                      <th:block th:each="refund, stat : ${refunds}" th:object="${refund}">
-                        <tr>
-                          <td th:text="*{refundId}"></td>
-                          <td th:text="*{orderId}"></td>
-                          <td th:text="*{memberId}"></td>
-                          <td th:text="*{sumPrice}"></td>
-                          <td th:text="*{refundStatus}"></td>
-                          <td th:text="*{requestDate}"></td>
-                          <td th:text="*{lastUpdated}"></td>
-                          <td  th:text="*{refundReason}" class="list-group-numbered"></td>
-                          <td th:hideRow="|list*{refundId}|" onclick="showHideRow(this.getAttribute('hideRow'))">펼치기</td>
-                          <td>
-                            <ul class="action">
-                              <button class="btn btn-primary" type="submit">승인</button>
-                              <button class="btn btn-danger" type="submit">거부</button>
-                            </ul>
-                          </td>
-                        </tr>
-                        <tr th:id="|list*{refundId}|" class="hidden_row">
-                          <td colspan="8">
-                            <h6>설명</h6><br>
-                            <p th:text="*{description}"></p>
-                          </td>
-                        </tr>
-                      </th:block>
-                      </tbody>
+                    <tbody>
+                    <tr th:each="memberDto:${members}" th:object="${members}" align="center">
+                        <td th:text="${memberDto.getMemberId()}"></td>
+                        <td th:text="${memberDto.getMemberName()}"></td>
+                        <td th:text="${memberDto.getMemberGender()}"></td>
+                        <td th:text="${memberDto.getMemberBirth()}"></td>
+                        <td th:text="${memberDto.getMemberAddress()}"></td>
+                        <td th:text="${memberDto.getMemberEmail()}"></td>
+                        <td th:text="${#temporals.format(memberDto.createdAt,'yyyy-MM-dd')}"></td>
+                        <td th:text="${memberDto.getMemberBank()}"></td>
+                        <td th:text="${memberDto.getMemberAccount()}"></td>
+                        <td th:text="${memberDto.getMemberStatus()}"></td>
+                        <td>
+                      <td>
+                        <li class="delete" style="list-style-type: none"><a class="deleteBtn" th:data-member-id="${memberDto.getMemberId()}"><i class="icon-trash"></i></a></li>
+                      </td>
+                    </tr>
+                    </tbody>
                   </table>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <!-- Container-fluid Ends-->
+          <!-- Zero Configuration  Ends-->
     </div>
-    <!-- footer start-->
-    <footer class="footer">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12 footer-copyright text-center">
-            <p class="mb-0">Copyright 2024 © Riho theme by pixelstrap  </p>
-          </div>
-        </div>
-      </div>
-    </footer>
   </div>
 </div>
 <!-- latest jquery-->
@@ -1116,5 +1074,36 @@
 <!-- Theme js-->
 <script src="../assets/js/script.js"></script>
 <script src="../assets/js/theme-customizer/customizer.js"></script>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/theme-customizer/customizer.js"></script>
+    <script src="path/to/bootstrap.bundle.min.js"></script>
+    <script src="path/to/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $(".deleteBtn").click(function(event) {
+          event.preventDefault();
+          var memberId = $(this).data('member-id');
+          if (confirm('정말 삭제하시겠습니까?')) {
+            $.ajax({
+              url: '/admin/memberdelete',
+              method: 'POST',
+              contentType: 'application/json',
+              data: JSON.stringify({ memberId: memberId }),
+              success: function(response) {
+                if (response.status === 'success') {
+                  alert('선택하신 회원이 삭제되었습니다.');
+                  location.reload(); // 페이지 새로고침
+                }
+              },
+              error: function() {
+                alert('탈퇴하지 않은 회원입니다.');
+              }
+            });
+          }
+        });
+      });
+    </script>
+  </div>
+</div>
 </body>
 </html>
