@@ -20,7 +20,7 @@
         from tbl_item
     </select>
 <!--    나경작업시작-->
-    <select id="findAll" resultMap="itemDtoMap">
+    <select id="findById" resultMap="itemDtoMap">
         select *
         from tbl_item
         where item_id = #{itemId};
