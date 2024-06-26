@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -44,12 +47,26 @@ public class OrderController {
     }
 
 
-    @PostMapping({"/list/shipment", "shipment?orderId={orderId}"})
+    @PostMapping({"/list/shipment"})
     public String shipment(
             @RequestParam("orderId") String orderId) {
         log.info(orderId);
         // 주문번호를 받았으니 orderDto값은 발송완료로 처리
+        int shipmentOrderId=Integer.parseInt(orderId);
+
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String formattedDateTime = now.format(formatter);
+        System.out.println(formattedDateTime);
+        long trackNumber=Long.parseLong(formattedDateTime);
+        //
+        int result=orderService.shipmentByOrderId(shipmentOrderId,trackNumber,LocalDate.now());
+
+
+
+
         // orderId값으로 쿼리는 조회해서 재고를 가져와서 다시 상품으로 가서 재고를 감소하게 한다
+
         System.out.println("발송완료 입니다");
         return "redirect:/order/list";
     }
@@ -61,6 +78,7 @@ public class OrderController {
         // orderId값으로 취소만 하면된다
         int cancelOrderId=Integer.parseInt(orderId);
         int result=orderService.orderCancelByOrderId(cancelOrderId);
+        log.info("result = {}",result);
         System.out.println("취소완료 입니다");
         return "redirect:/order/list";
     }
