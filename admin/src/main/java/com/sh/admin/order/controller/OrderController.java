@@ -3,12 +3,11 @@ package com.sh.admin.order.controller;
 import com.sh.admin.order.model.dto.OrderDto;
 import com.sh.admin.order.model.dto.OrderItemDto;
 import com.sh.admin.order.model.service.OrderService;
+import com.sh.admin.refund.model.dto.RefundStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -49,4 +48,21 @@ public class OrderController {
         model.addAttribute("orderItemDto",orderItemDtos);
         return "order/detail";
     }
+
+    @PostMapping("/list/shipment")
+    public void shipment( @RequestParam(value = "orderId") String  orderId){
+        log.debug("order = {}",orderId);
+        System.out.println("발송왔어요");
+        System.out.println("orderId = " + orderId);
+    }
+
+//    @GetMapping({"/list/shipment", "shipment?orderId={orderId}"})
+//    public String shipment(
+//            @RequestParam("orderId") String orderId,
+//            Model model) {
+//        log.info(orderId);
+//        // 환불번호로 환불 테이블 상태 업데이트
+//
+//        return "redirect:/order/list";
+//    }
 }
