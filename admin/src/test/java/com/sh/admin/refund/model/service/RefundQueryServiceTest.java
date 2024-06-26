@@ -1,7 +1,7 @@
 package com.sh.admin.refund.model.service;
 
 import com.sh.admin.refund.model.dao.RefundMapper;
-import com.sh.admin.refund.model.dto.RefundDto;
+import com.sh.admin.refund.model.dto.*;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,6 +13,7 @@ import org.thymeleaf.engine.IterationStatusVar;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -22,12 +23,37 @@ class RefundQueryServiceTest {
     RefundMapper refundMapper;
 
     @Test
-    @DisplayName("전체 조회")
+    @DisplayName("전체 환불 조회")
     public void findAll() {
         List<RefundDto> refunds = refundMapper.findAll();
         refunds.forEach((refund) -> {
             System.out.println(refund.getOrderId());});
-        Assertions.assertThat(refunds).isNotNull();
+        assertThat(refunds).isNotNull();
     }
 
+    @Test
+    @DisplayName("환불할 주문 조회")
+    public void findOrder() {
+        RefundOrderDto refundOrderDto = refundMapper.findOrder(1);
+        System.out.println(refundOrderDto.getMemberId());
+        assertThat(refundOrderDto).isNotNull();
+    }
+
+    @Test
+    @DisplayName("환불할 주문 상품 조회")
+    public void findOrderItem() {
+        List<RefundItemDto> refundItems = refundMapper.findOrderItem(1);
+        refundItems.forEach((item) -> {
+            System.out.println(item.getItemId());});
+        assertThat(refundItems).isNotNull();
+    }
+
+    @Test
+    @DisplayName("환불할 주문 조건 조회")
+    void findByCondition() {
+        List<RefundDto> refunds = refundMapper.findByCondition(new SearchDto(null, null, null, null, "c"));
+        refunds.forEach((refund) -> {
+            System.out.println(refund.getMemberId());});
+        assertThat(refunds).isNotNull();
+    }
 }

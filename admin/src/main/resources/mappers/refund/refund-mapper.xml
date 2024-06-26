@@ -14,10 +14,95 @@
         <result column="description" property="description"/>
         <result column="reason" property="refundReason"/>
     </resultMap>
+
     <select id="findAll" resultMap="refundDtoMap">
         select
             *
         from
             tbl_refund
+        order by
+            request_date desc
     </select>
+
+    <select id="findByCondition" resultMap="refundDtoMap">
+        select
+            *
+        from
+            tbl_refund
+        where
+            1
+<!--            <if test="refundStatus1 == '환불요청'">-->
+<!--                and status = '환불요청'-->
+<!--            </if>-->
+<!--            <if test="refundStatus2 == '환불완료'">-->
+<!--                and status = '환불완료'-->
+<!--            </if>-->
+<!--            <if test="refundStatus3 == '환불취소'">-->
+<!--                and status = '환불취소'-->
+<!--            </if>-->
+            <if test="requestDate != null">
+                and request_date like concat(#{requestDate}, '%')
+            </if>
+            <if test="refundStatus1 != null or refundStatus2 != null or refundStatus3 != null">
+                and refund_status in (#{refundStatus1}, #{refundStatus2}, #{refundStatus3})
+            </if>
+            <if test="refundRequester != 'null'">
+                and member_id like concat('%', #{refundRequester}, '%')
+            </if>
+    </select>
+
+    <update id="update">
+        update tbl_refund
+        set refund_status = #{refundStatus},
+            last_updated = now()
+        where refund_id = #{refundId}
+    </update>
+
+    <resultMap id="refundOrderDtoMap" type="refundOrderDto">
+        <result column="member_id" property="memberId"/>
+        <result column="sum_price" property="sumPrice"/>
+        <result column="order_status" property="refundOrderStatus"/>
+    </resultMap>
+
+    <select id="findOrder" resultMap="refundOrderDtoMap">
+        select
+            member_id, sum_price, order_status
+        from
+            tbl_order
+        where
+            order_id = #{orderId}
+    </select>
+
+    <update id="updateOrder">
+        update tbl_order
+        set order_status = #{refundOrderStatus}
+        where order_id = #{orderId}
+    </update>
+
+    <resultMap id="refundItemDtoMap" type="refundItemDto">
+        <result column="item_id" property="itemId"/>
+        <result column="item_quantity" property="itemQuantity"/>
+    </resultMap>
+
+    <select id="findOrderItem" resultMap="refundItemDtoMap">
+        select
+            item_id, item_quantity, order_item_price
+        from
+            tbl_orderitem
+        where
+            order_id = #{orderId}
+    </select>
+
+    <resultMap id="refundSalesDtoMap" type="refundSalesDto">
+        <result column="sales_id" property="salesId"/>
+        <result column="order_id" property="orderId"/>
+        <result column="order_item_id" property="orderItemId"/>
+        <result column="refund_id" property="refundId"/>
+        <result column="sales_price" property="salesPrice"/>
+    </resultMap>
+
+    <insert id="insertSales" useGeneratedKeys="true" keyProperty="salesId" parameterType="RefundSalesDto">
+        insert into tbl_sales
+        values (#{salesId}, #{orderId}, #{orderItemId}, #{refundId}, #{salesPrice}, now())
+    </insert>
 </mapper>
