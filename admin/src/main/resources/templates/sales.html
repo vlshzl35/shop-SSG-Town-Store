@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Data</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div>
+    <canvas id="salesChart"></canvas>
+</div>
+
+<script th:inline="javascript">
+    /*[[${salesList}]] 데이터는 JSON으로 변환하여 자바스크립트에서 사용할 수 있도록 변환합니다 */
+    const salesData = [[${salesList}]];
+    const labels = salesData.map(sale => sale.productName);
+    const data = salesData.map(sale => sale.salesAmount);
+
+    const ctx = document.getElementById('salesChart').getContext('2d');
+    const salesChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Sales Amount',
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
