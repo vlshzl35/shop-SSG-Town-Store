@@ -259,44 +259,44 @@
     legendTemplate:
         '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>',
   };
-
-  var doughnutData = [
-    {
-      value: 300,
-      color: RihoAdminConfig.primary,
-      highlight: RihoAdminConfig.primary,
-      label: "Primary",
-    },
-    {
-      value: 50,
-      color: RihoAdminConfig.secondary,
-      highlight: RihoAdminConfig.secondary,
-      label: "Secondary",
-    },
-    {
-      value: 100,
-      color: "#51bb25",
-      highlight: "#51bb25",
-      label: "Success",
-    },
-  ];
-  var doughnutOptions = {
-    segmentShowStroke: true,
-    segmentStrokeColor: "#fff",
-    segmentStrokeWidth: 2,
-    percentageInnerCutout: 50,
-    animationSteps: 100,
-    animationEasing: "easeOutBounce",
-    animateRotate: true,
-    animateScale: false,
-    legendTemplate:
-        '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>',
-  };
-  var doughnutCtx = document.getElementById("myDoughnutGraph").getContext("2d");
-  var myDoughnutChart = new Chart(doughnutCtx).Doughnut(
-      doughnutData,
-      doughnutOptions
-  );
+  //
+  // var doughnutData = [
+  //   {
+  //     value: 300,
+  //     color: RihoAdminConfig.primary,
+  //     highlight: RihoAdminConfig.primary,
+  //     label: "Primary",
+  //   },
+  //   {
+  //     value: 50,
+  //     color: RihoAdminConfig.secondary,
+  //     highlight: RihoAdminConfig.secondary,
+  //     label: "Secondary",
+  //   },
+  //   {
+  //     value: 100,
+  //     color: "#51bb25",
+  //     highlight: "#51bb25",
+  //     label: "Success",
+  //   },
+  // ];
+  // var doughnutOptions = {
+  //   segmentShowStroke: true,
+  //   segmentStrokeColor: "#fff",
+  //   segmentStrokeWidth: 2,
+  //   percentageInnerCutout: 50,
+  //   animationSteps: 100,
+  //   animationEasing: "easeOutBounce",
+  //   animateRotate: true,
+  //   animateScale: false,
+  //   legendTemplate:
+  //       '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>',
+  // };
+  // var doughnutCtx = document.getElementById("myDoughnutGraph").getContext("2d");
+  // var myDoughnutChart = new Chart(doughnutCtx).Doughnut(
+  //     doughnutData,
+  //     doughnutOptions
+  // );
   var myLineChart = {
     labels: ["", "10", "20", "30", "40", "50", "60", "70", "80"],
     datasets: [
