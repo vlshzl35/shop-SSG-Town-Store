@@ -4,15 +4,25 @@
 
 <mapper namespace="com.sh.admin.sales.model.dao.SalesDAO">
 
-    <resultMap id="salesResultMap" type="com.sh.admin.sales.model.dto.SalesDTO">
-        <result property="itemName" column="itemName"/>
+    <resultMap id="salesResultMap" type="com.sh.admin.sales.model.dto.SalesItemDTO">
+        <result property="itemName" column="item_name"/>
         <result property="totalSales" column="total_sales"/>
+        <result property="artistName" column="artist_name"/>
     </resultMap>
 
     <select id="getTopSalesItems" resultMap="salesResultMap">
-        SELECT item_name AS itemName, SUM(sales_price) AS total_sales
-        FROM tbl_sales
-        GROUP BY item_name
+        SELECT item_name, SUM(sales_price) AS total_sales
+        FROM tbl_sales ts left join tbl_item ti on (ts.order_item_id = ti.item_id)
+        GROUP BY item_id
+        ORDER BY total_sales DESC
+        LIMIT 7
+    </select>
+
+    <select id="getArtistTopSalesItems" resultMap="salesResultMap">
+        SELECT item_name, SUM(sales_price) AS total_sales, artist_name
+        FROM tbl_sales ts left join tbl_item ti on (ts.order_item_id = ti.item_id)
+        WHERE artist_name = #{artistName}
+        GROUP BY item_id
         ORDER BY total_sales DESC
         LIMIT 7
     </select>

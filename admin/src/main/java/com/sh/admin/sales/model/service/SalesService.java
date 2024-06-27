@@ -1,7 +1,7 @@
 package com.sh.admin.sales.model.service;
 
 import com.sh.admin.sales.model.dao.SalesDAO;
-import com.sh.admin.sales.model.dto.SalesDTO;
+import com.sh.admin.sales.model.dto.SalesItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +12,14 @@ public class SalesService {
     @Autowired
     private SalesDAO salesDAO;
 
-    public List<SalesDTO> getTopSalesItems() {
+    public List<SalesItemDTO> getTopSalesItems() {
 
-        List<SalesDTO> list = salesDAO.getTopSalesItems();
+        List<SalesItemDTO> list = salesDAO.getTopSalesItems();
 
         return list;
+    }
+
+    public List<SalesItemDTO> getArtistTopSalesItems(String s) {
+        return salesDAO.getArtistTopSalesItems(s);
     }
 }

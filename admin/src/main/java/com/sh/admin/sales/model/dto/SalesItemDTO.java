@@ -8,10 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SalesDTO {
+public class SalesItemDTO {
     private String itemName;
-    private int totalSales;
-
-
-    // Getter, Setter 생략
+    private int totalSales; // sum
+    private String artistName;
 }

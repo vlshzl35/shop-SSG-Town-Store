@@ -1,6 +1,6 @@
 package com.sh.admin.sales.controller;
 
-import com.sh.admin.sales.model.dto.SalesDTO;
+import com.sh.admin.sales.model.dto.SalesItemDTO;
 import com.sh.admin.sales.model.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,13 +17,16 @@ public class SalesController {
 
     @GetMapping("/sales/top100")
     public String getSalesData(Model model) {
-        List<SalesDTO> salesData = salesService.getTopSalesItems();
+        List<SalesItemDTO> salesData = salesService.getTopSalesItems();
+        List<SalesItemDTO> resultAespaData = salesService.getArtistTopSalesItems("에스파");
+        List<SalesItemDTO> resultShineeData = salesService.getArtistTopSalesItems("샤이니");
 
-        List<SalesDTO> resultData = new ArrayList<>();
+
+                List<SalesItemDTO> resultData = new ArrayList<>();
 
 //        List<String> labels = new ArrayList<>();
 //        List<Integer> data = new ArrayList<>();
-        for (SalesDTO sale : salesData) {
+        for (SalesItemDTO sale : salesData) {
 
             resultData.add(sale);
 //            labels.add(sale.getItemName()); // item_name을 labels에 추가
@@ -32,7 +35,11 @@ public class SalesController {
 //        model.addAttribute("labels", labels);
 //        model.addAttribute("data", data);
 
+
+
         model.addAttribute("resultData", resultData);
+        model.addAttribute("resultAespaData", resultAespaData);
+        model.addAttribute("resultShineeData", resultShineeData);
         return "sales/top100";
     }
 
