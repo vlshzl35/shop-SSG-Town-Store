@@ -9,36 +9,34 @@
                 <th>회원ID</th>
                 <th>금액</th>
                 <th>접수날짜</th>
-                <th>주문상태</th>
+                <th>상태</th>
                 <th>송장번호</th>
-                <th>발송상태</th>
+                <th>발송날짜</th>
                 <th>버튼</th>
               </tr>
               </thead>
               <tbody>
 
-                <tr th:each="orderDto, stat:${orderList}" th:object="${orderList}" align="center">
-                  <form action="">
+                <tr th:each="orderDto, stat:${orderList}" th:object="${orderDto}" align="center">
                     <td>
                       <a th:href="@{|/order/detail/${orderDto.orderId}|}"
                          onclick="window.open(this.href, '_blank', 'left=2500%,top=800%, width=800, height=800');
                          return false;" th:text="${orderDto.orderId}"></a>
                     </td>
-
                     <td th:text="${orderDto.memberId}"></td>
                     <td th:text="${#numbers.formatInteger(orderDto.sumPrice, 3, 'COMMA')+'원'}"></td>
                     <td th:text="${#temporals.format(orderDto.orderDate,'yyyy-MM-dd')}"></td>
                     <td th:text="${orderDto.orderStatus}"></td>
                     <td th:text="${orderDto.trackNumber == 0 ? '' :orderDto.trackNumber}"></td>
-                    <td th:text="${orderDto.shipmentDate == 0 ? '발송전':shipment}"></td>
-
+                    <td th:text="${orderDto.shipmentDate == 0 ? '발송전':orderDto.shipmentDate}"></td>
+<!--                  th:classappend="${orderDto.orderStatus.equals('주문요청')} ? 'btn-primary abled' : 'btn-outline-primary disabled'"-->
                     <td>
-                      <button type="submit" th:value="${orderDto.orderId}" th:name="orderId"
-                              formaction="/order/list/shipment" formmethod="post" style="color: #0a53be" >발송처리</button>
-
-                      <button type="submit" value="취소" formaction="/order/list/cancel" formmethod="post" style="color: #6a1a21">취소처리</button>
+                      <form name="orderProcessFrm" th:action="@{/order/list/shipment}" method="post" onsubmit="return confirm('발송을 승인하시겠습니까?');">
+                        <button type="submit" class="btn btn-primary" >발송처리</button>
+                        <button type="button" onclick="cancel(this)" class="btn btn-danger" >취소처리</button>
+                        <input type="hidden" name="orderId" th:value="*{orderId}">
+                      </form>
                     </td>
-                  </form>
 
                 </tr>
               </tbody>
