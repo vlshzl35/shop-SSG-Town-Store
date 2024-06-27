@@ -984,7 +984,7 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-6">
-                            <h4>ChartJS Chart</h4>
+                            <h4></h4>
                         </div>
                         <div class="col-6">
                             <ol class="breadcrumb">
@@ -1029,6 +1029,7 @@
                                         // resultData = JSON.parse(resultData);
                                         console.log("@@@@@@@@@@@@@@@ : ", resultData);
                                         // labels와 data 배열 생성
+
                                         var labels = [];
                                         var data = [];
 
@@ -1040,9 +1041,9 @@
 
                                         console.log("label : ",labels);
                                         console.log("data : ",data);
-                                       var barCtx = document.getElementById("myBarGraph").getContext("2d");
+                                       var barCtx1 = document.getElementById("myBarGraph1").getContext("2d");
 
-                                        var barData = {
+                                        var barData1 = {
                                             labels: labels,
                                             datasets: [
                                                 {
@@ -1055,7 +1056,7 @@
                                             ]
                                         };
 
-                                        var barOptions = {
+                                        var barOptions1 = {
                                             scales: {
                                                 y: {
                                                     beginAtZero: true
@@ -1063,16 +1064,177 @@
                                             }
                                         };
 
-                                    var myBarChart = new Chart(barCtx).Bar(barData, barOptions);
+                                    var myBarChart1 = new Chart(barCtx1).Bar(barData1, barOptions1);
                                     });
                                 </script>
 
-                                <canvas id="myBarGraph"> </canvas>
+                                <canvas id="myBarGraph1"> </canvas>
                             </div>
                         </div>
                     </div>
 
-<!--                    <div class="col-xl-6 col-md-12 box-col-12">-->
+
+                    <style>
+                        .chart-container {
+                            display: inline-block;
+                            width: 48%;
+                            vertical-align: top;
+                            margin: 1%;
+                        }
+                        .card-header {
+                            text-align: center;
+                        }
+                    </style>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-6 col-md-12 box-col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>에스파 매출 Top 7</h4>
+                                    </div>
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>상품명</th>
+                                            <th>총매출   (₩)</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="item : ${resultAespaData}" class="my">
+                                            <td th:text="${item.itemName}">Item Name</td>
+                                            <td th:text="${item.totalSales}">Total Sales</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="card-body chart-block">
+                                        <script th:inline="javascript">
+                                            document.addEventListener("DOMContentLoaded", function() {
+                                                /*<![CDATA[*/
+                                                var resultAespaData = /*[[${resultAespaData}]]*/ [];
+                                                // resultData = JSON.parse(resultData);
+                                                console.log("@@@@@@@@@@@@@@@ : ", resultAespaData);
+                                                // labels와 data 배열 생성
+
+                                                var labels = [];
+                                                var data = [];
+
+                                                resultAespaData.forEach(function(item) {
+                                                    // console.log("@@@@@@@@@@@@@@@ : ", item);
+                                                    labels.push(item.itemName);
+                                                    data.push(item.totalSales);
+                                                });
+
+                                                console.log("label : ",labels);
+                                                console.log("data : ",data);
+                                                var barCtx2 = document.getElementById("myBarGraph2").getContext("2d");
+
+                                                var barData2 = {
+                                                    labels: labels,
+                                                    datasets: [
+                                                        {
+                                                            label: "총매출",
+                                                            backgroundColor: "rgba(0, 102, 102, 0.2)",
+                                                            borderColor: "rgba(0, 102, 102, 1)",
+                                                            borderWidth: 1,
+                                                            data: data,
+                                                        }
+                                                    ]
+                                                };
+
+                                                var barOptions2 = {
+                                                    scales: {
+                                                        y: {
+                                                            beginAtZero: true
+                                                        }
+                                                    }
+                                                };
+
+                                                var myBarChart2 = new Chart(barCtx2).Bar(barData2, barOptions2);
+                                            });
+                                        </script>
+
+                                        <canvas id="myBarGraph2"> </canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xl-6 col-md-12 box-col-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>샤이니 매출 Top 7</h4>
+                                            </div>
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>상품명</th>
+                                                    <th>총매출   (₩)</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="item : ${resultShineeData}" class="my">
+                                                    <td th:text="${item.itemName}">Item Name</td>
+                                                    <td th:text="${item.totalSales}">Total Sales</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="card-body chart-block">
+                                                <script th:inline="javascript">
+                                                    document.addEventListener("DOMContentLoaded", function() {
+                                                        /*<![CDATA[*/
+                                                        var resultShineeData = /*[[${resultShineeData}]]*/ [];
+                                                        // resultData = JSON.parse(resultData);
+                                                        console.log("@@@@@@@@@@@@@@@ : ", resultShineeData);
+                                                        // labels와 data 배열 생성
+
+                                                        var labels = [];
+                                                        var data = [];
+
+                                                        resultShineeData.forEach(function(item) {
+                                                            // console.log("@@@@@@@@@@@@@@@ : ", item);
+                                                            labels.push(item.itemName);
+                                                            data.push(item.totalSales);
+                                                        });
+
+                                                        console.log("label : ",labels);
+                                                        console.log("data : ",data);
+                                                        var barCtx3 = document.getElementById("myBarGraph3").getContext("2d");
+
+                                                        var barData3 = {
+                                                            labels: labels,
+                                                            datasets: [
+                                                                {
+                                                                    label: "총매출",
+                                                                    backgroundColor: "rgba(0, 102, 102, 0.2)",
+                                                                    borderColor: "rgba(0, 102, 102, 1)",
+                                                                    borderWidth: 1,
+                                                                    data: data,
+                                                                }
+                                                            ]
+                                                        };
+
+                                                        var barOptions3 = {
+                                                            scales: {
+                                                                y: {
+                                                                    beginAtZero: true
+                                                                }
+                                                            }
+                                                        };
+
+                                                        var myBarChart3 = new Chart(barCtx3).Bar(barData3, barOptions3);
+                                                    });
+                                                </script>
+
+                                                <canvas id="myBarGraph3"> </canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                            <!--                    <div class="col-xl-6 col-md-12 box-col-12">-->
 <!--                        <div class="card">-->
 <!--                            <div class="card-header">-->
 <!--                                -->
