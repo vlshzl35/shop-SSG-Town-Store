@@ -1,6 +1,6 @@
 package com.sh.admin.sales.model.service;
 
-import com.sh.admin.sales.model.dao.SalesMapper;
+import com.sh.admin.sales.model.dao.DailySalesMapper;
 import com.sh.admin.sales.model.dto.DailySalesDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,9 +13,9 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class DailySalesService {
-    private final SalesMapper salesMapper;
+    private final DailySalesMapper dailySalesMapper;
 
     public List<DailySalesDto> findDailySales(LocalDate startDate, LocalDate endDate) {
-        return salesMapper.findDailySales(startDate, endDate);
+        return dailySalesMapper.findDailySales(startDate, endDate);
     }
 }

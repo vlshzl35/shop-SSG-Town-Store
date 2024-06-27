@@ -1,6 +1,6 @@
 package com.sh.admin.sales.model.service;
 
-import com.sh.admin.sales.model.dao.SalesDAO;
+import com.sh.admin.sales.model.dao.SalesMapper;
 import com.sh.admin.sales.model.dto.SalesItemDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +14,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 class SalesServiceTest {
 
     @Autowired
-    public SalesDAO salesDAO;
+    public SalesMapper salesMapper;
 
     @Test
     void artistTest() {
-        List<SalesItemDTO> aespaList = salesDAO.getArtistTopSalesItems("샤이니");
+        List<SalesItemDTO> aespaList = salesMapper.getArtistTopSalesItems("샤이니");
         aespaList.forEach((top) -> {
             System.out.println(top.getItemName() + " " + top.getTotalSales());
         });

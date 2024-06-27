@@ -2,20 +2,30 @@ package com.sh.admin.sales.controller;
 
 import com.sh.admin.sales.model.dto.SalesItemDTO;
 import com.sh.admin.sales.model.service.SalesService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@Slf4j
+@RequiredArgsConstructor
+@RequestMapping("/sales")
 public class SalesController {
     @Autowired
     private SalesService salesService;
 
-    @GetMapping("/sales/top100")
+    @GetMapping("/chart")
+    public void sales(Model model) {
+    }
+
+    @GetMapping("/top100")
     public String getSalesData(Model model) {
         List<SalesItemDTO> salesData = salesService.getTopSalesItems();
         List<SalesItemDTO> resultAespaData = salesService.getArtistTopSalesItems("에스파");
