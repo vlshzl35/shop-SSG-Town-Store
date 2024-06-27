@@ -24,7 +24,7 @@ public class ItemQueryService {
 //나경작업시작
 
     // 한건 조회
-    public ItemDto findById(int itemId) {
+    public ItemDto findById(long itemId) {
         return itemMapper.findById(itemId);
     }
 //    나경작업끝
@@ -35,4 +35,6 @@ public class ItemQueryService {
         return itemMapper.findAllMatch(categoryName, artistName, salePrice, saleStatus);
     }
     /* 희윤 끝 */
+
+
 }

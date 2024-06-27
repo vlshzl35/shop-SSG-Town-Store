@@ -47,11 +47,24 @@
         </where>
     </select>
     <!-- 희윤 끝 -->
-<!--    나경작업시작-->
     <update id="updateSaleStatus" >
         UPDATE tbl_item
         SET sale_status = '판매중지'
         WHERE item_id = #{itemId} AND sale_status = '품절'
+    </update>
+    <!--    나경작업시작-->
+    <update id="updateItem">
+        UPDATE tbl_item
+        SET
+        item_name = #{itemName},
+        category_name = #{categoryName},
+        artist_name = #{artistName},
+        img_url = #{imgUrl},
+        details = #{details},
+        quantity = #{quantity},
+        sale_price = #{salePrice},
+        sale_status = #{saleStatus}
+        WHERE item_id = #{itemId}
     </update>
 <!--    나경작업끝-->
 

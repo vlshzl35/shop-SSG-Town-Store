@@ -110,6 +110,77 @@ class ItemMapperTest {
 
     }
 
+//    나경작업시작
+    @Test
+    @DisplayName("상품수정이되는가?")
+    void updateItem() {
+        //given
+        //수정하려고하는 값
+        Long itemId = 29L;
+        String itemName = "샤이니 데뷔링";
+        Category categoryName = Category.응원봉;
+        Artist artistName = Artist.에스파;
+        String imgUrl = "img/img30.png";
+        String details = "클로즈링타입";
+        int quantity = 10;
+        int salePrice = 18000;
+        SaleStatus saleStatus = SaleStatus.품절;
+
+         // 기존 정보 불러오기
+        // 이건 위에 메서드 확인 했으니 테스트생략 findById(itemId) 사용
+        // 업데이트 할 객체 생성
+        ItemDto updatedItem = new ItemDto();
+        updatedItem.setItemId(itemId);
+        updatedItem.setItemName(itemName);
+        updatedItem.setCategoryName(categoryName);
+        updatedItem.setArtistName(artistName);
+        updatedItem.setImgUrl(imgUrl);
+        updatedItem.setDetails(details);
+        updatedItem.setQuantity(quantity);
+        updatedItem.setSalePrice(salePrice);
+        updatedItem.setSaleStatus(saleStatus);
+
+        // when
+        int updatedRows = itemMapper.updateItem(updatedItem);
+
+        // then
+        assertThat(updatedRows).isEqualTo(1); // 업데이트된 행의 수가 1인지 확인합니다.
+
+        // 업데이트된 아이템을 다시 조회
+        ItemDto retrievedItem = itemMapper.findById(itemId);
+
+        // 업데이트된 값들이 올바르게 반영되었는지 확인합니다.
+        assertThat(retrievedItem.getItemName()).isEqualTo(itemName);
+        assertThat(retrievedItem.getImgUrl()).isEqualTo(imgUrl);
+        assertThat(retrievedItem.getDetails()).isEqualTo(details);
+        assertThat(retrievedItem.getQuantity()).isEqualTo(quantity);
+        assertThat(retrievedItem.getSalePrice()).isEqualTo(salePrice);
+        assertThat(retrievedItem).satisfies(
+                (_itemDto) -> assertThat(_itemDto.getItemId()).isEqualTo(itemId),
+                (_itemDto) -> assertThat(_itemDto.getItemName()).isNotNull(),
+                (_itemDto) -> assertThat(_itemDto.getImgUrl()).isNotNull(),
+                (_itemDto) -> assertThat(_itemDto.getSeller()).isEqualTo("SSG"),
+                (_itemDto) -> assertThat(_itemDto.getQuantity()).isPositive(),
+                (_itemDto) -> assertThat(_itemDto.getSalePrice()).isPositive(),
+                (_itemDto) -> assertThat(_itemDto.getSaleStatus()).satisfiesAnyOf(
+                        (saleStatus2) -> assertThat(saleStatus2).isEqualTo(saleStatus.품절)
+                ),
+                (_itemDto) -> assertThat(_itemDto.getCategoryName()).satisfiesAnyOf(
+                        (categoryName2) -> assertThat(categoryName2).isEqualTo(categoryName.응원봉)
+
+                ),
+                (_itemDto) -> assertThat(_itemDto.getArtistName()).satisfiesAnyOf(
+                        (artist) -> assertThat(artist).isEqualTo(artist.에스파),
+                        (artist) -> assertThat(artist).isEqualTo(artist.샤이니)
+                )
+
+
+
+        );
+    }
+
+//    나경작업끝
+
     @Test
     @DisplayName("상품 등록")
     void insertItem() {
@@ -131,4 +202,5 @@ class ItemMapperTest {
         assertThat(result).isEqualTo(1); // 등록 성공하면 숫자 1반환하므로
         assertThat(itemDto.getItemId()).isNotZero();
     }
+
 }

@@ -15,8 +15,6 @@ public class FileUploadService {
 
     @Autowired
     private ResourceLoader resourceLoader;
-
-
     public String uploadBase64EncodedImage(String base64Image) throws IOException {
         // base64Image에는 Base64인코딩된 문자열이 들어있다.
         byte[] decodedByte = Base64.getDecoder().decode(base64Image.split(",")[1]);

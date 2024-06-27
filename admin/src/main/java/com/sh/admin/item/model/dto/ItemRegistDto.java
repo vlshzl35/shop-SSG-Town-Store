@@ -18,7 +18,19 @@ public class ItemRegistDto {
     private SaleStatus saleStatus; // 판매상태
 
     public ItemDto toItemDto() {
-        return new ItemDto(null,this.itemName,this.categoryName,this.artistName,this.imgUrl,null,this.details,this.quantity,this.salePrice,this.saleStatus);
+        return new ItemDto(null, this.itemName,this.categoryName,this.artistName,this.imgUrl,null,this.details,this.quantity,this.salePrice,this.saleStatus);
     }
 
+    public ItemDto toItemDto2(long itemId) {
+        return new ItemDto(itemId, this.itemName,this.categoryName,this.artistName,this.imgUrl,null,this.details,this.quantity,this.salePrice,this.saleStatus);
+    }
+
+    public ItemDto toItemDto3(long itemId) {
+        return new ItemDto(itemId, this.itemName,this.categoryName,this.artistName,null,null,this.details,this.quantity,this.salePrice,this.saleStatus);
+    }
+
+
+
+
 }
+
