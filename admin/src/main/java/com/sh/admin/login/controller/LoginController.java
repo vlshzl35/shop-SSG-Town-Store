@@ -3,6 +3,7 @@ package com.sh.admin.login.controller;
 
 import com.sh.admin.login.model.dto.LoginRequestDto;
 import com.sh.admin.login.model.service.LoginService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class LoginController {
     }
 
     @PostMapping("/loginExecute")
-    public ResponseEntity<?> loginExecute(@RequestParam String adminId, @RequestParam String adminPassword) {
+    public ResponseEntity<?> loginExecute(@RequestParam String adminId, @RequestParam String adminPassword, HttpSession httpSession) {
         LoginRequestDto loginRequestDto = loginService.login(adminId, adminPassword);
         Map<String, String> response = new HashMap<>();
 
@@ -40,6 +41,7 @@ public class LoginController {
             response.put("message", "Login successful");
             response.put("adminName",loginRequestDto.getAdminName());
             response.put("adminId", loginRequestDto.getAdminId());
+            httpSession.setAttribute("adminName",loginRequestDto.getAdminName());
             return ResponseEntity.ok(response);
         } else {
             response.put("status", "401");
@@ -48,10 +50,9 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public String logout(SessionStatus sessionStatus) {
-
         sessionStatus.setComplete(); // 세션 폐기
-        return "redirect:/login/login";
+        return "redirect:/admin/login";
     }
 }

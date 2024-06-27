@@ -21,7 +21,34 @@
         from
             tbl_refund
         order by
-            request_date
+            request_date desc
+    </select>
+
+    <select id="findByCondition" resultMap="refundDtoMap">
+        select
+            *
+        from
+            tbl_refund
+        where
+            1
+<!--            <if test="refundStatus1 == '환불요청'">-->
+<!--                and status = '환불요청'-->
+<!--            </if>-->
+<!--            <if test="refundStatus2 == '환불완료'">-->
+<!--                and status = '환불완료'-->
+<!--            </if>-->
+<!--            <if test="refundStatus3 == '환불취소'">-->
+<!--                and status = '환불취소'-->
+<!--            </if>-->
+            <if test="requestDate != null">
+                and request_date like concat(#{requestDate}, '%')
+            </if>
+            <if test="refundStatus1 != null or refundStatus2 != null or refundStatus3 != null">
+                and refund_status in (#{refundStatus1}, #{refundStatus2}, #{refundStatus3})
+            </if>
+            <if test="refundRequester != 'null'">
+                and member_id like concat('%', #{refundRequester}, '%')
+            </if>
     </select>
 
     <update id="update">
