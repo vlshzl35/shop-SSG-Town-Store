@@ -44,7 +44,7 @@ public class SalesController {
 
     // 예진 작업 끝
     @GetMapping("/top100")
-    public String getSalesData(Model model) {
+    public String getSalesData(Model model, HttpSession httpSession) {
         List<SalesItemDTO> salesData = salesService.getTopSalesItems();
         List<SalesItemDTO> resultAespaData = salesService.getArtistTopSalesItems("에스파");
         List<SalesItemDTO> resultShineeData = salesService.getArtistTopSalesItems("샤이니");
@@ -62,6 +62,8 @@ public class SalesController {
         model.addAttribute("resultData", resultData);
         model.addAttribute("resultAespaData", resultAespaData);
         model.addAttribute("resultShineeData", resultShineeData);
+        String adminName = (String) httpSession.getAttribute("adminName");
+        model.addAttribute("adminName", adminName);
         return "sales/top100";
     }
 
