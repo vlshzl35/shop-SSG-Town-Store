@@ -88,6 +88,12 @@
         where item_id=#{itemId};
     </select>
 
+    <insert id="insertSales">
+        insert into
+            tbl_sales(order_id, order_item_id, sales_price, last_updated)
+        values (#{orderId} , #{itemId} , #{orderItemPrice} , now())
+    </insert>
+
     <resultMap id="orderDtoMap" type="orderDto">
         <!--  id : PK컬럼 매핑용  -->
         <id column="order_id" property="orderId"/>

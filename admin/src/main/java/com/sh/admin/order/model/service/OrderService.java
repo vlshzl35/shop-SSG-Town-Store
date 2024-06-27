@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -60,5 +61,9 @@ public class OrderService {
 
     public int orderQuantity(int orderItemId) {
         return orderMapper.orderQuantity(orderItemId);
+    }
+
+    public int insertSales(OrderItemDto orderItemDto) {
+        return orderMapper.insertSales(orderItemDto);
     }
 }

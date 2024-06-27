@@ -81,9 +81,10 @@ public class OrderController {
                 int itemId=orderItemDto.getItemId();
                 int itemQuantity=orderItemDto.getItemQuantity();
                 int shipmentResult= orderService.updateOrder(itemId,itemQuantity);
-
+                int result=orderService.insertSales(orderItemDto);
                 if(shipmentResult==1)
                 {
+                    System.out.println("result = " + result);
                     System.out.println("주문 번호 : "+orderItemDto.getOrderId());
                     System.out.println("제품 번호 : "+orderItemDto.getItemId());
                     System.out.println("재고량 감소 확인");

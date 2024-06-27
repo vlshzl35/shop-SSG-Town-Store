@@ -154,8 +154,31 @@ insert into tbl_member(member_id, member_name, member_gender, member_birth, memb
 values ('honggd', '홍길동','M','1943-02-24','전라도 장성현 아차곡','honggd@naver.com',LOCALTIME,'11579895','N');
 
 insert into tbl_member(member_id, member_name, member_gender, member_birth, member_address, member_email, created_at, member_bank, member_account)
-values ('', '파닥몬','F','2009-07-24','나만에 진화를 못하는거야','padakmon@naver.com',LOCALTIME,'디지털TOD',321321546);
+values ('wargraimon', '워그레이몬','M','2009-07-24','디지털 워그레이몬','wargraimon@naver.com',LOCALTIME,'디지털AEW',321654687);
 
+insert into tbl_member(member_id, member_name, member_gender, member_birth, member_address, member_email, created_at, member_bank, member_account)
+values ('angelmon', '엔젤몬','F','2009-07-24','남자들은 빠져 있어','angelmon@naver.com',LOCALTIME,'디지털BD',348784654654);
+
+insert into tbl_member(member_id, member_name, member_gender, member_birth, member_address, member_email, created_at, member_bank, member_account)
+values ('skalmon', '스컬몬','M','2002-07-24','남자들은 빠져 있어','skalmon@naver.com',LOCALTIME,'디지털MD',348754654);
+
+insert into tbl_member(member_id, member_name, member_gender, member_birth, member_address, member_email, created_at, member_bank, member_account)
+values ('graimon', '스컬몬', 'M', '2002-07-24', '나도 진화할꺼야', 'graimon@naver.com', LOCALTIME, '디지털MD', 2598798465);
+
+insert into tbl_member(member_id, member_name, member_gender, member_birth, member_address, member_email, created_at, member_bank, member_account)
+values ('gilmon', '길몬', 'M', '2022-07-24', '나는 빨간 아구몬이다', 'gilmon@naver.com', LOCALTIME, '디지털AN', 9849816515);
+
+insert into tbl_member(member_id, member_name, member_gender, member_birth, member_address, member_email, created_at, member_bank, member_account)
+values ('pinokimon', '피노키몬', 'M', '2022-07-24', '나는 코가 긴 피노키몬', 'pinokimon@naver.com', LOCALTIME, '디지털CD', 365989878);
+
+insert into tbl_member(member_id, member_name, member_gender, member_birth, member_address, member_email, created_at, member_bank, member_account)
+values ('a', '피노키몬', 'M', '2022-07-24', '나는 코가 긴 피노키몬', 'pinokimon@naver.com', LOCALTIME, '디지털CD', 365989878);
+
+insert into tbl_member(member_id, member_name, member_gender, member_birth, member_address, member_email, created_at, member_bank, member_account)
+values ('a', '피노키몬', 'M', '2022-07-24', '나는 코가 긴 피노키몬', 'pinokimon@naver.com', LOCALTIME, '디지털CD', 365989878);
+
+insert into tbl_sales(order_id, order_item_id, refund_id, sales_price, last_updated)
+values (#{orderId},#{orderItemId},null,#{상품 가격},localDate.now)
 select *
 from tbl_orderitem
 where order_id=1;
@@ -166,8 +189,8 @@ from tbl_order;
 select item_id,order_id
 from tbl_orderitem;
 
-select
-    item_quantity
-from
-    tbl_orderitem
-where order_item_id=12;
+select *
+from tbl_member;
+
+select *
+from s;

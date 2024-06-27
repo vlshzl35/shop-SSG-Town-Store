@@ -6,6 +6,7 @@ import com.sh.admin.order.model.dto.OrderQuantityDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
@@ -29,4 +30,6 @@ public interface OrderMapper {
     int updateOrderStatus(int orderId);
 
     int nowQuantity(int orderItemId);
+
+    int insertSales(OrderItemDto orderItemDto);
 }
