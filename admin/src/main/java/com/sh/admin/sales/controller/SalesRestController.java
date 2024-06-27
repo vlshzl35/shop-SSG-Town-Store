@@ -23,15 +23,40 @@ public class SalesRestController {
 //        return "sales/chart";
 //    }
 
-    @GetMapping(path="/api-chart")
-    public List<DailySalesDto> chart(){
+    @GetMapping("/api-monthlychart")
+    public List<DailySalesDto> monthlyChart(){
         LocalDate endDate = LocalDate.now().minusDays(1);
         LocalDate startDate = LocalDate.now().minusMonths(1);
 
         // 기간동안 일별매출 조회
         List<DailySalesDto> dailySales = dailySalesService.findDailySales(startDate, endDate);
 
+        // 월간
         return dailySales;
-        // 주간
     }
+
+    @GetMapping("/api-weeklychart")
+    public List<DailySalesDto> weeklyChart(){
+        LocalDate endDate = LocalDate.now().minusDays(1);
+        LocalDate startDate = LocalDate.now().minusDays(7);
+
+        // 기간동안 일별매출 조회
+        List<DailySalesDto> dailySales = dailySalesService.findDailySales(startDate, endDate);
+
+        // 주간
+        return dailySales;
+    }
+
+    @GetMapping("/api-yearlychart")
+    public List<DailySalesDto> yearlyChart(){
+        LocalDate endDate = LocalDate.now().minusDays(1);
+        LocalDate startDate = LocalDate.now().minusYears(1);
+
+        // 기간동안 일별매출 조회
+        List<DailySalesDto> dailySales = dailySalesService.findDailySales(startDate, endDate);
+
+        // 연간
+        return dailySales;
+    }
+
 }
