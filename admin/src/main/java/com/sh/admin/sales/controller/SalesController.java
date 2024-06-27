@@ -34,7 +34,7 @@ public class SalesController {
 
     @GetMapping("/chart/close")
     public String close(Model model) {
-        String today = LocalDate.now().minusDays(2).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         dailySalesCommandService.insertDailySales(today);
         return "redirect:/sales/chart";
     }
