@@ -54,45 +54,49 @@ select sum(order_item_price)
 from tbl_orderitem
 where order_id=7;
 
-select sale_price
+select item_id, sale_price, quantity
 from tbl_item
-where item_id=1;
+where sale_status='판매중';
+
+
 
 select *
 from tbl_orderitem
-where order_id=20;
+where order_id=22;
 
 select *
 from tbl_order;
 
 insert into tbl_order(member_id, order_date, sum_price, order_status, track_number, shipment_date )
-values ('agumon','2024-4-17 21:18:20',8000,'주문요청',null,null);
+values ('eve','2024-4-17 21:18:20',8000,'주문요청',null,null);
+
+SET @`orderid` = 24;
 
 update tbl_order
 set sum_price = (select sum(order_item_price)
                  from tbl_orderitem
-                 where order_id=20)
-where order_id=20;
+                 where order_id=@orderid)
+where order_id=@orderid;
 
 select sum(order_item_price)
 from tbl_orderitem
-where order_id=15;
+where order_id=@orderid;
 
 insert into tbl_orderitem( order_id, item_id, item_quantity, order_item_price)
-values (20, 8,1,
+values (24, 27,1,
         (select sale_price
         from tbl_item
-        where item_id=8
+        where item_id=@orderid
         )*1);
 
 insert into tbl_orderitem( order_id, item_id, item_quantity, order_item_price)
-values (15, 21,2,(select sale_price
+values (@orderid, 18,2,(select sale_price
                 from tbl_item
-                where item_id=21
+                where item_id=18
                )*2);
 
 insert into tbl_orderitem( order_id, item_id, item_quantity, order_item_price)
-values (15, 20,1,(select sale_price
+values (@orderid, 20,1,(select sale_price
                 from tbl_item
                 where item_id=20
                )*1);
@@ -114,6 +118,32 @@ insert into tbl_orderitem( order_id, item_id, item_quantity, order_item_price)
 values (2, 6,1,12000);
 
 select *
+from tbl_orderitem;
+
+select *
+from tbl_item
+where item_id=#{itemId};
+
+select item_quantity
+from
+    tbl_orderitem
+where order_item_id=5;
+
+
+select
+    *
+from
+    tbl_orderitem;
+select
+    *
+from
+    tbl_item
+where
+    item_id=1
+update tbl_order
+set order_status='재고부족'
+where order_id=1;
+select *
 from tbl_member;
 
 insert into tbl_member(member_id, member_name, member_gender, member_birth, member_address, member_email, created_at, member_bank, member_account)
@@ -124,8 +154,20 @@ insert into tbl_member(member_id, member_name, member_gender, member_birth, memb
 values ('honggd', '홍길동','M','1943-02-24','전라도 장성현 아차곡','honggd@naver.com',LOCALTIME,'11579895','N');
 
 insert into tbl_member(member_id, member_name, member_gender, member_birth, member_address, member_email, created_at, member_bank, member_account)
-values ('gyarados', '갸라도스','M','2004-07-24','태초마을 갸라도스','gyarados@naver.com',LOCALTIME,'태초EOD',654651358468);
+values ('', '파닥몬','F','2009-07-24','나만에 진화를 못하는거야','padakmon@naver.com',LOCALTIME,'디지털TOD',321321546);
 
 select *
 from tbl_orderitem
 where order_id=1;
+
+select *
+from tbl_order;
+
+select item_id,order_id
+from tbl_orderitem;
+
+select
+    item_quantity
+from
+    tbl_orderitem
+where order_item_id=12;
