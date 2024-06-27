@@ -49,6 +49,8 @@
             <if test="refundRequester != 'null'">
                 and member_id like concat('%', #{refundRequester}, '%')
             </if>
+        order by
+        request_date desc
     </select>
 
     <update id="update">
