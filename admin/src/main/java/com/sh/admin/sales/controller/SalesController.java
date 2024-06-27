@@ -30,23 +30,17 @@ public class SalesController {
         List<SalesItemDTO> salesData = salesService.getTopSalesItems();
         List<SalesItemDTO> resultAespaData = salesService.getArtistTopSalesItems("에스파");
         List<SalesItemDTO> resultShineeData = salesService.getArtistTopSalesItems("샤이니");
-
-
-                List<SalesItemDTO> resultData = new ArrayList<>();
+        List<SalesItemDTO> resultData = new ArrayList<>();
 
 //        List<String> labels = new ArrayList<>();
 //        List<Integer> data = new ArrayList<>();
         for (SalesItemDTO sale : salesData) {
-
             resultData.add(sale);
 //            labels.add(sale.getItemName()); // item_name을 labels에 추가
 //            data.add((int) sale.getTotalSales());     // sales_price를 data에 추가
         }
 //        model.addAttribute("labels", labels);
 //        model.addAttribute("data", data);
-
-
-
         model.addAttribute("resultData", resultData);
         model.addAttribute("resultAespaData", resultAespaData);
         model.addAttribute("resultShineeData", resultShineeData);
