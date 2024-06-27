@@ -4,6 +4,7 @@ import com.sh.admin.item.model.dto.*;
 import com.sh.admin.item.model.service.FileUploadService;
 import com.sh.admin.item.model.service.ItemCommandService;
 import com.sh.admin.item.model.service.ItemQueryService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -39,17 +40,19 @@ public class ItemController {
             @RequestParam(required = false) Category categoryName,
             @RequestParam(required = false) SaleStatus saleStatus,
             @RequestParam(required = false, defaultValue = "0") Integer salePrice,
-            Model model) {
+            Model model, HttpSession httpSession) {
         log.info("GET /list");
         log.debug("artistName = {}", artistName);
         log.debug("categoryName = {}", categoryName);
         log.debug("saleStatus = {}", saleStatus);
         log.debug("salePrice = {}", salePrice);
-
+        String adminName = (String) httpSession.getAttribute("adminName");
+        model.addAttribute("adminName", adminName);
         // enum을 select 옵션으로 불러오기
         model.addAttribute("category", Category.values());
         model.addAttribute("artist", Artist.values());
         model.addAttribute("saleStatus", SaleStatus.values());
+
 
         // 검색 결과 가져오기
         List<ItemDto> items = itemQueryService.findAllMatch(categoryName, artistName, salePrice, saleStatus);
@@ -90,23 +93,27 @@ public class ItemController {
 
 
     @GetMapping("/create") // 상품등록 페이지
-    public String create(Model model) {
+    public String create(Model model, HttpSession httpSession) {
         model.addAttribute("category", Category.values()); // enum용
         model.addAttribute("artist", Artist.values()); // enum용
         model.addAttribute("saleStatus", SaleStatus.values()); // enum용
 
+        String adminName = (String) httpSession.getAttribute("adminName");
+        model.addAttribute("adminName", adminName);
         return "item/create";
     }
 
     // 상품수정페이지 get 요청
     @GetMapping("/update/{itemId:\\d+}") // 상품수정 페이지는 itemId가 숫지일때만 맵핑
-    public String update(@PathVariable Long itemId, Model model) {
+    public String update(@PathVariable Long itemId, Model model, HttpSession httpSession) {
         log.info("GET /update/{}", itemId);
         ItemDto itemDto = itemQueryService.findById(itemId);
         model.addAttribute("itemDto", itemDto);
         model.addAttribute("category", Category.values()); // enum용
         model.addAttribute("artist", Artist.values()); // enum용
         model.addAttribute("saleStatus", SaleStatus.values()); // enum용
+        String adminName = (String) httpSession.getAttribute("adminName");
+        model.addAttribute("adminName", adminName);
         return "/item/update";
     }
 

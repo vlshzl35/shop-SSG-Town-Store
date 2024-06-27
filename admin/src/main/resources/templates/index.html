@@ -108,7 +108,7 @@
             if (response.status === "200") {
               // 로그인 성공 처리
               alert(response.adminName+" 관리자님 환영합니다.");
-              window.location.href = '/sales/top100'; // 로그인 성공 시 리다이렉트
+              window.location.href = '/sales/chart'; // 로그인 성공 시 리다이렉트
             }
           },
           error: function (jqXhr, textStatus, error) {
