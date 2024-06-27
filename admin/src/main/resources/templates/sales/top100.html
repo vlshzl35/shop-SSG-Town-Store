@@ -36,6 +36,7 @@
     <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+
 </head>
 <body>
 <!-- loader starts-->
@@ -1004,79 +1005,141 @@
                     <div class="col-xl-6 col-md-12 box-col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Bar Chart</h4>
+                                <h4>총매출 Top 7</h4>
                             </div>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>상품명</th>
+                                    <th>총매출   (₩)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="item : ${resultData}" class="my">
+                                    <td th:text="${item.itemName}">Item Name</td>
+                                    <td th:text="${item.totalSales}">Total Sales</td>
+                                </tr>
+                                </tbody>
+                            </table>
                             <div class="card-body chart-block">
+                                <script th:inline="javascript">
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                        /*<![CDATA[*/
+                                        var resultData = /*[[${resultData}]]*/ [];
+                                        // resultData = JSON.parse(resultData);
+                                        console.log("@@@@@@@@@@@@@@@ : ", resultData);
+                                        // labels와 data 배열 생성
+                                        var labels = [];
+                                        var data = [];
+
+                                        resultData.forEach(function(item) {
+                                           // console.log("@@@@@@@@@@@@@@@ : ", item);
+                                            labels.push(item.itemName);
+                                            data.push(item.totalSales);
+                                        });
+
+                                        console.log("label : ",labels);
+                                        console.log("data : ",data);
+                                       var barCtx = document.getElementById("myBarGraph").getContext("2d");
+
+                                        var barData = {
+                                            labels: labels,
+                                            datasets: [
+                                                {
+                                                    label: "총매출",
+                                                    backgroundColor: "rgba(0, 102, 102, 0.2)",
+                                                    borderColor: "rgba(0, 102, 102, 1)",
+                                                    borderWidth: 1,
+                                                    data: data,
+                                                }
+                                            ]
+                                        };
+
+                                        var barOptions = {
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        };
+
+                                    var myBarChart = new Chart(barCtx).Bar(barData, barOptions);
+                                    });
+                                </script>
+
                                 <canvas id="myBarGraph"> </canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-md-12 box-col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Line Graph</h4>
-                            </div>
-                            <div class="card-body chart-block">
-                                <canvas id="myGraph"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-md-12 box-col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Radar Graph</h4>
-                            </div>
-                            <div class="card-body chart-block">
-                                <canvas id="myRadarGraph"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-md-12 box-col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Line Chart</h4>
-                            </div>
-                            <div class="card-body chart-block">
-                                <canvas id="myLineCharts"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-md-12 box-col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Doughnut Chart</h4>
-                            </div>
-                            <div class="card-body chart-block chart-vertical-center">
-                                <canvas id="myDoughnutGraph"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-md-12 box-col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Polar Chart</h4>
-                            </div>
-                            <div class="card-body chart-block chart-vertical-center">
-                                <canvas id="myPolarGraph"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Container-fluid Ends-->
-        </div>
-        <!-- footer start-->
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12 footer-copyright text-center">
-                        <p class="mb-0">Copyright 2024 © Riho theme by pixelstrap  </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-</div>
+
+<!--                    <div class="col-xl-6 col-md-12 box-col-12">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-header">-->
+<!--                                -->
+
+<!--                                <h4>Line Graph</h4>-->
+<!--                            </div>-->
+<!--                            <div class="card-body chart-block">-->
+<!--                                <canvas id="myGraph"></canvas>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-xl-6 col-md-12 box-col-12">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-header">-->
+<!--                                <h4>Radar Graph</h4>-->
+<!--                            </div>-->
+<!--                            <div class="card-body chart-block">-->
+<!--                                <canvas id="myRadarGraph"></canvas>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-xl-6 col-md-12 box-col-12">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-header">-->
+<!--                                <h4>Line Chart</h4>-->
+<!--                            </div>-->
+<!--                            <div class="card-body chart-block">-->
+<!--                                <canvas id="myLineCharts"></canvas>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-xl-6 col-md-12 box-col-12">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-header">-->
+<!--                                <h4>Doughnut Chart</h4>-->
+<!--                            </div>-->
+<!--                            <div class="card-body chart-block chart-vertical-center">-->
+<!--                                <canvas id="myDoughnutGraph"></canvas>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-xl-6 col-md-12 box-col-12">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-header">-->
+<!--                                <h4>Polar Chart</h4>-->
+<!--                            </div>-->
+<!--                            <div class="card-body chart-block chart-vertical-center">-->
+<!--                                <canvas id="myPolarGraph"></canvas>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; Container-fluid Ends&ndash;&gt;-->
+<!--        </div>-->
+<!--        &lt;!&ndash; footer start&ndash;&gt;-->
+<!--        <footer class="footer">-->
+<!--            <div class="container-fluid">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-12 footer-copyright text-center">-->
+<!--                        <p class="mb-0">Copyright 2024 © Riho theme by pixelstrap  </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </footer>-->
+<!--    </div>-->
+<!--</div>-->
 <!-- latest jquery-->
 <script src="../assets/js/jquery.min.js"></script>
 <!-- Bootstrap js-->
@@ -1096,6 +1159,7 @@
 <script src="../assets/js/slick/slick.js"></script>
 <script src="../assets/js/header-slick.js"></script>
 <script src="../assets/js/chart/chartjs/chart.min.js"></script>
+
 <script src="../assets/js/chart/chartjs/chart.custom.js"></script>
 <!-- calendar js-->
 <!-- Plugins JS Ends-->
