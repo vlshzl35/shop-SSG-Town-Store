@@ -1,15 +1,16 @@
 package com.sh.admin.order.controller;
 
 import com.sh.admin.order.model.dto.OrderDto;
+import com.sh.admin.order.model.dto.OrderQuantityDto;
 import com.sh.admin.order.model.service.OrderService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class OrderControllerTest {
 
@@ -27,5 +28,15 @@ class OrderControllerTest {
         // when
         // then
     }
+   @Test
+    public void orderQuantity() {
+       int result=orderService.nowQuantity(10);
+       System.out.println("result = " + result);
+   }
+
+   @Test
+    public void insertSales() {
+
+   }
 
 }
