@@ -4,6 +4,7 @@ import com.sh.admin.sales.model.dto.SalesItemDTO;
 import com.sh.admin.sales.model.service.DailySalesCommandService;
 import com.sh.admin.sales.model.service.DailySalesService;
 import com.sh.admin.sales.model.service.SalesService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,9 @@ public class SalesController {
     private final SalesService salesService;
 
     @GetMapping("/chart")
-    public void sales(Model model) {
+    public void sales(Model model, HttpSession httpSession) {
+        String adminName = (String) httpSession.getAttribute("adminName");
+        model.addAttribute("adminName", adminName);
     }
 
     // 예진 작업 시작
