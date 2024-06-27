@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 @Mapper
-public interface SalesDAO {
+public interface SalesMapper {
     List<SalesItemDTO> getTopSalesItems();
 
     List<SalesItemDTO> getArtistTopSalesItems(@Param("artistName") String s);

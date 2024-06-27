@@ -153,6 +153,27 @@
                     </li>
 
              <!--                   단일 기능일 때 끝-->
+                    <li class="sidebar-main-title">
+                        <div>
+                            <h6>매출</h6>
+                        </div>
+                    </li>
+                    <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav"  th:href="@{/sales/chart}">
+                        <svg class="stroke-icon">
+                            <use href="../assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
+                        </svg>
+                        <span>매출 조회</span></a>
+
+                    </li>
+
+                    <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav"  th:href="@{/sales/top100}">
+                        <svg class="stroke-icon">
+                            <use href="../assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
+                        </svg>
+                        <span>매출 분석</span>
+                    </a>
+
+                    </li>
                 </ul>
                 <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
             </div>

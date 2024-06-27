@@ -20,7 +20,6 @@ public class RefundController {
 
     private final RefundQueryService refundQueryService;
     private final RefundCommandService refundCommandService;
-    private final ThymeleafViewResolver thymeleafViewResolver;
 
     @GetMapping("/list")
     public String refundList(Model model) {
