@@ -4,11 +4,9 @@ import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 public class ItemDto {
-    private int itemId; // 상품ID
+    private Long itemId; // 상품ID
     private String itemName; // 상품명
     private Category categoryName; // 카테고리
     private Artist artistName; // 아티스트

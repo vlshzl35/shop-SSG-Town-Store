@@ -22,5 +22,6 @@ public interface ItemMapper {
 //    나경작업시작
 
     int updateSaleStatus(Long itemId);
+    int updateItem(ItemDto itemDto); // 수정쿼리
 //    나경작업완료
 }

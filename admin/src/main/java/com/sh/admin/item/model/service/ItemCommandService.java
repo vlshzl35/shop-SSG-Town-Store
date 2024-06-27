@@ -3,7 +3,6 @@ import com.sh.admin.item.model.dao.ItemMapper;
 import com.sh.admin.item.model.dto.ItemDto;
 import com.sh.admin.item.model.dto.SaleStatus;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,4 +24,16 @@ public class ItemCommandService {
         return false;
     }
 //    나경작업끝
+//    나경시작
+public boolean updateItem(ItemDto itemDto) {
+    // 조건이 안맞으면 ( 수량이 작다던가
+    if (itemDto != null ) {
+        int updatedRows = itemMapper.updateItem(itemDto);
+        if (updatedRows == 1) {
+            return true;
+        }
+    }
+    return false;
+}
+//    나경끝
 }
