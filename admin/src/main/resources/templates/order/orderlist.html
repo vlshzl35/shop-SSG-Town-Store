@@ -1,97 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout/default}">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+          content="Riho admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords"
+          content="admin template, Riho admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <title>Riho - Premium Admin Template</title>
+    <!-- Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&amp;display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
+    <!-- Plugins css start-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/animate.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/datatables.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/datatable-extension.css">
+    <!-- Plugins css Ends-->
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+    <script type="text/javascript">
+        function cancel($button) {
+            console.log($button)
+            if (confirm("취소완료를 하겠습니까??")) {
+                const $frm = $button.closest('form');
+                console.log($frm)
+                $frm.action = '[[@{/order/list/cancel}]]';
+                $frm.submit();
+            }
+        }
 
+    </script>
+</head>
+<body>
+
+<div layout:fragment="main" class="page-body">
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-6">
+                    <h4>주문목록</h4>
+                </div>
+                <div class="col-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../index.html">
+                            <svg class="stroke-icon">
+                                <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>
+                            </svg>
+                        </a></li>
+                        <li class="breadcrumb-item">  </li>
+                        <li class="breadcrumb-item active">  </li>
+                    </ol>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-          <div class="table-responsive custom-scrollbar">
-            <table class="display" id="export-button">
-              <thead>
-              <tr>
-                <th>주문ID</th>
-                <th>회원ID</th>
-                <th>금액</th>
-                <th>접수날짜</th>
-                <th>상태</th>
-                <th>송장번호</th>
-                <th>발송날짜</th>
-                <th>버튼</th>
-              </tr>
-              </thead>
-              <tbody>
-
-                <tr th:each="orderDto, stat:${orderList}" th:object="${orderDto}" align="center">
-                    <td>
-                      <a th:href="@{|/order/detail/${orderDto.orderId}|}"
-                         onclick="window.open(this.href, '_blank', 'left=2500%,top=800%, width=800, height=800');
-                         return false;" th:text="${orderDto.orderId}"></a>
-                    </td>
-                    <td th:text="${orderDto.memberId}"></td>
-                    <td th:text="${#numbers.formatInteger(orderDto.sumPrice, 3, 'COMMA')+'원'}"></td>
-                    <td th:text="${#temporals.format(orderDto.orderDate,'yyyy-MM-dd')}"></td>
-                    <td th:text="${orderDto.orderStatus}"></td>
-                    <td th:text="${orderDto.trackNumber == 0 ? '' :orderDto.trackNumber}"></td>
-                    <td th:text="${orderDto.shipmentDate == 0 ? '발송전':orderDto.shipmentDate}"></td>
-<!--                  th:classappend="${orderDto.orderStatus.equals('주문요청')} ? 'btn-primary abled' : 'btn-outline-primary disabled'"-->
-                    <td>
-                      <form name="orderProcessFrm" th:action="@{/order/list/shipment}" method="post" onsubmit="return confirm('발송을 승인하시겠습니까?');">
-                        <button type="submit" class="btn btn-primary" >발송처리</button>
-                        <button type="button" onclick="cancel(this)" class="btn btn-danger" >취소처리</button>
-                        <input type="hidden" name="orderId" th:value="*{orderId}">
-                      </form>
-                    </td>
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-</div>
-<!-- Container-fluid Ends-->
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header pb-0 card-no-border">
+                        <h4>저장파일 종류</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="dt-ext table-responsive custom-scrollbar">
+                            <table class="display" id="export-button">
+                                <thead>
+                                <tr>
+                                    <th>주문ID</th>
+                                    <th>회원ID</th>
+                                    <th>금액</th>
+                                    <th>접수날짜</th>
+                                    <th>상태</th>
+                                    <th>송장번호</th>
+                                    <th>발송날짜</th>
+                                    <th>버튼</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-<!-- latest jquery-->
-<script src="../assets/js/jquery.min.js"></script>
-<!-- Bootstrap js-->
-<script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-<!-- feather icon js-->
-<script src="../assets/js/icons/feather-icon/feather.min.js"></script>
-<script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
-<!-- scrollbar js-->
-<script src="../assets/js/scrollbar/simplebar.js"></script>
-<script src="../assets/js/scrollbar/custom.js"></script>
-<!-- Sidebar jquery-->
-<script src="../assets/js/config.js"></script>
-<!-- Plugins JS start-->
-<script src="../assets/js/sidebar-menu.js"></script>
-<script src="../assets/js/sidebar-pin.js"></script>
-<script src="../assets/js/slick/slick.min.js"></script>
-<script src="../assets/js/slick/slick.js"></script>
-<script src="../assets/js/header-slick.js"></script>
-<!-- calendar js-->
-<script src="../assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/dataTables.buttons.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/jszip.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/buttons.colVis.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/pdfmake.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/vfs_fonts.js"></script>
-<script src="../assets/js/datatable/datatable-extension/dataTables.autoFill.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/dataTables.select.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/buttons.bootstrap5.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/buttons.html5.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/buttons.print.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/dataTables.bootstrap5.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/dataTables.responsive.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/responsive.bootstrap5.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/dataTables.keyTable.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/dataTables.colReorder.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/dataTables.fixedHeader.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/dataTables.rowReorder.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/dataTables.scroller.min.js"></script>
-<script src="../assets/js/datatable/datatable-extension/custom.js"></script>
-<script src="../assets/js/tooltip-init.js"></script>
-<!-- Plugins JS Ends-->
-<!-- Theme js-->
-<script src="../assets/js/script.js"></script>
-<script src="../assets/js/theme-customizer/customizer.js"></script>
+                                <tr th:each="orderDto, stat:${orderList}" th:object="${orderDto}" align="center">
+                                    <td>
+                                        <a th:href="@{|/order/detail/${orderDto.orderId}|}"
+                                           onclick="window.open(this.href, '_blank', 'left=2500%,top=800%, width=800, height=800');
+                         return false;" th:text="${orderDto.orderId}"></a>
+                                    </td>
+                                    <td th:text="${orderDto.memberId}"></td>
+                                    <td th:text="${#numbers.formatInteger(orderDto.sumPrice, 3, 'COMMA')}"></td>
+                                    <td th:text="${#temporals.format(orderDto.orderDate,'yyyy-MM-dd')}"></td>
+                                    <td th:utext="${orderDto.orderStatus}" id="orderStatus"></td>
+                                    <td th:text="${orderDto.trackNumber == 0 ? '' :orderDto.trackNumber}"></td>
+                                    <td th:text="${orderDto.shipmentDate == 0 ? '발송전':orderDto.shipmentDate}"></td>
+                                    <!--                  th:classappend="${orderDto.orderStatus.equals('주문요청')} ? 'btn-primary abled' : 'btn-outline-primary disabled'"-->
+                                    <td>
+
+                                        <form name="orderProcessFrm" th:action="@{/order/list/shipment}" method="post"
+                                              onsubmit="return confirm('발송을 승인하시겠습니까?');">
+                                            <button type="submit" class="btn btn-primary" id="btn-shipment">발송처리</button>
+                                            <button type="button" onclick="cancel(this)" class="btn btn-danger" id="btn-cancel" >취소처리</button>
+                                            <input type="hidden" name="orderId" th:value="*{orderId}">
+
+                                        </form>
+                                    </td>
+
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>주문ID</th>
+                                    <th>회원ID</th>
+                                    <th>금액</th>
+                                    <th>접수날짜</th>
+                                    <th>상태</th>
+                                    <th>송장번호</th>
+                                    <th>발송날짜</th>
+                                    <th>버튼</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+
+    <!-- footer start-->
+
+
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery.min.js"></script>
+    <!-- Bootstrap js-->
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- feather icon js-->
+    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+    <!-- scrollbar js-->
+    <script src="../assets/js/scrollbar/simplebar.js"></script>
+    <script src="../assets/js/scrollbar/custom.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="../assets/js/config.js"></script>
+    <!-- Plugins JS start-->
+    <script src="../assets/js/sidebar-menu.js"></script>
+    <script src="../assets/js/sidebar-pin.js"></script>
+    <script src="../assets/js/slick/slick.min.js"></script>
+    <script src="../assets/js/slick/slick.js"></script>
+    <script src="../assets/js/header-slick.js"></script>
+    <!-- calendar js-->
+    <script src="../assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/dataTables.buttons.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/jszip.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/buttons.colVis.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/pdfmake.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/vfs_fonts.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/dataTables.autoFill.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/dataTables.select.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/buttons.bootstrap5.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/buttons.html5.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/buttons.print.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/dataTables.bootstrap5.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/dataTables.responsive.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/responsive.bootstrap5.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/dataTables.keyTable.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/dataTables.colReorder.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/dataTables.fixedHeader.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/dataTables.rowReorder.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/dataTables.scroller.min.js"></script>
+    <script src="../assets/js/datatable/datatable-extension/custom.js"></script>
+    <script src="../assets/js/tooltip-init.js"></script>
+    <!-- Plugins JS Ends-->
+    <!-- Theme js-->
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/theme-customizer/customizer.js"></script>
+</div>
+
 </body>
 </html>
