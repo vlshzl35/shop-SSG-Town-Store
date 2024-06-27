@@ -27,5 +27,7 @@ public interface ItemMapper {
 //    나경작업완료
     // 희윤 등록 시작
     int insertItem(ItemDto itemDto);
+
+    int updateSaleStatus(Long itemId); // 품절 처리
     // 희윤 등록 끝
 }
