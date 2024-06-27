@@ -54,6 +54,11 @@ public class ItemController {
                 log.debug("saleStatus = {}", saleStatus);
                 log.debug("salePrice = {}", salePrice);
 
+                // enum을 select 옵션으로 불러오기
+                model.addAttribute("category", Category.values());
+                model.addAttribute("artist", Artist.values());
+                model.addAttribute("saleStatus", SaleStatus.values());
+
                 // 검색 결과 가져오기
                 List<ItemDto> items = itemQueryService.findAllMatch(categoryName, artistName, salePrice, saleStatus);
                 log.debug("items = {}", items);
