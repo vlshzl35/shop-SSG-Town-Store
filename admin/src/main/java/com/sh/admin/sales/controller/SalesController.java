@@ -1,6 +1,8 @@
 package com.sh.admin.sales.controller;
 
 import com.sh.admin.sales.model.dto.SalesItemDTO;
+import com.sh.admin.sales.model.service.DailySalesCommandService;
+import com.sh.admin.sales.model.service.DailySalesService;
 import com.sh.admin.sales.model.service.SalesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +22,24 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/sales")
 public class SalesController {
-    @Autowired
-    private SalesService salesService;
+
+    private final SalesService salesService;
 
     @GetMapping("/chart")
     public void sales(Model model) {
     }
 
+    // 예진 작업 시작
+    private final DailySalesCommandService dailySalesCommandService;
+
+    @GetMapping("/chart/close")
+    public String close(Model model) {
+        String today = LocalDate.now().minusDays(2).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        dailySalesCommandService.insertDailySales(today);
+        return "redirect:/sales/chart";
+    }
+
+    // 예진 작업 끝
     @GetMapping("/top100")
     public String getSalesData(Model model) {
         List<SalesItemDTO> salesData = salesService.getTopSalesItems();

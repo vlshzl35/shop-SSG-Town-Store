@@ -94,7 +94,7 @@ CREATE TABLE `tbl_orderItem` (
 
 CREATE TABLE `tbl_daily_sales` (
                                    `date`	date	NOT NULL COMMENT '날짜기준이여서DATE',
-                                   `daily_sale`	bigint	NOT NULL	COMMENT '오늘거는 안들어감',
+                                   `daily_sale`	bigint  default 0	NULL    COMMENT '오늘거는 안들어감',
                                    PRIMARY KEY (`date`)
 );
 
