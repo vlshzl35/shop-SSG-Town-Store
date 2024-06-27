@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{layout/default}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,28 +37,267 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
 </head>
 <body>
-
-<div layout:fragment="main" class="page-body">
-    <div class="container-fluid">
-        <div class="page-title">
-            <div class="row">
-                <div class="col-6">
-                    <h4>상품목록</h4>
+<!-- loader starts-->
+<div class="loader-wrapper">
+    <div class="loader">
+        <div class="loader4"></div>
+    </div>
+</div>
+<!-- loader ends-->
+<!-- tap on top starts-->
+<div class="tap-top"><i data-feather="chevrons-up"></i></div>
+<!-- tap on tap ends-->
+<!-- page-wrapper Start-->
+<div class="page-wrapper compact-wrapper" id="pageWrapper">
+    <!-- Page Header Start-->
+    <div class="page-header">
+        <div class="header-wrapper row m-0">
+            <form class="form-inline search-full col" action="#" method="get">
+                <div class="form-group w-100">
+                    <div class="Typeahead Typeahead--twitterUsers">
+                        <div class="u-posRelative">
+                            <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"
+                                   placeholder="Search Riho .." name="q" title="" autofocus>
+                            <div class="spinner-border Typeahead-spinner" role="status"><span
+                                    class="sr-only">Loading... </span></div>
+                            <i class="close-search" data-feather="x"></i>
+                        </div>
+                        <div class="Typeahead-menu"></div>
+                    </div>
                 </div>
-                <div class="col-6">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="../index.html">
-                            <svg class="stroke-icon">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>
-                            </svg>
-                        </a></li>
-                        <li class="breadcrumb-item">  </li>
-                        <li class="breadcrumb-item active">  </li>
-                    </ol>
-                </div>
+            </form>
+            <div class="header-logo-wrapper col-auto p-0">
+                <div class="logo-wrapper"><a href="../index.html"><img class="img-fluid for-light"
+                                                                       src="../assets/images/logo/logo_dark.png"
+                                                                       alt="logo-light"><img class="img-fluid for-dark"
+                                                                                             src="../assets/images/logo/logo.png"
+                                                                                             alt="logo-dark"></a></div>
+                <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle"
+                                               data-feather="align-center"></i></div>
             </div>
+            <div class="left-header col-xxl-5 col-xl-6 col-lg-5 col-md-4 col-sm-3 p-0">
+                <div><a class="toggle-sidebar" href="#"> <i class="iconly-Category icli"> </i></a>
+                    <div class="d-flex align-items-center gap-2 ">
+                        <h4 class="f-w-600">안녕하세요 희윤님</h4><img class="mt-0" src="../assets/images/hand.gif"
+                                                               alt="hand-gif">
+                    </div>
+                </div>
+                <div class="welcome-content d-xl-block d-none"><span
+                        class="text-truncate col-12">제가 잘 할 수 있을까요...</span></div>
+            </div>
+            <div class="nav-right col-xxl-7 col-xl-6 col-md-7 col-8 pull-right right-header p-0 ms-auto">
+                <ul class="nav-menus">
+                    <li class="d-md-block d-none">
+                        <div class="form search-form mb-0">
+                            <div class="input-group"><span class="input-icon">
+                      <svg>
+                        <use href="../assets/svg/icon-sprite.svg#search-header"></use>
+                      </svg>
+                      <input class="w-100" type="search" placeholder="Search"></span></div>
+                        </div>
+                    </li>
+                    <li class="d-md-none d-block">
+                        <div class="form search-form mb-0">
+                            <div class="input-group"> <span class="input-show">
+                      <svg id="searchIcon">
+                        <use href="../assets/svg/icon-sprite.svg#search-header"></use>
+                      </svg>
+                      <div id="searchInput">
+                        <input type="search" placeholder="Search">
+                      </div></span></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mode"><i class="moon" data-feather="moon"> </i></div>
+                    </li>
+                </ul>
+            </div>
+            <script class="result-template" type="text/x-handlebars-template">
+                <div class="ProfileCard u-cf">
+                    <div class="ProfileCard-avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             class="feather feather-airplay m-0">
+                            <path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path>
+                            <polygon points="12 15 17 21 7 21 12 15"></polygon>
+                        </svg>
+                    </div>
+                    <div class="ProfileCard-details">
+                        <div class="ProfileCard-realName">{{name}}</div>
+                    </div>
+                </div>
+            </script>
+            <script class="empty-template" type="text/x-handlebars-template">
+                <div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down,
+                    yikes!
+                </div></script>
         </div>
     </div>
+    <!-- Page Header Ends                              -->
+    <!-- Page Body Start-->
+    <div class="page-body-wrapper">
+        <!-- Page Sidebar Start-->
+        <div class="sidebar-wrapper" data-layout="stroke-svg">
+            <div class="logo-wrapper"><a href="../index.html"><img class="img-fluid"
+                                                                   src="../assets/images/logo/logo.png" alt=""></a>
+                <div class="back-btn"><i class="fa fa-angle-left"> </i></div>
+                <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i>
+                </div>
+            </div>
+            <div class="logo-icon-wrapper"><a href="../index.html"><img class="img-fluid"
+                                                                        src="../assets/images/logo/logo-icon.png"
+                                                                        alt=""></a></div>
+            <nav class="sidebar-main">
+                <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
+                <div id="sidebar-menu">
+                    <ul class="sidebar-links" id="simple-bar">
+                        <li class="back-btn"><a href="../index.html"><img class="img-fluid"
+                                                                          src="../assets/images/logo/logo-icon.png"
+                                                                          alt=""></a>
+                            <div class="mobile-back text-end"><span>Back </span><i class="fa fa-angle-right ps-2"
+                                                                                   aria-hidden="true"></i></div>
+                        </li>
+                        <li class="pin-title sidebar-main-title">
+                            <div>
+                                <h6>Pinned</h6>
+                            </div>
+                        </li>
+                        <!--            <li class="sidebar-main-title">-->
+                        <!--              <div>-->
+                        <!--                <h6 class="lan-1">General</h6>-->
+                        <!--              </div>-->
+                        <!--            </li>-->
+                        <!--            <li class="sidebar-list"><i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">-->
+                        <!--              <svg class="stroke-icon">-->
+                        <!--                <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>-->
+                        <!--              </svg>-->
+                        <!--              <svg class="fill-icon">-->
+                        <!--                <use href="../assets/svg/icon-sprite.svg#fill-home"></use>-->
+                        <!--              </svg><span class="lan-3">Dashboard          </span></a>-->
+                        <!--              <ul class="sidebar-submenu">-->
+                        <!--                <li><a href="index.html">Default</a></li>-->
+                        <!--                <li><a href="dashboard-02.html">Ecommerce</a></li>-->
+                        <!--                <li><a href="dashboard-03.html">Project</a></li>-->
+                        <!--              </ul>-->
+                        <!--            </li>-->
+                        <!--            <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title" href="#">-->
+                        <!--              <svg class="stroke-icon">-->
+                        <!--                <use href="../assets/svg/icon-sprite.svg#stroke-widget"></use>-->
+                        <!--              </svg>-->
+                        <!--              <svg class="fill-icon">-->
+                        <!--                <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>-->
+                        <!--              </svg><span class="lan-6">Widgets</span></a>-->
+                        <!--              <ul class="sidebar-submenu">-->
+                        <!--                <li><a href="general-widget.html">General</a></li>-->
+                        <!--                <li><a href="chart-widget.html">Chart</a></li>-->
+                        <!--              </ul>-->
+                        <!--            </li>-->
+                        <!--            <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title" href="#">-->
+                        <!--              <svg class="stroke-icon">-->
+                        <!--                <use href="../assets/svg/icon-sprite.svg#stroke-layout"></use>-->
+                        <!--              </svg>-->
+                        <!--              <svg class="fill-icon">-->
+                        <!--                <use href="../assets/svg/icon-sprite.svg#fill-layout"></use>-->
+                        <!--              </svg><span class="lan-7">Page layout</span></a>-->
+                        <!--              <ul class="sidebar-submenu">-->
+                        <!--                <li><a href="box-layout.html">Boxed</a></li>-->
+                        <!--                <li><a href="layout-rtl.html">RTL</a></li>-->
+                        <!--                <li><a href="layout-dark.html">Dark Layout</a></li>-->
+                        <!--                <li> <a href="hide-on-scroll.html">Hide Nav Scroll</a></li>-->
+                        <!--              </ul>-->
+                        <!--            </li>-->
+                        <li class="sidebar-main-title">
+                            <div>
+                                <h6 class="lan-8">Applications</h6>
+                            </div>
+                        </li>
+                        <!--            <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title" href="#">-->
+                        <!--              <svg class="stroke-icon">-->
+                        <!--                <use href="../assets/svg/icon-sprite.svg#stroke-project"></use>-->
+                        <!--              </svg>-->
+                        <!--              <svg class="fill-icon">-->
+                        <!--                <use href="../assets/svg/icon-sprite.svg#fill-project"></use>-->
+                        <!--              </svg><span>Project           </span></a>-->
+                        <!--              <ul class="sidebar-submenu">-->
+                        <!--                <li><a href="projects.html">Project List</a></li>-->
+                        <!--                <li><a href="projectcreate.html">Create new</a></li>-->
+                        <!--              </ul>-->
+                        <!--            </li>-->
+                        <!--            <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="file-manager.html">-->
+                        <!--              <svg class="stroke-icon">-->
+                        <!--                <use href="../assets/svg/icon-sprite.svg#stroke-file"></use>-->
+                        <!--              </svg>-->
+                        <!--              <svg class="fill-icon">-->
+                        <!--                <use href="../assets/svg/icon-sprite.svg#fill-file"></use>-->
+                        <!--              </svg><span>File manager</span></a></li>-->
+                        <!--            <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" href="kanban.html">-->
+                        <!--              <svg class="stroke-icon">-->
+                        <!--                <use href="../assets/svg/icon-sprite.svg#stroke-board"></use>-->
+                        <!--              </svg>-->
+                        <!--              <svg class="fill-icon">-->
+                        <!--                <use href="../assets/svg/icon-sprite.svg#fill-board"></use>-->
+                        <!--              </svg><span>kanban Board</span></a></li>-->
+                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
+                                                                                    href="#">
+                            <svg class="stroke-icon">
+                                <use href="../assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
+                            </svg>
+                            <svg class="fill-icon">
+                                <use href="../assets/svg/icon-sprite.svg#fill-ecommerce"></use>
+                            </svg>
+                            <span>Ecommerce</span></a>
+                            <ul class="sidebar-submenu">
+                                <li><a th:href="@{/item/create}">상품 등록</a></li>
+                                <li><a href="product.html">Product</a></li>
+                                <li><a href="category.html">Category page</a></li>
+                                <li><a href="product-page.html">Product page</a></li>
+                                <li><a th:href="@{/item/list}">상품 목록</a></li>
+                                <li><a href="payment-details.html">Payment Details</a></li>
+                                <li><a href="order-history.html">Order History</a></li>
+                                <li><a class="submenu-title" href="#">Invoices<span class="sub-arrow"><i
+                                        class="fa fa-angle-right"></i></span></a>
+                                    <ul class="nav-sub-childmenu submenu-content">
+                                        <li><a href="invoice-1.html">Invoice-1</a></li>
+                                        <li><a href="invoice-2.html">Invoice-2</a></li>
+                                        <li><a href="invoice-3.html">Invoice-3</a></li>
+                                        <li><a href="invoice-4.html">Invoice-4</a></li>
+                                        <li><a href="invoice-5.html">Invoice-5</a></li>
+                                        <li><a href="invoice-template.html">Invoice-6</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="cart.html">Cart</a></li>
+                                <li><a href="list-wish.html">Wishlist</a></li>
+                                <li><a href="checkout.html">Checkout</a></li>
+                                <li><a href="pricing.html">Pricing </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
+                </div>
+            </nav>
+        </div>
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+            <div class="container-fluid">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-6">
+                            <h4>상품 목록</h4>
+                        </div>
+                        <div class="col-6">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="../index.html">
+                                    <svg class="stroke-icon">
+                                        <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>
+                                    </svg>
+                                </a></li>
+                                <li class="breadcrumb-item">ECommerce</li>
+                                <li class="breadcrumb-item active">상품 목록</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Container-fluid starts-->
             <div class="container-fluid">
                 <div class="row">
@@ -244,6 +482,18 @@
             </div>
             <!-- Container-fluid Ends-->
         </div>
+        <!-- footer start-->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 footer-copyright text-center">
+                        <p class="mb-0">Copyright 2024 © SSG TOWN </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
 <!-- latest jquery-->
 <script src="../assets/js/jquery.min.js"></script>
 <!-- Bootstrap js-->
