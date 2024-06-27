@@ -7,13 +7,38 @@ select *
 from tbl_orderitem join tbl_item on tbl_orderitem.item_id = tbl_item.item_id
 where order_id=1;
 
+update tbl_order
+set order_status='발송완료',track_number=#{trackNumber}, shipment_date = #{shipmentDate},
+where order_id=6;
+
+select *
+from tbl_orderitem
+where order_id=5;
+
+select *
+from tbl_item;
+
+update tbl_item
+set quantity = quantity-#{itemQuantity}
+where item_id=#{itemId};
+
+select
+    *
+from
+    tbl_orderitem join tbl_item on tbl_orderitem.item_id = tbl_item.item_id
+where
+    order_id=5;
+
 select tbl_order.order_id, member_id, order_date, sum_price, order_status, track_number, shipment_date, order_item_id,tbl_order.order_id, item_id, item_quantity, order_item_price
 from tbl_order join tbl_orderitem on tbl_order.order_id = tbl_orderitem.order_id
 where tbl_order.order_id=3 ;
 
 select *
-from tbl_orderitem
-where order_id=1;
+from tbl_orderitem;
+
+select *
+from tbl_item
+where item_id=1;
 
 select item_id, sale_price
 from tbl_item
@@ -35,30 +60,30 @@ where item_id=1;
 
 select *
 from tbl_orderitem
-where order_id=6;
+where order_id=20;
 
 select *
 from tbl_order;
 
 insert into tbl_order(member_id, order_date, sum_price, order_status, track_number, shipment_date )
-values ('johndoe123','2023-12-17 21:18:20',78000,'주문요청',null,null);
+values ('agumon','2024-4-17 21:18:20',8000,'주문요청',null,null);
 
 update tbl_order
 set sum_price = (select sum(order_item_price)
                  from tbl_orderitem
-                 where order_id=15)
-where order_id=15;
+                 where order_id=20)
+where order_id=20;
 
 select sum(order_item_price)
 from tbl_orderitem
 where order_id=15;
 
 insert into tbl_orderitem( order_id, item_id, item_quantity, order_item_price)
-values (15, 5,2,
+values (20, 8,1,
         (select sale_price
         from tbl_item
-        where item_id=5
-        )*2);
+        where item_id=8
+        )*1);
 
 insert into tbl_orderitem( order_id, item_id, item_quantity, order_item_price)
 values (15, 21,2,(select sale_price
@@ -92,7 +117,7 @@ select *
 from tbl_member;
 
 insert into tbl_member(member_id, member_name, member_gender, member_birth, member_address, member_email, created_at, member_bank, member_account)
-values ('sinsa', '신사임당', 'F', '1485-05-15', '조선', 'sinsa@example.com', '2024-06-25 10:15:00', 'BankB', '9876546');
+values ('agumon', '아구몬', 'F', '2018-05-15', '찾아라 비밀의 열쇠', 'agumon@example.com', '2024-06-25 10:15:00', 'BankRV', '13276546');
 
 
 insert into tbl_member(member_id, member_name, member_gender, member_birth, member_address, member_email, created_at, member_bank, member_account)
