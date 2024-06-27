@@ -26,9 +26,9 @@ public class LoginController {
 
     private final LoginService loginService;
 
-    @GetMapping("/login")
+    @GetMapping("/index")
     public String login() {
-        return "/login/login";
+        return "/index";
     }
 
     @PostMapping("/loginExecute")
@@ -53,6 +53,6 @@ public class LoginController {
     @PostMapping("/logout")
     public String logout(SessionStatus sessionStatus) {
         sessionStatus.setComplete(); // 세션 폐기
-        return "redirect:/admin/login";
+        return "redirect:/";
     }
 }
