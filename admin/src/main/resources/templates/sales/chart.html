@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout/default}">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Riho admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Riho admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <title>Riho - Premium Admin Template</title>
+    <!-- Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
+    <!-- Plugins css start-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/animate.css">
+    <!-- Plugins css Ends-->
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous">
+    </script>
+    <script type="text/javascript">
+        function closeConfirm() {
+            if (confirm("오늘자 매출 집계를 마감하시겠습니까?")) {
+                location.href = `/sales/chart/close`;
+                alert("마감이 완료되었습니다.")
+            }
+        }
+    </script>
+</head>
+<body>
+<div  layout:fragment="main"  class="page-body">
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-6">
+                    <h4>매출 조회</h4>
+                </div>
+                <div class="col-6">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div>
+            <button type="button" class="btn btn-primary" onclick="closeConfirm()"> 마감 정산</button>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-12 col-xl-6 box-col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>주간 일별매출 조회</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-apex"></div>
+                        <script>
+                            $(document).ready(function() {
+                                $.ajax({
+                                    url: 'http://localhost:8080/sales/api-weeklychart',
+                                    method: 'GET',
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        console.log(data);
+                                        let dates = [];
+                                        let dailySale = [];
+
+                                        data.forEach((d) => {
+                                            dates.push(d['date']);
+                                            dailySale.push(d['dailySale']);
+                                        })
+                                        console.log(dates);
+                                        console.log(dailySale);
+
+                                        new ApexCharts(document.querySelector("#basic-apex"), {
+                                            series : [{
+                                                name : "dailySales",
+                                                data : dailySale
+                                            }],
+                                            chart: {
+                                                height: 350,
+                                                type: 'line',
+                                                zoom: {
+                                                    enabled: false
+                                                }
+                                            },
+                                            dataLabels: {
+                                                enabled: false
+                                            },
+                                            stroke: {
+                                                curve: 'straight'
+                                            },
+                                            grid: {
+                                                row: {
+                                                    opacity: 0.5
+                                                },
+                                            },
+                                            xaxis: {
+                                                categories: dates,
+                                                labels: {
+                                                    rotate: -45
+                                                }
+                                            },
+                                            yaxis: {
+                                                title: {
+                                                    text: ''
+                                                }
+                                            },
+                                            colors:['#0B614B'],
+                                        }).render();
+                                    },
+                                    error: function(error) {
+                                        console.error('Error fetching data:', error);
+                                    }
+                                })
+                            })
+                        </script>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>월간 일별매출 조회</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-apex2"></div>
+                        <script>
+                            $(document).ready(function() {
+                                $.ajax({
+                                    url: 'http://localhost:8080/sales/api-monthlychart',
+                                    method: 'GET',
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        console.log(data);
+                                        let dates = [];
+                                        let dailySale = [];
+
+                                        data.forEach((d) => {
+                                            dates.push(d['date']);
+                                            dailySale.push(d['dailySale']);
+                                        })
+                                        console.log(dates);
+                                        console.log(dailySale);
+
+                                        new ApexCharts(document.querySelector("#basic-apex2"), {
+                                            series : [{
+                                                name : "dailySales",
+                                                data : dailySale
+                                            }],
+                                            chart: {
+                                                height: 350,
+                                                type: 'line',
+                                                zoom: {
+                                                    enabled: false
+                                                }
+                                            },
+                                            dataLabels: {
+                                                enabled: false
+                                            },
+                                            stroke: {
+                                                curve: 'straight'
+                                            },
+                                            grid: {
+                                                row: {
+                                                    opacity: 0.5
+                                                },
+                                            },
+                                            xaxis: {
+                                                categories: dates,
+                                                labels: {
+                                                    rotate: -45
+                                                }
+                                            },
+                                            yaxis: {
+                                                title: {
+                                                    text: ''
+                                                }
+                                            },
+                                            colors:['#0B614B'],
+                                        }).render();
+                                    },
+                                    error: function(error) {
+                                        console.error('Error fetching data:', error);
+                                    }
+                                })
+                            })
+                        </script>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>연간 일별매출 조회</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="basic-apex3"></div>
+                        <script>
+                            $(document).ready(function() {
+                                $.ajax({
+                                    url: 'http://localhost:8080/sales/api-yearlychart',
+                                    method: 'GET',
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        console.log(data);
+                                        let dates = [];
+                                        let dailySale = [];
+
+                                        data.forEach((d) => {
+                                            dates.push(d['date']);
+                                            dailySale.push(d['dailySale']);
+                                        })
+                                        console.log(dates);
+                                        console.log(dailySale);
+
+                                        new ApexCharts(document.querySelector("#basic-apex3"), {
+                                            series : [{
+                                                name : "dailySales",
+                                                data : dailySale
+                                            }],
+                                            chart: {
+                                                height: 350,
+                                                type: 'line',
+                                                zoom: {
+                                                    enabled: false
+                                                }
+                                            },
+                                            dataLabels: {
+                                                enabled: false
+                                            },
+                                            stroke: {
+                                                curve: 'straight'
+                                            },
+                                            grid: {
+                                                row: {
+                                                    opacity: 0.5
+                                                },
+                                            },
+                                            xaxis: {
+                                                categories: dates,
+                                                labels: {
+                                                    rotate: -45
+                                                }
+                                            },
+                                            yaxis: {
+                                                title: {
+                                                    text: ''
+                                                }
+                                            },
+                                            colors:['#0B614B'],
+                                        }).render();
+                                    },
+                                    error: function(error) {
+                                        console.error('Error fetching data:', error);
+                                    }
+                                })
+                            })
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+</div>
+<!-- latest jquery-->
+<script src="../assets/js/jquery.min.js"></script>
+<!-- Bootstrap js-->
+<script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+<!-- feather icon js-->
+<script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+<script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+<!-- scrollbar js-->
+<script src="../assets/js/scrollbar/simplebar.js"></script>
+<script src="../assets/js/scrollbar/custom.js"></script>
+<!-- Sidebar jquery-->
+<script src="../assets/js/config.js"></script>
+<!-- Plugins JS start-->
+<script src="../assets/js/sidebar-menu.js"></script>
+<script src="../assets/js/sidebar-pin.js"></script>
+<script src="../assets/js/slick/slick.min.js"></script>
+<script src="../assets/js/slick/slick.js"></script>
+<script src="../assets/js/header-slick.js"></script>
+<!--<script src="../assets/js/chart/apex-chart/apex-chart.js"></script>-->
+<!--<script src="../assets/js/chart/apex-chart/stock-prices.js"></script>-->
+<!--<script src="../assets/js/chart/apex-chart/chart-custom.js"></script>-->
+<!-- calendar js-->
+<!-- Plugins JS Ends-->
+<!-- Theme js-->
+<script src="../assets/js/script.js"></script>
+<script src="../assets/js/theme-customizer/customizer.js"></script>
+</body>
+</html>

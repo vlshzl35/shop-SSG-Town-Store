@@ -6,22 +6,93 @@
 
     <select id="findOrderList" resultMap="orderDtoMap">
         select
-            *
+        *
         from
-            tbl_order join tbl_orderitem on tbl_order.order_id = tbl_orderitem.order_id
+        tbl_order join tbl_orderitem on tbl_order.order_id = tbl_orderitem.order_id
         order
-            by order_date desc
+        by order_date desc
     </select>
 
     <select id="findByOrderId" resultType="orderItemDto">
         select
-            *
+        *
         from
-            tbl_orderitem join tbl_item on tbl_orderitem.item_id = tbl_item.item_id
+        tbl_orderitem join tbl_item on tbl_orderitem.item_id = tbl_item.item_id
         where
-            order_id=#{orderId};
+        order_id=#{orderId};
     </select>
 
+    <update id="updateOrder">
+        update
+        tbl_item
+        set
+        quantity = quantity-#{itemQuantity}
+        where
+        item_id=#{itemId};
+    </update>
+
+    <select id="findByOrderItemDto" resultType="orderItemDto">
+        select *
+        from tbl_orderitem
+        where order_id=#{orderId};
+    </select>
+
+    <update id="orderCancelByOrderId">
+        update
+        tbl_order
+        set
+        order_status='주문취소', cancel_date=#{cancelDate}
+        where
+        order_id=#{orderId};
+    </update>
+
+    <update id="shipmentByOrderId">
+        update
+        tbl_order
+        set
+        order_status='발송완료',track_number=#{trackNumber}, shipment_date = #{shipmentDate}
+        where
+        order_id=#{orderId};
+    </update>
+
+    <select id="findAllOrderItem" resultType="orderQuantityDto">
+        select
+            *
+        from
+            tbl_orderitem;
+    </select>
+
+    <select id="orderQuantity" resultType="Integer">
+        select
+            *
+        from
+            tbl_item
+        where
+            item_id=#{itemId}
+    </select>
+
+    <update id="updateOrderStatus">
+        update
+            tbl_order
+        set
+            order_status='재고부족'
+        where
+            order_id=#{orderId};
+    </update>
+
+    <select id="nowQuantity" resultType="Integer">
+        select
+            quantity
+        from
+            tbl_item
+        where item_id=#{itemId};
+    </select>
+
+    <insert id="insertSales">
+        insert into
+            tbl_sales(order_id, order_item_id, sales_price, last_updated)
+        values (#{orderId} , #{itemId} , #{orderItemPrice} , now())
+    </insert>
 
     <resultMap id="orderDtoMap" type="orderDto">
         <!--  id : PK컬럼 매핑용  -->
@@ -33,6 +104,7 @@
         <result column="order_status" property="orderStatus"/>
         <result column="track_number" property="trackNumber"/>
         <result column="shipment_date" property="shipmentDate"/>
+        <result column="cancel_date" property="cancelDate"/>
         <!--  1:N관계의 테이블 행 매핑  -->
         <!--여러 행이 온다-->
         <collection property="orderItemDtos" ofType="orderItemDto">

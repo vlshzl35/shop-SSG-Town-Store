@@ -67,4 +67,14 @@
         WHERE item_id = #{itemId}
     </update>
 <!--    나경작업끝-->
+
+    <!-- 희윤 등록 시작 -->
+    <insert id="insertItem" useGeneratedKeys="true" keyProperty="itemId">
+        insert into
+            tbl_item(item_name,category_name, artist_name, img_url, details, quantity, sale_price, sale_status)
+        values (
+            #{itemName},#{categoryName}, #{artistName}, #{imgUrl}, #{details}, #{quantity}, #{salePrice}, #{saleStatus}
+        )
+    </insert>
+    <!-- 희윤 등록 끝 -->
 </mapper>

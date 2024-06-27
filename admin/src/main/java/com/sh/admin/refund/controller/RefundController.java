@@ -3,14 +3,15 @@ package com.sh.admin.refund.controller;
 import com.sh.admin.refund.model.dto.*;
 import com.sh.admin.refund.model.service.RefundCommandService;
 import com.sh.admin.refund.model.service.RefundQueryService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
+import java.net.http.HttpResponse;
 import java.util.List;
 
 @Controller
@@ -23,9 +24,34 @@ public class RefundController {
     private final RefundCommandService refundCommandService;
 
     @GetMapping("/list")
-    public String refundList(Model model) {
+    public String refundList(Model model,
+                             HttpSession httpSession) {
         List<RefundDto> refunds = refundQueryService.findAll();
+        refunds.forEach((refund) -> {
+            if (!(refund.getRefundStatus() == RefundStatus.환불요청)) {
+                refund.setProcessed("disabled"); // 환불요청이 아닌 것들 -> 환불완료, 환불취소의 경우에는 처리 불가를 표시한다.
+            }
+        });
         model.addAttribute("refunds", refunds);
+        String adminName = (String) httpSession.getAttribute("adminName");
+        model.addAttribute("adminName", adminName);
+        return "refund/list";
+    }
+
+    @PostMapping("/list")
+    public String refundListByCondition(@ModelAttribute SearchDto searchDto,
+                                        Model model,
+                                        HttpSession httpSession) {
+        log.info("{}", searchDto);
+        List<RefundDto> refunds2 = refundQueryService.findByCondition(searchDto);
+        refunds2.forEach((refund) -> {
+            if (!(refund.getRefundStatus() == RefundStatus.환불요청)) {
+                refund.setProcessed("disabled"); // 환불요청이 아닌 것들 -> 환불완료, 환불취소의 경우에는 처리 불가를 표시한다.
+            }
+        });
+        model.addAttribute("refunds", refunds2);
+        String adminName = (String) httpSession.getAttribute("adminName");
+        model.addAttribute("adminName", adminName);
         return "refund/list";
     }
 

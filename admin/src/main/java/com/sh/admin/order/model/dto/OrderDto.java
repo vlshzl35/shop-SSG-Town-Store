@@ -19,6 +19,7 @@ public class OrderDto {
     private OrderStatus orderStatus; // 주문상태 (주문요청, 발송완료, 재고부족, 주문취소, 환불완료)
     private long trackNumber; // 송장번호
     private LocalDate shipmentDate; // 발송날짜
+    private LocalDate cancelDate; // 취소날짜
 
     private List<OrderItemDto> orderItemDtos;
 

@@ -21,4 +21,6 @@ public interface RefundMapper {
     int updateProduct(long itemId, int itemQuantity);
 
     int insertSales(RefundSalesDto refundSalesDto);
+
+    List<RefundDto> findByCondition(SearchDto searchDto);
 }

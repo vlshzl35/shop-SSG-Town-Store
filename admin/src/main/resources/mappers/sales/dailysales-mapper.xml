@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sh.admin.sales.model.dao.DailySalesMapper">
+    <resultMap id="dailySalesDtoMap" type="dailySalesDto">
+        <id column="date" property="date"/>
+        <result column="daily_sale" property="dailySale"/>
+    </resultMap>
+    <select id="findDailySales">
+        select
+            *
+        from
+            tbl_daily_sales
+        where
+<!--            date between concat(#{startDate}, 'T00:00:00') and concat(#{endDate}, 'T23:59:99')-->
+            date between #{startDate} and #{endDate}
+    </select>
+    <select id="findDailySale">
+        select
+            *
+        from
+            tbl_daily_sales
+        where
+            date = #{today}
+    </select>
+
+    <insert id="insertDailySales">
+        insert into tbl_daily_sales (date, daily_sale)
+        values (
+            #{today},
+            (
+                select sum(sales_price)
+                from tbl_sales
+                where last_updated like concat(#{today}, '%')
+            )
+        )
+    </insert>
+
+    <update id="updateDailySales">
+        update tbl_daily_sales
+        set daily_sale = (select sum(sales_price)
+                from tbl_sales
+                where last_updated like concat(#{today}, '%')
+            )
+        where date = #{today};
+    </update>
+
+</mapper>

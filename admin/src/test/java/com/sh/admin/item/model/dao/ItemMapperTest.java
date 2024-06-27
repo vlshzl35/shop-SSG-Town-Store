@@ -3,7 +3,6 @@ package com.sh.admin.item.model.dao;
 import com.sh.admin.item.model.dto.Artist;
 import com.sh.admin.item.model.dto.Category;
 import com.sh.admin.item.model.dto.ItemDto;
-import com.sh.admin.item.model.dto.ItemDto;
 import com.sh.admin.item.model.dto.SaleStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static com.sh.admin.item.model.dto.SaleStatus.판매중;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
@@ -76,7 +75,7 @@ class ItemMapperTest {
                         (_itemDto) -> assertThat(_itemDto.getQuantity()).isPositive(),
                         (_itemDto) -> assertThat(_itemDto.getSalePrice()).isPositive(),
                         (_itemDto) -> assertThat(_itemDto.getSaleStatus()).satisfiesAnyOf(
-                                (saleStatus) -> assertThat(saleStatus).isEqualTo(saleStatus.판매중),
+                                (saleStatus) -> assertThat(saleStatus).isEqualTo(판매중),
                                 (saleStatus) -> assertThat(saleStatus).isEqualTo(saleStatus.품절),
                                 (saleStatus) -> assertThat(saleStatus).isEqualTo(saleStatus.판매중지)
                         ),
@@ -181,4 +180,27 @@ class ItemMapperTest {
     }
 
 //    나경작업끝
+
+    @Test
+    @DisplayName("상품 등록")
+    void insertItem() {
+        // given
+        String itemName = "양희윤의 뇌";
+        Category categoryName = Category.valueOf("잡화");
+        Artist artistName = Artist.valueOf("샤이니");
+        String imgUrl = "img/img31.png";
+        String details = "감자주의하세요";
+        int quantity = 1;
+        int salePrice = 100;
+        SaleStatus saleStatus = SaleStatus.valueOf("판매중");
+
+        ItemDto itemDto = new ItemDto(null, itemName,categoryName,artistName,imgUrl,null, details,quantity,salePrice,saleStatus);
+        // when
+        int result = itemMapper.insertItem(itemDto);
+        System.out.println();
+        // then
+        assertThat(result).isEqualTo(1); // 등록 성공하면 숫자 1반환하므로
+        assertThat(itemDto.getItemId()).isNotZero();
+    }
+
 }

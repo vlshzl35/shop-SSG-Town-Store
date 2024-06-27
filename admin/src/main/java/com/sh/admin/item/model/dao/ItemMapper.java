@@ -21,7 +21,11 @@ public interface ItemMapper {
     /* 희윤 끝 */
 //    나경작업시작
 
-    int updateSaleStatus(Long itemId);
+
     int updateItem(ItemDto itemDto); // 수정쿼리
+
 //    나경작업완료
+    // 희윤 등록 시작
+    int insertItem(ItemDto itemDto);
+    // 희윤 등록 끝
 }

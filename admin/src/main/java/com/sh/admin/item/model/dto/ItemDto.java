@@ -15,5 +15,5 @@ public class ItemDto {
     private String details; // 세부설명
     private int quantity;  // 수량
     private int salePrice; // 가격
-    private SaleStatus saleStatus;
+    private SaleStatus saleStatus; // 판매상태
 }

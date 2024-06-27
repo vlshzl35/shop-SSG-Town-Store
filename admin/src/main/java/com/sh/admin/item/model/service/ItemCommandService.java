@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ItemCommandService {
+public class ItemCommandService { // DML
 
     public final ItemMapper itemMapper;
 
@@ -24,6 +24,7 @@ public class ItemCommandService {
         return false;
     }
 //    나경작업끝
+
 //    나경시작
 public boolean updateItem(ItemDto itemDto) {
     // 조건이 안맞으면 ( 수량이 작다던가
@@ -36,4 +37,13 @@ public boolean updateItem(ItemDto itemDto) {
     return false;
 }
 //    나경끝
+
+
+    // 희윤 등록 시작
+    public int insertItem(ItemDto itemDto) {
+        return itemMapper.insertItem(itemDto);
+        // 등록실패는 js?service?어디에 만들지
+    }
+    // 희윤 등록 끝
+
 }
