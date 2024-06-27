@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ItemCommandService {
+public class ItemCommandService { // DML
 
     public final ItemMapper itemMapper;
 
@@ -25,4 +25,12 @@ public class ItemCommandService {
         return false;
     }
 //    나경작업끝
+
+    // 희윤 등록 시작
+    public int insertItem(ItemDto itemDto) {
+        return itemMapper.insertItem(itemDto);
+        // 등록실패는 js?service?어디에 만들지
+    }
+    // 희윤 등록 끝
+
 }
