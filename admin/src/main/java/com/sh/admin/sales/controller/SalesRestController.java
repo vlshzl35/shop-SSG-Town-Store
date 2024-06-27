@@ -25,7 +25,7 @@ public class SalesRestController {
 
     @GetMapping("/api-monthlychart")
     public List<DailySalesDto> monthlyChart(){
-        LocalDate endDate = LocalDate.now().minusDays(1);
+        LocalDate endDate = LocalDate.now();
         LocalDate startDate = LocalDate.now().minusMonths(1);
 
         // 기간동안 일별매출 조회
@@ -37,7 +37,7 @@ public class SalesRestController {
 
     @GetMapping("/api-weeklychart")
     public List<DailySalesDto> weeklyChart(){
-        LocalDate endDate = LocalDate.now().minusDays(1);
+        LocalDate endDate = LocalDate.now();
         LocalDate startDate = LocalDate.now().minusDays(7);
 
         // 기간동안 일별매출 조회
@@ -49,7 +49,7 @@ public class SalesRestController {
 
     @GetMapping("/api-yearlychart")
     public List<DailySalesDto> yearlyChart(){
-        LocalDate endDate = LocalDate.now().minusDays(1);
+        LocalDate endDate = LocalDate.now();
         LocalDate startDate = LocalDate.now().minusYears(1);
 
         // 기간동안 일별매출 조회
