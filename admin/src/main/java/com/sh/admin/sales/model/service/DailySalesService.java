@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 @Service
 @RequiredArgsConstructor
-public class SalesService {
+public class DailySalesService {
     private final SalesMapper salesMapper;
 
     public List<DailySalesDto> findDailySales(LocalDate startDate, LocalDate endDate) {

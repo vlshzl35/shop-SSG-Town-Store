@@ -515,7 +515,7 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-6">
-                            <h4>Apex Chart</h4>
+                            <h4>매출 조회</h4>
                         </div>
                         <div class="col-6">
                             <ol class="breadcrumb">
@@ -523,8 +523,8 @@
                                     <svg class="stroke-icon">
                                         <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>
                                     </svg></a></li>
-                                <li class="breadcrumb-item">Charts</li>
-                                <li class="breadcrumb-item active">Apex Chart</li>
+                                <li class="breadcrumb-item">Sales</li>
+                                <li class="breadcrumb-item active">매출 조회</li>
                             </ol>
                         </div>
                     </div>
@@ -536,144 +536,70 @@
                     <div class="col-sm-12 col-xl-6 box-col-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4>
-                                    Basic Area Chart</h4>
+                                <h4>최근 한달 일별매출 조회</h4>
                             </div>
                             <div class="card-body">
                                 <div id="basic-apex"></div>
                                 <script>
                                     $(document).ready(function() {
                                         $.ajax({
-                                            url: 'http://localhost:8080/sales/chart',
+                                            url: 'http://localhost:8080/sales/api-chart',
                                             method: 'GET',
                                             dataType: 'json',
                                             success: function (data) {
                                                 console.log(data);
+                                                let dates = [];
+                                                let dailySale = [];
+
+                                                data.forEach((d) => {
+                                                    dates.push(d['date']);
+                                                    dailySale.push(d['dailySale']);
+                                                })
+                                                console.log(dates);
+                                                console.log(dailySale);
+
+                                                new ApexCharts(document.querySelector("#basic-apex"), {
+                                                    series : [{
+                                                        name : "dailySales",
+                                                        data : dailySale
+                                                    }],
+                                                    chart: {
+                                                        height: 350,
+                                                        type: 'line',
+                                                        zoom: {
+                                                            enabled: false
+                                                        }
+                                                    },
+                                                    dataLabels: {
+                                                        enabled: false
+                                                    },
+                                                    stroke: {
+                                                        curve: 'straight'
+                                                    },
+                                                    grid: {
+                                                        row: {
+                                                            opacity: 0.5
+                                                        },
+                                                    },
+                                                    xaxis: {
+                                                        categories: dates,
+                                                        labels: {
+                                                            rotate: -45
+                                                        }
+                                                    },
+                                                    yaxis: {
+                                                        title: {
+                                                            text: ''
+                                                        }
+                                                    },
+                                                }).render();
+                                            },
+                                            error: function(error) {
+                                                console.error('Error fetching data:', error);
                                             }
                                         })
                                     })
                                 </script>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6 box-col-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Area Spaline Chart </h4>
-                            </div>
-                            <div class="card-body">
-                                <div id="area-spaline"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6 box-col-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Bar chart</h4>
-                            </div>
-                            <div class="card-body">
-                                <div id="basic-bar"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6 box-col-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Column Chart </h4>
-                            </div>
-                            <div class="card-body">
-                                <div id="column-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6 box-col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>
-                                    3d Bubble Chart </h4>
-                            </div>
-                            <div class="card-body">
-                                <div id="chart-bubble"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6 box-col-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Stepline Chart </h4>
-                            </div>
-                            <div class="card-body">
-                                <div id="stepline"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-12 box-col-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Column Chart</h4>
-                            </div>
-                            <div class="card-body">
-                                <div id="annotationchart"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6 box-col-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Pie Chart </h4>
-                            </div>
-                            <div class="card-body apex-chart">
-                                <div id="piechart"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6 box-col-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Donut Chart</h4>
-                            </div>
-                            <div class="card-body apex-chart">
-                                <div id="donutchart"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-12 box-col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Mixed Chart</h4>
-                            </div>
-                            <div class="card-body">
-                                <div id="mixedchart">                       </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-12 box-col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Candlestick Chart </h4>
-                            </div>
-                            <div class="card-body">
-                                <div id="candlestick"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6 box-col-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Radar Chart </h4>
-                            </div>
-                            <div class="card-body">
-                                <div id="radarchart"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6 box-col-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Radial Bar Chart</h4>
-                            </div>
-                            <div class="card-body">
-                                <div id="circlechart"></div>
                             </div>
                         </div>
                     </div>
@@ -711,9 +637,9 @@
 <script src="../assets/js/slick/slick.min.js"></script>
 <script src="../assets/js/slick/slick.js"></script>
 <script src="../assets/js/header-slick.js"></script>
-<script src="../assets/js/chart/apex-chart/apex-chart.js"></script>
-<script src="../assets/js/chart/apex-chart/stock-prices.js"></script>
-<script src="../assets/js/chart/apex-chart/chart-custom.js"></script>
+<!--<script src="../assets/js/chart/apex-chart/apex-chart.js"></script>-->
+<!--<script src="../assets/js/chart/apex-chart/stock-prices.js"></script>-->
+<!--<script src="../assets/js/chart/apex-chart/chart-custom.js"></script>-->
 <!-- calendar js-->
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
