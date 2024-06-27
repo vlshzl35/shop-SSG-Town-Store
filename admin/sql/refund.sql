@@ -25,3 +25,9 @@ from tbl_refund;
 
 insert into tbl_refund
 values (null, 5, 'ggobugi', 179000, '환불요청', null, now(), '상품의 색이 조금 마음에 안 들어요! 사진과 실물이 이렇게 달라도 되나요????', '단순변심');
+
+select *
+from tbl_order;
+
+insert into tbl_refund
+values (null, 11, 'ponita', 181000, '환불요청', null, now(), '수량이 잘못 결제됐어요 ㅜㅜ!!', '단순변심');
