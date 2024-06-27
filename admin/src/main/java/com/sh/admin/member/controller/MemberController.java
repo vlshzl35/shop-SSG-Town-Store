@@ -2,6 +2,7 @@ package com.sh.admin.member.controller;
 
 import com.sh.admin.member.model.dto.MemberDto;
 import com.sh.admin.member.model.service.MemberService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,9 +21,11 @@ import java.util.Map;
 public class MemberController {
     private final MemberService memberService;
     @GetMapping("/member")
-    public String member(Model model){
+    public String member(Model model, HttpSession httpSession){
         List<MemberDto> members = memberService.findAllMember();
         model.addAttribute("members",members);
+        String adminName = (String) httpSession.getAttribute("adminName");
+        model.addAttribute("adminName", adminName);
         return "/member/member";
     }
     @PostMapping("/memberdelete")

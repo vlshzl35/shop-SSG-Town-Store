@@ -5,8 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Riho admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Riho admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="description"
+          content="Riho admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords"
+          content="admin template, Riho admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
@@ -14,7 +16,8 @@
     <!-- Google font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&amp;display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.css">
     <!-- ico-font-->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
@@ -53,14 +56,14 @@
 
         function acceptConfirm(refundId, orderId) {
             if (confirm("환불을 승인하시겠습니까?")) {
-                location.href=`/refund/list/accept?refundId=${refundId}&orderId=${orderId}`;
+                location.href = `/refund/list/accept?refundId=${refundId}&orderId=${orderId}`;
                 alert("환불이 완료되었습니다.")
             }
         }
 
         function denyConfirm(refundId) {
             if (confirm("환불을 거부하시겠습니까?")) {
-                location.href=`/refund/list/deny?refundId=${refundId}`;
+                location.href = `/refund/list/deny?refundId=${refundId}`;
                 alert("환불이 거부되었습니다.")
             }
         }
@@ -73,113 +76,155 @@
 </head>
 <body>
 
-            <!-- Container-fluid starts-->
-            <div layout:fragment="main" class="container-fluid">
-                <div class="row">
-                    <!-- Zero Configuration  Starts-->
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header pb-0 card-no-border">
-                                <h4>환불 관리</h4>
-                            </div><br>
-                            <form action="" method="post">
-                                <div class="form-group w-75">
-                                    <div class="col-xl-9">
-                                        <div class="card-wrapper border rounded-3 checkbox-checked">
-                                            <h6 class="sub-title">검색필터</h6>
-                                            <div>
-                                                <h6>&nbsp;&nbsp;요청자</h6>
-                                                <div class="job-filter col-5">
-                                                    <div class="faq-form">
-                                                        <input class="form-control"  type="text" name="refundRequester" defaultValue="null"><i class="search-icon" data-feather="search"></i>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <h6>&nbsp;&nbsp;요청일자</h6>
-                                                <div class="job-filter col-5">
-                                                    <div class="faq-form">
-                                                        <input class="form-control" id="range-date" type="date" name="requestDate">
-                                                    </div>
-                                                </div>
-
-                                                <br>
-
-                                                <h6>&nbsp;&nbsp;상태선택</h6>
-                                                <div class="form-check-size rtl-input">
-                                                    <div class="form-check form-check-inline checkbox checkbox-dark mb-0">
-                                                        <input class="form-check-input" id="inline-1" type="checkbox" name="refundStatus1" value="환불요청">
-                                                        <label class="form-check-label" for="inline-1">환불요청</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline checkbox checkbox-dark mb-0">
-                                                        <input class="form-check-input" id="inline-2" type="checkbox" name="refundStatus2" value="환불완료">
-                                                        <label class="form-check-label" for="inline-2">환불완료</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline checkbox checkbox-dark mb-0">
-                                                        <input class="form-check-input" id="inline-3" type="checkbox" name="refundStatus3" value="환불취소">
-                                                        <label class="form-check-label" for="inline-3">환불취소</label>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <button style="margin-left: 450px" class="btn btn-light" type="submit">검색</button>
-                                                </div>
+<div layout:fragment="main" class="page-body">
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-6">
+                    <h4>환불목록</h4>
+                </div>
+                <div class="col-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../index.html">
+                            <svg class="stroke-icon">
+                                <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>
+                            </svg>
+                        </a></li>
+                        <li class="breadcrumb-item">Extension Data Tables</li>
+                        <li class="breadcrumb-item active">Autofill Datatables</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Zero Configuration  Starts-->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header pb-0 card-no-border">
+                        <h4>환불 관리</h4>
+                    </div>
+                    <br>
+                    <form action="" method="post">
+                        <div class="form-group w-75">
+                            <div class="col-xl-9">
+                                <div class="card-wrapper border rounded-3 checkbox-checked">
+                                    <h6 class="sub-title">검색필터</h6>
+                                    <div>
+                                        <h6>&nbsp;&nbsp;요청자</h6>
+                                        <div class="job-filter col-5">
+                                            <div class="faq-form">
+                                                <input class="form-control" type="text" name="refundRequester"
+                                                       defaultValue="null"><i class="search-icon"
+                                                                              data-feather="search"></i>
                                             </div>
+                                        </div>
+                                        <br>
+                                        <h6>&nbsp;&nbsp;요청일자</h6>
+                                        <div class="job-filter col-5">
+                                            <div class="faq-form">
+                                                <input class="form-control" id="range-date" type="date"
+                                                       name="requestDate">
+                                            </div>
+                                        </div>
+
+                                        <br>
+
+                                        <h6>&nbsp;&nbsp;상태선택</h6>
+                                        <div class="form-check-size rtl-input">
+                                            <div class="form-check form-check-inline checkbox checkbox-dark mb-0">
+                                                <input class="form-check-input" id="inline-1" type="checkbox"
+                                                       name="refundStatus1" value="환불요청">
+                                                <label class="form-check-label" for="inline-1">환불요청</label>
+                                            </div>
+                                            <div class="form-check form-check-inline checkbox checkbox-dark mb-0">
+                                                <input class="form-check-input" id="inline-2" type="checkbox"
+                                                       name="refundStatus2" value="환불완료">
+                                                <label class="form-check-label" for="inline-2">환불완료</label>
+                                            </div>
+                                            <div class="form-check form-check-inline checkbox checkbox-dark mb-0">
+                                                <input class="form-check-input" id="inline-3" type="checkbox"
+                                                       name="refundStatus3" value="환불취소">
+                                                <label class="form-check-label" for="inline-3">환불취소</label>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button style="margin-left: 450px" class="btn btn-light" type="submit">검색
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-
-                            <div class="card-body">
-                                <div class="table-responsive custom-scrollbar">
-                                    <table class="display" id="basic-1">
-                                        <thead>
-                                        <tr>
-                                            <th>환불번호</th>
-                                            <th>주문번호</th>
-                                            <th>주문자</th>
-                                            <th>총 가격</th>
-                                            <th>환불 상태</th>
-                                            <th>요청일자</th>
-                                            <th>처리일자</th>
-                                            <th>환불사유</th>
-                                            <th>설명</th>
-                                            <th>요청처리</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            <th:block th:each="refund, stat : ${refunds}" th:object="${refund}">
-                                                <tr>
-                                                    <td th:text="*{refundId}"></td>
-                                                    <td th:text="*{orderId}"></td>
-                                                    <td th:text="*{memberId}"></td>
-                                                    <td th:text="*{sumPrice}"></td>
-                                                    <td th:text="*{refundStatus}"></td>
-                                                    <td th:text="*{requestDate}"></td>
-                                                    <td th:text="*{lastUpdated}"></td>
-                                                    <td  th:text="*{refundReason}"></td>
-                                                    <td th:hideRow="|list*{refundId}|" onclick="showHideRow(this.getAttribute('hideRow'))">펼치기</td>
-                                                    <td>
-                                                        <ul class="action">
-                                                            <button th:id="|accept*{refundId}|" th:refundId="*{refundId}" th:orderId="*{orderId}" onclick="acceptConfirm(this.getAttribute('refundId'), this.getAttribute('orderId'))" class="btn btn-primary" th:disabled="*{processed}" >승인</button>
-                                                            <button th:id="|deny*{refundId}|" th:refundId="*{refundId}" onclick="denyConfirm(this.getAttribute('refundId'))" class="btn btn-danger" th:disabled="*{processed}">거부</button>
-                                                        </ul>
-                                                    </td>
-                                                </tr>
-                                                <tr th:id="|list*{refundId}|" class="hidden_row">
-                                                    <td colspan="8">
-                                                        <h6>설명</h6><br>
-                                                        <p th:text="*{description}"></p>
-                                                    </td>
-                                                </tr>
-                                            </th:block>
-                                        </tbody>
-                                    </table>
-                                </div>
                             </div>
+                        </div>
+                    </form>
+
+                    <div class="card-body">
+                        <div class="table-responsive custom-scrollbar">
+                            <table class="display" id="basic-1">
+                                <thead>
+                                <tr>
+                                    <th>환불번호</th>
+                                    <th>주문번호</th>
+                                    <th>주문자</th>
+                                    <th>총 가격</th>
+                                    <th>환불 상태</th>
+                                    <th>요청일자</th>
+                                    <th>처리일자</th>
+                                    <th>환불사유</th>
+                                    <th>설명</th>
+                                    <th>요청처리</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="refund, stat : ${refunds}" th:object="${refund}">
+                                    <tr>
+                                        <td th:text="*{refundId}"></td>
+                                        <td th:text="*{orderId}"></td>
+                                        <td th:text="*{memberId}"></td>
+                                        <td th:text="*{sumPrice}"></td>
+                                        <td th:text="*{refundStatus}"></td>
+                                        <td th:text="*{requestDate}"></td>
+                                        <td th:text="*{lastUpdated}"></td>
+                                        <td th:text="*{refundReason}"></td>
+                                        <td th:hideRow="|list*{refundId}|"
+                                            onclick="showHideRow(this.getAttribute('hideRow'))">펼치기
+                                        </td>
+                                        <td>
+                                            <ul class="action">
+                                                <button th:id="|accept*{refundId}|" th:refundId="*{refundId}"
+                                                        th:orderId="*{orderId}"
+                                                        onclick="acceptConfirm(this.getAttribute('refundId'), this.getAttribute('orderId'))"
+                                                        class="btn btn-primary" th:disabled="*{processed}">승인
+                                                </button>
+                                                <button th:id="|deny*{refundId}|" th:refundId="*{refundId}"
+                                                        onclick="denyConfirm(this.getAttribute('refundId'))"
+                                                        class="btn btn-danger" th:disabled="*{processed}">거부
+                                                </button>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr th:id="|list*{refundId}|" class="hidden_row">
+                                        <td colspan="8">
+                                            <h6>설명</h6><br>
+                                            <p th:text="*{description}"></p>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Container-fluid Ends-->
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+</div>
+
+
+
 <!-- latest jquery-->
 <script src="../assets/js/jquery.min.js"></script>
 <!-- Bootstrap js-->

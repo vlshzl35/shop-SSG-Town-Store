@@ -15,11 +15,6 @@
         <result column="member_account" property="memberAccount"/>
         <result column="member_status" property="memberStatus"/>
     </resultMap>
-    <parameterMap id="memberDtoMap" type="java.util.Map">
-        <parameter property="memberId" javaType="java.lang.String"/>
-        <parameter property="memberStatus" javaType="java.lang.String"/>
-        <!-- 다른 파라미터들도 정의할 수 있음 -->
-    </parameterMap>
     <!-- 사용자 조회 쿼리 -->
     <select id="findAllMember" resultMap="memberDtoMap">
         select
