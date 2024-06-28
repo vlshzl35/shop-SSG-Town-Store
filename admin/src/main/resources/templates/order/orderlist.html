@@ -99,7 +99,7 @@
                                 <tr th:each="orderDto, stat:${orderList}" th:object="${orderDto}" align="center">
                                     <td>
                                         <a th:href="@{|/order/detail/${orderDto.orderId}|}"
-                                           onclick="window.open(this.href, '_blank', 'left=2500%,top=800%, width=800, height=800');
+                                           onclick="window.open(this.href, '_blank', 'left=2000%,top=800%, width=800, height=800');
                          return false;" th:text="${orderDto.orderId}"></a>
                                     </td>
                                     <td th:text="${orderDto.memberId}"></td>
@@ -190,7 +190,7 @@
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/theme-customizer/customizer.js"></script>
+
 </div>
 
 </body>

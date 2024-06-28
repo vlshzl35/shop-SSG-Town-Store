@@ -82,7 +82,7 @@ public class ItemController {
 
         log.debug("itemDto = {}", itemDto);
 
-//        int result = itemCommandService.insertItem(itemDto);
+        int result = itemCommandService.insertItem(itemDto);
         redirectAttributes.addFlashAttribute("message", "상품등록 성공");
 
         return "redirect:/item/list";
@@ -114,7 +114,7 @@ public class ItemController {
         model.addAttribute("saleStatus", SaleStatus.values()); // enum용
         String adminName = (String) httpSession.getAttribute("adminName");
         model.addAttribute("adminName", adminName);
-        return "/item/update";
+        return "item/update";
     }
 
     // 수정 업데이트 post요청
