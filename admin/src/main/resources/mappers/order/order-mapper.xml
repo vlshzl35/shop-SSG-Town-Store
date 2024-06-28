@@ -9,8 +9,9 @@
         *
         from
         tbl_order join tbl_orderitem on tbl_order.order_id = tbl_orderitem.order_id
+        join tbl_item on tbl_orderitem.item_id = tbl_item.item_id
         order
-        by order_date desc
+        by order_date desc;
     </select>
 
     <select id="findByOrderId" resultType="orderItemDto">
@@ -114,6 +115,7 @@
             <result column="item_name" property="itemName"/>
             <result column="item_quantity" property="itemQuantity"/>
             <result column="order_item_price" property="orderItemPrice"/>
+            <result column="quantity" property="quantity"/>
         </collection>
     </resultMap>
 </mapper>

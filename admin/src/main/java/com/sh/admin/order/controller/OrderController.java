@@ -4,10 +4,7 @@ import com.sh.admin.order.model.dto.OrderDto;
 import com.sh.admin.order.model.dto.OrderItemDto;
 import com.sh.admin.order.model.dto.OrderQuantityDto;
 import com.sh.admin.order.model.service.OrderService;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletMapping;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,8 +32,11 @@ public class OrderController {
     }
 
     @GetMapping("/list")
-    public String list(Model model) {
+    public String list(Model model, HttpSession httpSession) {
         List<OrderDto> orderDtoList= orderService.findOrderList(); // 전체주문 불러오기
+
+        String adminName = (String) httpSession.getAttribute("adminName");
+        model.addAttribute("adminName", adminName);
 
         model.addAttribute("orderList", orderDtoList);
         log.info("GET /order/list");

@@ -3,16 +3,13 @@ package com.sh.admin.refund.controller;
 import com.sh.admin.refund.model.dto.*;
 import com.sh.admin.refund.model.service.RefundCommandService;
 import com.sh.admin.refund.model.service.RefundQueryService;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
-import java.net.http.HttpResponse;
 import java.util.List;
 
 @Controller
@@ -25,8 +22,7 @@ public class RefundController {
     private final RefundCommandService refundCommandService;
 
     @GetMapping("/list")
-    public String refundList(Model model,
-                             HttpSession httpSession) {
+    public String refundList(Model model) {
         List<RefundDto> refunds = refundQueryService.findAll();
         refunds.forEach((refund) -> {
             if (!(refund.getRefundStatus() == RefundStatus.환불요청)) {
@@ -34,15 +30,12 @@ public class RefundController {
             }
         });
         model.addAttribute("refunds", refunds);
-        String adminName = (String) httpSession.getAttribute("adminName");
-        model.addAttribute("adminName", adminName);
         return "refund/list";
     }
 
     @PostMapping("/list")
     public String refundListByCondition(@ModelAttribute SearchDto searchDto,
-                                        Model model,
-                                        HttpSession httpSession) {
+                                        Model model) {
         log.info("{}", searchDto);
         List<RefundDto> refunds2 = refundQueryService.findByCondition(searchDto);
         refunds2.forEach((refund) -> {
@@ -51,8 +44,6 @@ public class RefundController {
             }
         });
         model.addAttribute("refunds", refunds2);
-        String adminName = (String) httpSession.getAttribute("adminName");
-        model.addAttribute("adminName", adminName);
         return "refund/list";
     }
 
@@ -60,8 +51,7 @@ public class RefundController {
     public String acceptRefund(
             @RequestParam("refundId") String refundId,
             @RequestParam("orderId") String orderId,
-            Model model,
-            RedirectAttributes redirectAttributes) {
+            Model model) {
         log.info(orderId, refundId);
         // 주문번호로 주문 테이블 조회
         RefundOrderDto refundOrderDto = refundQueryService.findOrder(Long.parseLong(orderId));
@@ -77,20 +67,17 @@ public class RefundController {
         // 환불번호로 환불 테이블 상태 업데이트
         int updateRefundResult = refundCommandService.update(Long.parseLong(refundId), RefundStatus.환불완료);
         log.debug("{}, {} -- 모두 1이면 환불 성공", updateRefundResult, updateOrderResult);
-        redirectAttributes.addFlashAttribute("message", "환불처리 되었습니다.");
         return "redirect:/refund/list";
     }
 
     @GetMapping({"/list/deny", "deny?refundId={refundId}"})
     public String denyRefund(
             @RequestParam("refundId") String refundId,
-            Model model,
-            RedirectAttributes redirectAttributes) {
+            Model model) {
         log.info(refundId);
         // 환불번호로 환불 테이블 상태 업데이트
         int updateRefundResult = refundCommandService.update(Long.parseLong(refundId), RefundStatus.환불취소);
         log.debug("{} -- 1이면 환불 성공", updateRefundResult);
-        redirectAttributes.addFlashAttribute("message", "환불취소 되었습니다.");
         return "redirect:/refund/list";
     }
 }

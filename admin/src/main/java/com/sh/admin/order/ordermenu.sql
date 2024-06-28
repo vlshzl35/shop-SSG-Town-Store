@@ -178,10 +178,18 @@ insert into tbl_member(member_id, member_name, member_gender, member_birth, memb
 values ('a', '피노키몬', 'M', '2022-07-24', '나는 코가 긴 피노키몬', 'pinokimon@naver.com', LOCALTIME, '디지털CD', 365989878);
 
 insert into tbl_sales(order_id, order_item_id, refund_id, sales_price, last_updated)
-values (#{orderId},#{orderItemId},null,#{상품 가격},localDate.now)
+values (#{orderId},#{orderItemId},null,#{상품 가격},localDate.now);
 select *
 from tbl_orderitem
 where order_id=1;
+
+select
+    *
+from
+    tbl_order join tbl_orderitem on tbl_order.order_id = tbl_orderitem.order_id
+join tbl_item on tbl_orderitem.item_id = tbl_item.item_id
+order
+    by order_date desc;
 
 select *
 from tbl_order;
@@ -191,6 +199,3 @@ from tbl_orderitem;
 
 select *
 from tbl_member;
-
-select *
-from s;

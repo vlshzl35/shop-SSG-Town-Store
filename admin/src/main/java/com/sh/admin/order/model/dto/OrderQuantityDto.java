@@ -15,4 +15,5 @@ public class OrderQuantityDto {
     private int itemId;
     private int itemQuantity;
     private int orderItemPrice;
+    private int quantity;
 }
