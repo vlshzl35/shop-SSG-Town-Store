@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout/default}">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,435 +41,258 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
 </head>
 <body>
-<!-- loader starts-->
-<div class="loader-wrapper">
-    <div class="loader">
-        <div class="loader4"></div>
-    </div>
-</div>
-<!-- loader ends-->
-<!-- tap on top starts-->
-<div class="tap-top"><i data-feather="chevrons-up"></i></div>
-<!-- tap on tap ends-->
-<!-- page-wrapper Start-->
-<div class="page-wrapper compact-wrapper" id="pageWrapper">
-    <!-- Page Header Start-->
-    <div class="page-header">
-        <div class="header-wrapper row m-0">
-            <form class="form-inline search-full col" action="#" method="get">
-                <div class="form-group w-100">
-                    <div class="Typeahead Typeahead--twitterUsers">
-                        <div class="u-posRelative">
-                            <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"
-                                   placeholder="Search Riho .." name="q" title="" autofocus>
-                            <div class="spinner-border Typeahead-spinner" role="status"><span
-                                    class="sr-only">Loading... </span></div>
-                            <i class="close-search" data-feather="x"></i>
-                        </div>
-                        <div class="Typeahead-menu"></div>
-                    </div>
+<!-- Page Sidebar Ends-->
+<div layout:fragment="main" class="page-body">
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-6">
+                    <h4>상품 추가</h4>
                 </div>
-            </form>
-            <div class="header-logo-wrapper col-auto p-0">
-                <div class="logo-wrapper"><a href="../index.html"><img class="img-fluid for-light"
-                                                                       src="../assets/images/logo/logo_dark.png"
-                                                                       alt="logo-light"><img class="img-fluid for-dark"
-                                                                                             src="../assets/images/logo/logo.png"
-                                                                                             alt="logo-dark"></a></div>
-                <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle"
-                                               data-feather="align-center"></i></div>
-            </div>
-            <div class="left-header col-xxl-5 col-xl-6 col-lg-5 col-md-4 col-sm-3 p-0">
-                <div><a class="toggle-sidebar" href="#"> <i class="iconly-Category icli"> </i></a>
-                    <div class="d-flex align-items-center gap-2 ">
-                        <h4 class="f-w-600" th:text="${adminName} + '님 반갑습니다'"></h4><img class="mt-0" src="../assets/images/hand.gif" alt="hand-gif">
-                    </div>
+                <div class="col-6">
                 </div>
-                <div class="welcome-content d-xl-block d-none"><span
-                        class="text-truncate col-12">좋은하루입니다🤣🤣</span></div>
-            </div>
-            <div class="nav-right col-xxl-7 col-xl-6 col-md-7 col-8 pull-right right-header p-0 ms-auto">
-                <ul class="nav-menus">
-                    <li>
-                        <form th:action="@{/admin/logout}" method="post" class="ml-auto">
-                            <button type="submit" class="btn btn-danger">로그아웃</button>
-                        </form>
-                    </li>
-                </ul>
             </div>
         </div>
     </div>
-    <!-- Page Header Ends                              -->
-    <!-- Page Body Start-->
-    <div class="page-body-wrapper">
-        <!-- Page Sidebar Start-->
-        <div th:fragment="sidebarFragment" class="sidebar-wrapper" data-layout="stroke-svg">
-            <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo.png" alt=""></a>
-                <div class="back-btn"><i class="fa fa-angle-left"> </i></div>
-                <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i></div>
-            </div>
-            <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo-icon.png" alt=""></a></div>
-            <nav class="sidebar-main">
-                <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
-                <div id="sidebar-menu">
-                    <ul class="sidebar-links" id="simple-bar">
-                        <li class="back-btn"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo-icon.png" alt=""></a>
-                            <div class="mobile-back text-end"> <span>Back </span><i class="fa fa-angle-right ps-2" aria-hidden="false"></i></div>
-                        </li>
-                        <li class="pin-title sidebar-main-title">
-                            <div>
-                                <h6>Pinned</h6>
-                            </div>
-                        </li>
-                        <!---------------------            상품시작            ---------------->
-                        <li class="sidebar-main-title">
-                            <div>
-                                <h6 >상품관리</h6>
-                            </div>
-                        </li>
-                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" th:href="@{/item/create}">
-                            <svg class="stroke-icon">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
-                            </svg>
-                            <span>상품 등록</span></a>
-
-                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" th:href="@{/item/list}">
-                            <svg class="stroke-icon">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
-                            </svg>
-                            <span>상품 목록</span></a>
-
-                        </li>
-                        <!---------------------            상품끝          ---------------->
-
-
-
-                        <!---------------------            환불시작            ---------------->
-                        <li class="sidebar-main-title">
-                            <div>
-                                <h6 >환불</h6>
-                            </div>
-                        </li>
-
-                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" th:href="@{/refund/list}">
-                            <svg class="stroke-icon">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-board"></use>
-                            </svg>
-                            <span>환불 관리</span></a>
-                        </li>
-                        <!---------------------            환불끝           ---------------->
-
-                        <!---------------------            주문시작           ---------------->
-                        <li class="sidebar-main-title">
-                            <div>
-                                <h6>주문</h6>
-                            </div>
-                        </li>
-                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" th:href="@{/order/list}">
-                            <svg class="stroke-icon">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-board"></use>
-                            </svg>
-                            <span>주문</span></a>
-                        </li>
-                        <!---------------------            주문끝            ---------------->
-
-                        <!--   만약 추가하게 된다면 아래 형식으로 하면 됨 (기능 + 상세기능 일 때)                -->
-                        <!--   만약 추가하게 된다면 아래 형식으로 하면 됨                 -->
-
-                        <!--                   단일 기능일 때-->
-                        <li class="sidebar-main-title">
-                            <div>
-                                <h6>회원</h6>
-                            </div>
-                        </li>
-                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" th:href="@{/admin/member}">
-                            <svg class="stroke-icon">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-board"></use>
-                            </svg>
-                            <span>회원 목록</span></a>
-                        </li>
-
-                        <!--                   단일 기능일 때 끝-->
-                        <li class="sidebar-main-title">
-                            <div>
-                                <h6>매출</h6>
-                            </div>
-                        </li>
-                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav"  th:href="@{/sales/chart}">
-                            <svg class="stroke-icon">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
-                            </svg>
-                            <span>매출 조회</span></a>
-
-                        </li>
-
-                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav"  th:href="@{/sales/top100}">
-                            <svg class="stroke-icon">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
-                            </svg>
-                            <span>매출 분석</span>
-                        </a>
-
-                        </li>
-                    </ul>
-                    <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
-                </div>
-            </nav>
-        </div>
-        <!-- Page Sidebar Ends-->
-        <div class="page-body">
-            <div class="container-fluid">
-                <div class="page-title">
-                    <div class="row">
-                        <div class="col-6">
-                            <h4>상품 추가</h4>
-                        </div>
-                        <div class="col-6">
-                        </div>
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>상품 Form</h5>
                     </div>
-                </div>
-            </div>
-            <!-- Container-fluid starts-->
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>상품 Form</h5>
+                    <div class="card-body">
+                        <div class="row g-xl-5 g-3">
+                            <div class="col-xxl-3 col-xl-4 box-col-4e sidebar-left-wrapper">
+                                <ul class="sidebar-left-icons nav nav-pills" id="add-product-pills-tab"
+                                    role="tablist">
+                                    <li class="nav-item"><a class="nav-link active" id="detail-product-tab"
+                                                            data-bs-toggle="pill" href="#detail-product"
+                                                            role="tab" aria-controls="detail-product"
+                                                            aria-selected="false">
+                                        <div class="nav-rounded">
+                                            <div class="product-icons">
+                                                <svg class="stroke-icon">
+                                                    <use href="../assets/svg/icon-sprite.svg#product-detail"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="product-tab-content">
+                                            <h6>Add Product Details</h6>
+                                            <p>상품명 & 상세정보 입력</p>
+                                        </div>
+                                    </a></li>
+                                    <li class="nav-item"><a class="nav-link" id="gallery-product-tab"
+                                                            data-bs-toggle="pill" href="#gallery-product"
+                                                            role="tab" aria-controls="gallery-product"
+                                                            aria-selected="false">
+                                        <div class="nav-rounded">
+                                            <div class="product-icons">
+                                                <svg class="stroke-icon">
+                                                    <use href="../assets/svg/icon-sprite.svg#product-gallery"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="product-tab-content">
+                                            <h6>Product gallery</h6>
+                                            <p>상품 이미지 업로드</p>
+                                        </div>
+                                    </a></li>
+                                    <li class="nav-item"><a class="nav-link" id="category-product-tab"
+                                                            data-bs-toggle="pill" href="#category-product"
+                                                            role="tab" aria-controls="category-product"
+                                                            aria-selected="false">
+                                        <div class="nav-rounded">
+                                            <div class="product-icons">
+                                                <svg class="stroke-icon">
+                                                    <use href="../assets/svg/icon-sprite.svg#product-category"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="product-tab-content">
+                                            <h6>Product Categories</h6>
+                                            <p>카테고리 & 아티스트</p>
+                                        </div>
+                                    </a></li>
+                                    <li class="nav-item"><a class="nav-link" id="pricings-tab"
+                                                            data-bs-toggle="pill" href="#pricings" role="tab"
+                                                            aria-controls="pricings" aria-selected="false">
+                                        <div class="nav-rounded">
+                                            <div class="product-icons">
+                                                <svg class="stroke-icon">
+                                                    <use href="../assets/svg/icon-sprite.svg#pricing"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="product-tab-content">
+                                            <h6>Selling prices</h6>
+                                            <p>가격</p>
+                                        </div>
+                                    </a></li>
+                                    <li class="nav-item"><a class="nav-link" id="advance-product-tab"
+                                                            data-bs-toggle="pill" href="#advance-product"
+                                                            role="tab" aria-controls="advance-product"
+                                                            aria-selected="false">
+                                        <div class="nav-rounded">
+                                            <div class="product-icons">
+                                                <svg class="stroke-icon">
+                                                    <use href="../assets/svg/icon-sprite.svg#advance"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="product-tab-content">
+                                            <h6>Advance</h6>
+                                            <p>판매상태 & 수량</p>
+                                        </div>
+                                    </a></li>
+                                </ul>
                             </div>
-                            <div class="card-body">
-                                <div class="row g-xl-5 g-3">
-                                    <div class="col-xxl-3 col-xl-4 box-col-4e sidebar-left-wrapper">
-                                        <ul class="sidebar-left-icons nav nav-pills" id="add-product-pills-tab"
-                                            role="tablist">
-                                            <li class="nav-item"><a class="nav-link active" id="detail-product-tab"
-                                                                    data-bs-toggle="pill" href="#detail-product"
-                                                                    role="tab" aria-controls="detail-product"
-                                                                    aria-selected="false">
-                                                <div class="nav-rounded">
-                                                    <div class="product-icons">
-                                                        <svg class="stroke-icon">
-                                                            <use href="../assets/svg/icon-sprite.svg#product-detail"></use>
-                                                        </svg>
-                                                    </div>
+                            <div class="col-xxl-9 col-xl-8 box-col-8 position-relative">
+                                <div class="tab-content" id="add-product-pills-tabContent">
+                                    <div class="tab-pane fade show active" id="detail-product" role="tabpanel"
+                                         aria-labelledby="detail-product-tab">
+                                        <div class="sidebar-body">
+                                            <form class="row g-2" name="itemNameDetailsFrm" action=""
+                                                  method="post">
+                                                <label class="form-label col-12 m-0" for="itemName">제품명<span
+                                                        class="txt-danger"> *</span></label>
+                                                <div class="col-12 custom-input">
+                                                    <input class="form-control" id="itemName" name="itemName"
+                                                           type="text" required>
                                                 </div>
-                                                <div class="product-tab-content">
-                                                    <h6>Add Product Details</h6>
-                                                    <p>상품명 & 상세정보 입력</p>
+                                                <div>
+                                                    <label class="form-label col-12 m-0"
+                                                           for="details">세부설명</label>
+                                                    <input class="form-control" id="details" name="details"
+                                                           type="text"> <!-- null가능 -->
                                                 </div>
-                                            </a></li>
-                                            <li class="nav-item"><a class="nav-link" id="gallery-product-tab"
-                                                                    data-bs-toggle="pill" href="#gallery-product"
-                                                                    role="tab" aria-controls="gallery-product"
-                                                                    aria-selected="false">
-                                                <div class="nav-rounded">
-                                                    <div class="product-icons">
-                                                        <svg class="stroke-icon">
-                                                            <use href="../assets/svg/icon-sprite.svg#product-gallery"></use>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                                <div class="product-tab-content">
-                                                    <h6>Product gallery</h6>
-                                                    <p>상품 이미지 업로드</p>
-                                                </div>
-                                            </a></li>
-                                            <li class="nav-item"><a class="nav-link" id="category-product-tab"
-                                                                    data-bs-toggle="pill" href="#category-product"
-                                                                    role="tab" aria-controls="category-product"
-                                                                    aria-selected="false">
-                                                <div class="nav-rounded">
-                                                    <div class="product-icons">
-                                                        <svg class="stroke-icon">
-                                                            <use href="../assets/svg/icon-sprite.svg#product-category"></use>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                                <div class="product-tab-content">
-                                                    <h6>Product Categories</h6>
-                                                    <p>카테고리 & 아티스트</p>
-                                                </div>
-                                            </a></li>
-                                            <li class="nav-item"><a class="nav-link" id="pricings-tab"
-                                                                    data-bs-toggle="pill" href="#pricings" role="tab"
-                                                                    aria-controls="pricings" aria-selected="false">
-                                                <div class="nav-rounded">
-                                                    <div class="product-icons">
-                                                        <svg class="stroke-icon">
-                                                            <use href="../assets/svg/icon-sprite.svg#pricing"></use>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                                <div class="product-tab-content">
-                                                    <h6>Selling prices</h6>
-                                                    <p>가격</p>
-                                                </div>
-                                            </a></li>
-                                            <li class="nav-item"><a class="nav-link" id="advance-product-tab"
-                                                                    data-bs-toggle="pill" href="#advance-product"
-                                                                    role="tab" aria-controls="advance-product"
-                                                                    aria-selected="false">
-                                                <div class="nav-rounded">
-                                                    <div class="product-icons">
-                                                        <svg class="stroke-icon">
-                                                            <use href="../assets/svg/icon-sprite.svg#advance"></use>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                                <div class="product-tab-content">
-                                                    <h6>Advance</h6>
-                                                    <p>판매상태 & 수량</p>
-                                                </div>
-                                            </a></li>
-                                        </ul>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="col-xxl-9 col-xl-8 box-col-8 position-relative">
-                                        <div class="tab-content" id="add-product-pills-tabContent">
-                                            <div class="tab-pane fade show active" id="detail-product" role="tabpanel"
-                                                 aria-labelledby="detail-product-tab">
-                                                <div class="sidebar-body">
-                                                    <form class="row g-2" name="itemNameDetailsFrm" action=""
-                                                          method="post">
-                                                        <label class="form-label col-12 m-0" for="itemName">제품명<span
-                                                                class="txt-danger"> *</span></label>
-                                                        <div class="col-12 custom-input">
-                                                            <input class="form-control" id="itemName" name="itemName"
-                                                                   type="text" required>
-                                                        </div>
-                                                        <div>
-                                                            <label class="form-label col-12 m-0"
-                                                                   for="details">세부설명</label>
-                                                            <input class="form-control" id="details" name="details"
-                                                                   type="text"> <!-- null가능 -->
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="gallery-product" role="tabpanel"
-                                                 aria-labelledby="gallery-product-tab">
-                                                <div class="sidebar-body">
-                                                    <div class="product-upload">
-                                                        <p>이미지 등록</p>
-                                                        <form name="itemImgFrm" class="dropzone dropzone-light"
-                                                              id="multiFileUploadA" action="/img">
-                                                            <div class="dz-message needsclick">
-                                                                <svg>
-                                                                    <use href="../assets/svg/icon-sprite.svg#file-upload"></use>
-                                                                </svg>
-                                                                <h6>여기에 드래그 해주세요<a class="txt-primary"
-                                                                                   href="#!">browser</a></h6><span
-                                                                    class="note needsclick">SVG,PNG,JPG or GIF</span>
-                                                            </div>
-                                                        </form>
+                                    <div class="tab-pane fade" id="gallery-product" role="tabpanel"
+                                         aria-labelledby="gallery-product-tab">
+                                        <div class="sidebar-body">
+                                            <div class="product-upload">
+                                                <p>이미지 등록</p>
+                                                <form name="itemImgFrm" class="dropzone dropzone-light"
+                                                      id="multiFileUploadA" action="/img">
+                                                    <div class="dz-message needsclick">
+                                                        <svg>
+                                                            <use href="../assets/svg/icon-sprite.svg#file-upload"></use>
+                                                        </svg>
+                                                        <h6>여기에 드래그 해주세요<a class="txt-primary"
+                                                                           href="#!">browser</a></h6><span
+                                                            class="note needsclick">SVG,PNG,JPG or GIF</span>
                                                     </div>
-                                                </div>
+                                                </form>
                                             </div>
-                                            <div class="tab-pane fade" id="category-product" role="tabpanel"
-                                                 aria-labelledby="category-product-tab">
-                                                <div class="sidebar-body">
-                                                    <form name="categoryArtistFrm">
-                                                        <div class="row g-lg-4 g-3">
-                                                            <div class="col-12">
-                                                                <div class="row g-3">
-                                                                    <div class="col-sm-6">
-                                                                        <div class="row g-2">
-                                                                            <label class="form-label m-0">카테고리 등록<span
-                                                                                    class="txt-danger">*</span></label>
-                                                                            <div class="col-12">
-                                                                                <select class="form-select"
-                                                                                        th:name="categoryName"
-                                                                                        id="categoryName" required>
-                                                                                    <option selected value="">카테고리</option>
-                                                                                    <option th:each="categoryValue : ${T(com.sh.admin.item.model.dto.Category).values()}"
-                                                                                            th:value="${categoryValue.name()}"
-                                                                                            th:text="${categoryValue.name()}">
-                                                                                    </option>
-                                                                                </select>
-                                                                            </div>
-                                                                            <label class="form-label m-0">아티스트 등록<span
-                                                                                    class="txt-danger">*</span></label>
-                                                                            <div class="col-12">
-                                                                                <select class="form-select"
-                                                                                        th:name="artistName"
-                                                                                        id="artistName" required=""
-                                                                                        th:field="*{artist}">
-                                                                                    <option selected value="">아티스트</option>
-                                                                                    <option th:each="artistValue : ${T(com.sh.admin.item.model.dto.Artist).values()}"
-                                                                                            th:value="${artistValue.name()}"
-                                                                                            th:text="${artistValue.name()}">
-                                                                                    </option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="category-product" role="tabpanel"
+                                         aria-labelledby="category-product-tab">
+                                        <div class="sidebar-body">
+                                            <form name="categoryArtistFrm">
+                                                <div class="row g-lg-4 g-3">
+                                                    <div class="col-12">
+                                                        <div class="row g-3">
+                                                            <div class="col-sm-6">
+                                                                <div class="row g-2">
+                                                                    <label class="form-label m-0">카테고리 등록<span
+                                                                            class="txt-danger">*</span></label>
+                                                                    <div class="col-12">
+                                                                        <select class="form-select"
+                                                                                th:name="categoryName"
+                                                                                id="categoryName" required>
+                                                                            <option selected value="">카테고리</option>
+                                                                            <option th:each="categoryValue : ${T(com.sh.admin.item.model.dto.Category).values()}"
+                                                                                    th:value="${categoryValue.name()}"
+                                                                                    th:text="${categoryValue.name()}">
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <label class="form-label m-0">아티스트 등록<span
+                                                                            class="txt-danger">*</span></label>
+                                                                    <div class="col-12">
+                                                                        <select class="form-select"
+                                                                                th:name="artistName"
+                                                                                id="artistName" required=""
+                                                                                th:field="*{artist}">
+                                                                            <option selected value="">아티스트</option>
+                                                                            <option th:each="artistValue : ${T(com.sh.admin.item.model.dto.Artist).values()}"
+                                                                                    th:value="${artistValue.name()}"
+                                                                                    th:text="${artistValue.name()}">
+                                                                            </option>
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="pricings" role="tabpanel"
-                                                 aria-labelledby="pricings-tab">
-                                                <div class="sidebar-body">
-                                                    <form name="salePriceFrm" class="price-wrapper">
-                                                        <div class="row g-3 custom-input">
-                                                            <div class="col-sm-6">
-                                                                <label class="form-label">가격(원)<span class="txt-danger">*</span></label>
-                                                                <input class="form-control" type="number"
-                                                                       name="salePrice" required>
-                                                            </div>
-                                                        </div>
-                                                    </form>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pricings" role="tabpanel"
+                                         aria-labelledby="pricings-tab">
+                                        <div class="sidebar-body">
+                                            <form name="salePriceFrm" class="price-wrapper">
+                                                <div class="row g-3 custom-input">
+                                                    <div class="col-sm-6">
+                                                        <label class="form-label">가격(원)<span class="txt-danger">*</span></label>
+                                                        <input class="form-control" type="number"
+                                                               name="salePrice" required>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="advance-product" role="tabpanel"
-                                                 aria-labelledby="advance-product-tab">
-                                                <div class="sidebar-body advance-options">
-                                                    <div class="tab-content" id="advance-option-tabContent">
-                                                        <div class="tab-pane fade show active" id="manifest-option"
-                                                             role="tabpanel" aria-labelledby="manifest-option-tab">
-                                                            <div class="meta-body">
-                                                                <!-- 최종제출될 폼 -->
-                                                                <form name="saleStatusQuantityFrm" method="post"
-                                                                      id="advance-tab">
-                                                                    <!-- 이전 폼에서 값을 가져와 채워넣기 -->
-                                                                    <input type="hidden" name="itemName">
-                                                                    <input type="hidden" name="details">
-                                                                    <input type="hidden" name="imgUrl">
-                                                                    <input type="hidden" name="categoryName">
-                                                                    <input type="hidden" name="artistName">
-                                                                    <input type="hidden" name="salePrice">
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="advance-product" role="tabpanel"
+                                         aria-labelledby="advance-product-tab">
+                                        <div class="sidebar-body advance-options">
+                                            <div class="tab-content" id="advance-option-tabContent">
+                                                <div class="tab-pane fade show active" id="manifest-option"
+                                                     role="tabpanel" aria-labelledby="manifest-option-tab">
+                                                    <div class="meta-body">
+                                                        <!-- 최종제출될 폼 -->
+                                                        <form name="saleStatusQuantityFrm" method="post"
+                                                              id="advance-tab">
+                                                            <!-- 이전 폼에서 값을 가져와 채워넣기 -->
+                                                            <input type="hidden" name="itemName">
+                                                            <input type="hidden" name="details">
+                                                            <input type="hidden" name="imgUrl">
+                                                            <input type="hidden" name="categoryName">
+                                                            <input type="hidden" name="artistName">
+                                                            <input type="hidden" name="salePrice">
 
-                                                                    <div class="row g-3 custom-input">
-                                                                        <div class="col-sm-6">
-                                                                            <label class="form-label" for="saleStatus">판매상태<span
-                                                                                    class="txt-danger">*</span></label>
-                                                                            <select class="form-select"
-                                                                                    id="saleStatus"
-                                                                                    name="saleStatus"
-                                                                                    required>
-                                                                                <option selected value="">판매상태</option>
-                                                                                <option th:each="saleStatusValue : ${T(com.sh.admin.item.model.dto.SaleStatus).values()}"
-                                                                                        th:value="${saleStatusValue.name()}"
-                                                                                        th:text="${saleStatusValue.name()}">
-                                                                                </option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="col-lg-3 col-sm-6">
-                                                                            <label class="form-label" for="quantity">수량
-                                                                                <span class="txt-danger">*</span></label>
-                                                                            <input class="form-control" type="number"
-                                                                                   name="quantity" id="quantity"
-                                                                                   required>
-                                                                        </div>
-                                                                    </div>
-                                                                        <div class="d-flex align-items-center gap-sm-2 gap-1">
-                                                                            <input type="submit" value="등록"
-                                                                                   class="btn btn-light">
-                                                                        </div>
-                                                                </form>
+                                                            <div class="row g-3 custom-input">
+                                                                <div class="col-sm-6">
+                                                                    <label class="form-label" for="saleStatus">판매상태<span
+                                                                            class="txt-danger">*</span></label>
+                                                                    <select class="form-select"
+                                                                            id="saleStatus"
+                                                                            name="saleStatus"
+                                                                            required>
+                                                                        <option selected value="">판매상태</option>
+                                                                        <option th:each="saleStatusValue : ${T(com.sh.admin.item.model.dto.SaleStatus).values()}"
+                                                                                th:value="${saleStatusValue.name()}"
+                                                                                th:text="${saleStatusValue.name()}">
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-lg-3 col-sm-6">
+                                                                    <label class="form-label" for="quantity">수량
+                                                                        <span class="txt-danger">*</span></label>
+                                                                    <input class="form-control" type="number"
+                                                                           name="quantity" id="quantity"
+                                                                           required>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                            <div class="d-flex align-items-center gap-sm-2 gap-1">
+                                                                <input type="submit" value="등록"
+                                                                       class="btn btn-light">
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -480,79 +304,70 @@
                     </div>
                 </div>
             </div>
-            <!-- Container-fluid Ends-->
         </div>
-        <!-- footer start-->
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12 footer-copyright text-center">
-                        <p class="mb-0">Copyright 2024 © SSG TOWN </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </div>
+    <!-- Container-fluid Ends-->
+
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery.min.js"></script>
+    <!-- Bootstrap js-->
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- feather icon js-->
+    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+    <!-- scrollbar js-->
+    <script src="../assets/js/scrollbar/simplebar.js"></script>
+    <script src="../assets/js/scrollbar/custom.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="../assets/js/config.js"></script>
+    <!-- Plugins JS start-->
+    <script src="../assets/js/sidebar-menu.js"></script>
+    <script src="../assets/js/sidebar-pin.js"></script>
+    <script src="../assets/js/slick/slick.min.js"></script>
+    <script src="../assets/js/slick/slick.js"></script>
+    <script src="../assets/js/header-slick.js"></script>
+    <!-- calendar js-->
+    <script src="../assets/js/flat-pickr/flatpickr.js"></script>
+    <script src="../assets/js/flat-pickr/custom-flatpickr.js"></script>
+    <script src="../assets/js/dropzone/dropzone.js"></script>
+    <script src="../assets/js/dropzone/dropzone-script.js"></script>
+    <script src="../assets/js/select2/tagify.js"></script>
+    <script src="../assets/js/select2/tagify.polyfills.min.js"></script>
+    <script src="../assets/js/select2/intltelinput.min.js"></script>
+    <script src="../assets/js/add-product/select4-custom.js"></script>
+    <script src="../assets/js/editors/quill.js"></script>
+    <script src="../assets/js/custom-add-product.js"></script>
+    <script src="../assets/js/height-equal.js"></script>
+    <script src="../assets/js/tooltip-init.js"></script>
+    <!-- Plugins JS Ends-->
+    <!-- Theme js-->
+    <script src="../assets/js/script.js"></script>
+
+    <script>
+        /**
+         * 폼 제출 핸들러
+         * - 제출 또는 미제출을 결정할수 있다.
+         */
+        document.saleStatusQuantityFrm.onsubmit = (e) => {
+            const $frm = e.target; // saleStutusQuantityFrm
+            const $itemNameDetailsFrm = document.itemNameDetailsFrm;
+            const $itemImgFrm = document.itemImgFrm;
+            const $categoryArtistFrm = document.categoryArtistFrm;
+            const $salePriceFrm = document.salePriceFrm;
+
+            // 이전 사용자입력값을 가져오기
+            $frm.itemName.value = $itemNameDetailsFrm.itemName.value;
+            $frm.details.value = $itemNameDetailsFrm.details.value;
+            $frm.imgUrl.value = $itemImgFrm.querySelector("img").src; // img태그의 src속성값
+            $frm.categoryName.value = $categoryArtistFrm.categoryName.value;
+            $frm.artistName.value = $categoryArtistFrm.artistName.value;
+            $frm.salePrice.value = $salePriceFrm.salePrice.value;
+
+            console.log('제출!');
+
+            e.target.submit();
+        }
+    </script>
 </div>
-<!-- latest jquery-->
-<script src="../assets/js/jquery.min.js"></script>
-<!-- Bootstrap js-->
-<script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-<!-- feather icon js-->
-<script src="../assets/js/icons/feather-icon/feather.min.js"></script>
-<script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
-<!-- scrollbar js-->
-<script src="../assets/js/scrollbar/simplebar.js"></script>
-<script src="../assets/js/scrollbar/custom.js"></script>
-<!-- Sidebar jquery-->
-<script src="../assets/js/config.js"></script>
-<!-- Plugins JS start-->
-<script src="../assets/js/sidebar-menu.js"></script>
-<script src="../assets/js/sidebar-pin.js"></script>
-<script src="../assets/js/slick/slick.min.js"></script>
-<script src="../assets/js/slick/slick.js"></script>
-<script src="../assets/js/header-slick.js"></script>
-<!-- calendar js-->
-<script src="../assets/js/flat-pickr/flatpickr.js"></script>
-<script src="../assets/js/flat-pickr/custom-flatpickr.js"></script>
-<script src="../assets/js/dropzone/dropzone.js"></script>
-<script src="../assets/js/dropzone/dropzone-script.js"></script>
-<script src="../assets/js/select2/tagify.js"></script>
-<script src="../assets/js/select2/tagify.polyfills.min.js"></script>
-<script src="../assets/js/select2/intltelinput.min.js"></script>
-<script src="../assets/js/add-product/select4-custom.js"></script>
-<script src="../assets/js/editors/quill.js"></script>
-<script src="../assets/js/custom-add-product.js"></script>
-<script src="../assets/js/height-equal.js"></script>
-<script src="../assets/js/tooltip-init.js"></script>
-<!-- Plugins JS Ends-->
-<!-- Theme js-->
-<script src="../assets/js/script.js"></script>
-<script src="../assets/js/theme-customizer/customizer.js"></script>
-<script>
-    /**
-     * 폼 제출 핸들러
-     * - 제출 또는 미제출을 결정할수 있다.
-     */
-    document.saleStatusQuantityFrm.onsubmit = (e) => {
-        const $frm = e.target; // saleStutusQuantityFrm
-        const $itemNameDetailsFrm = document.itemNameDetailsFrm;
-        const $itemImgFrm = document.itemImgFrm;
-        const $categoryArtistFrm = document.categoryArtistFrm;
-        const $salePriceFrm = document.salePriceFrm;
-
-        // 이전 사용자입력값을 가져오기
-        $frm.itemName.value = $itemNameDetailsFrm.itemName.value;
-        $frm.details.value = $itemNameDetailsFrm.details.value;
-        $frm.imgUrl.value = $itemImgFrm.querySelector("img").src; // img태그의 src속성값
-        $frm.categoryName.value = $categoryArtistFrm.categoryName.value;
-        $frm.artistName.value = $categoryArtistFrm.artistName.value;
-        $frm.salePrice.value = $salePriceFrm.salePrice.value;
-
-        console.log('제출!');
-
-        e.target.submit();
-    }
-</script>
 </body>
 </html>

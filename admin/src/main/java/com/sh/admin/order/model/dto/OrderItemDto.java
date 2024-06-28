@@ -14,5 +14,5 @@ public class OrderItemDto {
     private String itemName; // 상품이름
     private int itemQuantity; // 수량
     private int orderItemPrice; // 수량 * 제품가격
-
+    private int quantity; // 현재 수량
 }

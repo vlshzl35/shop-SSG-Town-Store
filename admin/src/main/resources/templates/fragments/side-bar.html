@@ -46,7 +46,7 @@
 <!-- Page Sidebar Start-->
 
     <div th:fragment="sidebarFragment" class="sidebar-wrapper" data-layout="stroke-svg">
-        <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo.png" alt=""></a>
+        <div class="logo-wrapper"><h2>SSG-Town</h2>
             <div class="back-btn"><i class="fa fa-angle-left"> </i></div>
             <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i></div>
         </div>
@@ -139,7 +139,7 @@
                     </li>
                     <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav"  th:href="@{/sales/chart}">
                         <svg class="stroke-icon">
-                            <use href="../assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
+                            <use href=href="../assets/svg/icon-sprite.svg#stroke-charts"></use>
                         </svg>
                         <span>매출 조회</span></a>
 
@@ -147,7 +147,7 @@
 
                     <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav"  th:href="@{/sales/top100}">
                         <svg class="stroke-icon">
-                            <use href="../assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
+                            <use href=href="../assets/svg/icon-sprite.svg#stroke-charts"></use>
                         </svg>
                         <span>매출 분석</span>
                     </a>
@@ -205,6 +205,6 @@
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
 <script src="../assets/js/script.js"></script>
-<script src="../assets/js/theme-customizer/customizer.js"></script>
+
 </body>
 </html>

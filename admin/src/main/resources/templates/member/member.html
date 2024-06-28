@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout/default}">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
-    <title>회원관리 테스트</title>
+    <title>회원관리</title>
     <!-- Google font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -43,313 +44,137 @@
         <div class="loader4"></div>
     </div>
 </div>
-<!-- loader ends-->
-<!-- tap on top starts-->
-<div class="tap-top"><i data-feather="chevrons-up"></i></div>
-<!-- tap on tap ends-->
-<!-- page-wrapper Start-->
-<div class="page-wrapper compact-wrapper" id="pageWrapper">
-    <!-- Page Header Start-->
-    <div class="page-header">
-        <div class="header-wrapper row m-0">
-            <form class="form-inline search-full col" action="#" method="get">
-                <div class="form-group w-100">
-                    <div class="Typeahead Typeahead--twitterUsers">
-                        <div class="u-posRelative">
-                            <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"
-                                   placeholder="Search Riho .." name="q" title="" autofocus>
-                            <div class="spinner-border Typeahead-spinner" role="status"><span
-                                    class="sr-only">Loading... </span></div>
-                            <i class="close-search" data-feather="x"></i>
-                        </div>
-                        <div class="Typeahead-menu"></div>
-                    </div>
+
+<!-- Page Header Ends                              -->
+<!-- Page Body Start-->
+<div layout:fragment="main" class="page-body">
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-6">
+                    <h4>회원 목록</h4>
                 </div>
-            </form>
-            <div class="header-logo-wrapper col-auto p-0">
-                <div class="logo-wrapper"><a href="../index.html"><img class="img-fluid for-light"
-                                                                       src="../assets/images/logo/logo_dark.png"
-                                                                       alt="logo-light"><img class="img-fluid for-dark"
-                                                                                             src="../assets/images/logo/logo.png"
-                                                                                             alt="logo-dark"></a></div>
-                <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle"
-                                               data-feather="align-center"></i></div>
-            </div>
-            <div class="left-header col-xxl-5 col-xl-6 col-lg-5 col-md-4 col-sm-3 p-0">
-                <div><a class="toggle-sidebar" href="#"> <i class="iconly-Category icli"> </i></a>
-                    <div class="d-flex align-items-center gap-2 ">
-                        <h4 class="f-w-600" th:text="${adminName} + '님 반갑습니다'"></h4><img class="mt-0" src="../assets/images/hand.gif" alt="hand-gif">
-                    </div>
-                </div>
-                <div class="welcome-content d-xl-block d-none"><span
-                        class="text-truncate col-12">좋은하루입니다🤣🤣</span></div>
-            </div>
-            <div class="nav-right col-xxl-7 col-xl-6 col-md-7 col-8 pull-right right-header p-0 ms-auto">
-                <ul class="nav-menus">
-                    <li>
-                        <form th:action="@{/admin/logout}" method="post" class="ml-auto">
-                            <button type="submit" class="btn btn-danger">로그아웃</button>
-                        </form>
-                    </li>
-                </ul>
             </div>
         </div>
     </div>
-    <!-- Page Header Ends                              -->
-    <!-- Page Body Start-->
-    <div class="page-body-wrapper">
-        <!-- Page Sidebar Start-->
-        <div th:fragment="sidebarFragment" class="sidebar-wrapper" data-layout="stroke-svg">
-            <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo.png" alt=""></a>
-                <div class="back-btn"><i class="fa fa-angle-left"> </i></div>
-                <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i></div>
-            </div>
-            <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo-icon.png" alt=""></a></div>
-            <nav class="sidebar-main">
-                <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
-                <div id="sidebar-menu">
-                    <ul class="sidebar-links" id="simple-bar">
-                        <li class="back-btn"><a href="index.html"><img class="img-fluid" src="../assets/images/logo/logo-icon.png" alt=""></a>
-                            <div class="mobile-back text-end"> <span>Back </span><i class="fa fa-angle-right ps-2" aria-hidden="false"></i></div>
-                        </li>
-                        <li class="pin-title sidebar-main-title">
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="list-product-header">
                             <div>
-                                <h6>Pinned</h6>
+                                <div class="light-box"><a data-bs-toggle="collapse" href="#collapseProduct"
+                                                          role="button" aria-expanded="false"
+                                                          aria-controls="collapseProduct"><i
+                                        class="filter-icon show" data-feather="filter"></i><i
+                                        class="icon-close filter-close hide"></i></a></div>
                             </div>
-                        </li>
-                        <!---------------------            상품시작            ---------------->
-                        <li class="sidebar-main-title">
-                            <div>
-                                <h6 >상품관리</h6>
-                            </div>
-                        </li>
-                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" th:href="@{/item/create}">
-                            <svg class="stroke-icon">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
-                            </svg>
-                            <span>상품 등록</span></a>
-
-                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" th:href="@{/item/list}">
-                            <svg class="stroke-icon">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
-                            </svg>
-                            <span>상품 목록</span></a>
-
-                        </li>
-                        <!---------------------            상품끝          ---------------->
-
-
-
-                        <!---------------------            환불시작            ---------------->
-                        <li class="sidebar-main-title">
-                            <div>
-                                <h6 >환불</h6>
-                            </div>
-                        </li>
-
-                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" th:href="@{/refund/list}">
-                            <svg class="stroke-icon">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-board"></use>
-                            </svg>
-                            <span>환불 관리</span></a>
-                        </li>
-                        <!---------------------            환불끝           ---------------->
-
-                        <!---------------------            주문시작           ---------------->
-                        <li class="sidebar-main-title">
-                            <div>
-                                <h6>주문</h6>
-                            </div>
-                        </li>
-                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" th:href="@{/order/list}">
-                            <svg class="stroke-icon">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-board"></use>
-                            </svg>
-                            <span>주문</span></a>
-                        </li>
-                        <!---------------------            주문끝            ---------------->
-                        <!--   만약 추가하게 된다면 아래 형식으로 하면 됨                 -->
-
-                        <!--                   단일 기능일 때-->
-                        <li class="sidebar-main-title">
-                            <div>
-                                <h6>회원</h6>
-                            </div>
-                        </li>
-                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav" th:href="@{/admin/member}">
-                            <svg class="stroke-icon">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-board"></use>
-                            </svg>
-                            <span>회원 목록</span></a>
-                        </li>
-
-                        <!--                   단일 기능일 때 끝-->
-                        <li class="sidebar-main-title">
-                            <div>
-                                <h6>매출</h6>
-                            </div>
-                        </li>
-                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav"  th:href="@{/sales/chart}">
-                            <svg class="stroke-icon">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
-                            </svg>
-                            <span>매출 조회</span></a>
-
-                        </li>
-
-                        <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title link-nav"  th:href="@{/sales/top100}">
-                            <svg class="stroke-icon">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-ecommerce"></use>
-                            </svg>
-                            <span>매출 분석</span>
-                        </a>
-
-                        </li>
-                    </ul>
-                    <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
-                </div>
-            </nav>
-        </div>
-        <!-- Page Sidebar Ends-->
-        <div class="page-body">
-            <div class="container-fluid">
-                <div class="page-title">
-                    <div class="row">
-                        <div class="col-6">
-                            <h4>회원 목록</h4>
+                            <!-- 희윤 끝 -->
+                        </div>
+                        <div class="list-product">
+                            <table class="table" id="project-status">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        <div class="form-check">
+                                            <input class="form-check-input checkbox-primary" type="checkbox">
+                                        </div>
+                                    </th>
+                                    <th><span class="f-light f-w-600">회원ID</span></th>
+                                    <th><span class="f-light f-w-600">회원명</span></th>
+                                    <th><span class="f-light f-w-600">성별</span></th>
+                                    <th><span class="f-light f-w-600">생년월일</span></th>
+                                    <th><span class="f-light f-w-600">회원주소</span></th>
+                                    <th><span class="f-light f-w-600">회원이메일</span></th>
+                                    <th><span class="f-light f-w-600">가입일짜</span></th>
+                                    <th><span class="f-light f-w-600">회원은행명</span></th>
+                                    <th><span class="f-light f-w-600">회원계좌번호</span></th>
+                                    <th><span class="f-light f-w-600">회원탈퇴여부</span></th>
+                                    <th><span class="f-light f-w-600">Action</span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="memberDto:${members}" th:object="${members}" align="center">
+                                    <td></td>
+                                    <td th:text="${memberDto.getMemberId()}"></td>
+                                    <td th:text="${memberDto.getMemberName()}"></td>
+                                    <td th:text="${memberDto.getMemberGender()}"></td>
+                                    <td th:text="${memberDto.getMemberBirth()}"></td>
+                                    <td th:text="${memberDto.getMemberAddress()}"></td>
+                                    <td th:text="${memberDto.getMemberEmail()}"></td>
+                                    <td th:text="${#temporals.format(memberDto.createdAt,'yyyy-MM-dd')}"></td>
+                                    <td th:text="${memberDto.getMemberBank()}"></td>
+                                    <td th:text="${memberDto.getMemberAccount()}"></td>
+                                    <td th:text="${memberDto.getMemberStatus()}"></td>
+                                    <td>
+                                        <li class="delete" style="list-style-type: none"><a class="deleteBtn" th:data-member-id="${memberDto.getMemberId()}"><i class="icon-trash"></i></a></li>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Container-fluid starts-->
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="list-product-header">
-                                    <div>
-                                        <div class="light-box"><a data-bs-toggle="collapse" href="#collapseProduct"
-                                                                  role="button" aria-expanded="false"
-                                                                  aria-controls="collapseProduct"><i
-                                                class="filter-icon show" data-feather="filter"></i><i
-                                                class="icon-close filter-close hide"></i></a></div>
-                                    </div>
-                                   <!-- 희윤 끝 -->
-                                </div>
-                                <div class="list-product">
-                                    <table class="table" id="project-status">
-                                        <thead>
-                                        <tr>
-                                            <th>
-                                                <div class="form-check">
-                                                    <input class="form-check-input checkbox-primary" type="checkbox">
-                                                </div>
-                                            </th>
-                                            <th><span class="f-light f-w-600">회원ID</span></th>
-                                            <th><span class="f-light f-w-600">회원명</span></th>
-                                            <th><span class="f-light f-w-600">성별</span></th>
-                                            <th><span class="f-light f-w-600">생년월일</span></th>
-                                            <th><span class="f-light f-w-600">회원주소</span></th>
-                                            <th><span class="f-light f-w-600">회원이메일</span></th>
-                                            <th><span class="f-light f-w-600">가입일짜</span></th>
-                                            <th><span class="f-light f-w-600">회원은행명</span></th>
-                                            <th><span class="f-light f-w-600">회원계좌번호</span></th>
-                                            <th><span class="f-light f-w-600">회원탈퇴여부</span></th>
-                                            <th><span class="f-light f-w-600">Action</span></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="memberDto:${members}" th:object="${members}" align="center">
-                                            <td></td>
-                                            <td th:text="${memberDto.getMemberId()}"></td>
-                                            <td th:text="${memberDto.getMemberName()}"></td>
-                                            <td th:text="${memberDto.getMemberGender()}"></td>
-                                            <td th:text="${memberDto.getMemberBirth()}"></td>
-                                            <td th:text="${memberDto.getMemberAddress()}"></td>
-                                            <td th:text="${memberDto.getMemberEmail()}"></td>
-                                            <td th:text="${#temporals.format(memberDto.createdAt,'yyyy-MM-dd')}"></td>
-                                            <td th:text="${memberDto.getMemberBank()}"></td>
-                                            <td th:text="${memberDto.getMemberAccount()}"></td>
-                                            <td th:text="${memberDto.getMemberStatus()}"></td>
-                                            <td>
-                                                <li class="delete" style="list-style-type: none"><a class="deleteBtn" th:data-member-id="${memberDto.getMemberId()}"><i class="icon-trash"></i></a></li>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Container-fluid Ends-->
         </div>
-        <!-- footer start-->
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12 footer-copyright text-center">
-                        <p class="mb-0">Copyright 2024 © SSG TOWN </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </div>
-</div>
-<!-- latest jquery-->
-<script src="../assets/js/jquery.min.js"></script>
-<!-- Bootstrap js-->
-<script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-<!-- feather icon js-->
-<script src="../assets/js/icons/feather-icon/feather.min.js"></script>
-<script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
-<!-- scrollbar js-->
-<script src="../assets/js/scrollbar/simplebar.js"></script>
-<script src="../assets/js/scrollbar/custom.js"></script>
-<!-- Sidebar jquery-->
-<script src="../assets/js/config.js"></script>
-<!-- Plugins JS start-->
-<script src="../assets/js/sidebar-menu.js"></script>
-<script src="../assets/js/sidebar-pin.js"></script>
-<script src="../assets/js/slick/slick.min.js"></script>
-<script src="../assets/js/slick/slick.js"></script>
-<script src="../assets/js/header-slick.js"></script>
-<!-- calendar js-->
-<script src="../assets/js/js-datatables/simple-datatables@latest.js"></script>
-<script src="../assets/js/custom-list-product.js"></script>
-<script src="../assets/js/owlcarousel/owl.carousel.js"></script>
-<script src="../assets/js/ecommerce.js"></script>
-<script src="../assets/js/tooltip-init.js"></script>
-<!-- Plugins JS Ends-->
-<!-- Theme js-->
-<script src="../assets/js/script.js"></script>
-<script src="../assets/js/theme-customizer/customizer.js"></script>
-<script>
-    $(document).ready(function() {
-        $(".deleteBtn").click(function(event) {
-            event.preventDefault();
-            var memberId = $(this).data('member-id');
-            if (confirm('정말 삭제하시겠습니까?')) {
-                $.ajax({
-                    url: '/admin/memberdelete',
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({ memberId: memberId }),
-                    success: function(response) {
-                        if (response.status === 'success') {
-                            alert('선택하신 회원이 삭제되었습니다.');
-                            location.reload(); // 페이지 새로고침
+    <!-- Container-fluid Ends-->
+
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery.min.js"></script>
+    <!-- Bootstrap js-->
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- feather icon js-->
+    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+    <!-- scrollbar js-->
+    <script src="../assets/js/scrollbar/simplebar.js"></script>
+    <script src="../assets/js/scrollbar/custom.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="../assets/js/config.js"></script>
+    <!-- Plugins JS start-->
+    <script src="../assets/js/sidebar-menu.js"></script>
+    <script src="../assets/js/sidebar-pin.js"></script>
+    <script src="../assets/js/slick/slick.min.js"></script>
+    <script src="../assets/js/slick/slick.js"></script>
+    <script src="../assets/js/header-slick.js"></script>
+    <!-- calendar js-->
+    <script src="../assets/js/js-datatables/simple-datatables@latest.js"></script>
+    <script src="../assets/js/custom-list-product.js"></script>
+    <script src="../assets/js/owlcarousel/owl.carousel.js"></script>
+    <script src="../assets/js/ecommerce.js"></script>
+    <script src="../assets/js/tooltip-init.js"></script>
+    <!-- Plugins JS Ends-->
+    <!-- Theme js-->
+    <script src="../assets/js/script.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $(".deleteBtn").click(function(event) {
+                event.preventDefault();
+                var memberId = $(this).data('member-id');
+                if (confirm('정말 삭제하시겠습니까?')) {
+                    $.ajax({
+                        url: '/admin/memberdelete',
+                        method: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ memberId: memberId }),
+                        success: function(response) {
+                            if (response.status === 'success') {
+                                alert('선택하신 회원이 삭제되었습니다.');
+                                location.reload(); // 페이지 새로고침
+                            }
+                        },
+                        error: function() {
+                            alert('탈퇴하지 않은 회원입니다.');
                         }
-                    },
-                    error: function() {
-                        alert('탈퇴하지 않은 회원입니다.');
-                    }
-                });
-            }
+                    });
+                }
+            });
         });
-    });
-</script>
+    </script>
+</div>
 </body>
 </html>

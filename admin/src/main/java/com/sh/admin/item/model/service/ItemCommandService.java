@@ -11,7 +11,7 @@ public class ItemCommandService { // DML
 
     public final ItemMapper itemMapper;
 
-//나경작업시작
+    //나경작업시작
     public boolean updateSaleStatus(Long itemId) {
         ItemDto item = itemMapper.findById(itemId); // id로 해당되는 객체 찾기
         // 해당되는 객체가 null이 아니고 saleStatus가 품절일 경우 Status를 판매중지로 바꾼다
@@ -25,17 +25,17 @@ public class ItemCommandService { // DML
     }
 //    나경작업끝
 
-//    나경시작
-public boolean updateItem(ItemDto itemDto) {
-    // 조건이 안맞으면 ( 수량이 작다던가
-    if (itemDto != null ) {
-        int updatedRows = itemMapper.updateItem(itemDto);
-        if (updatedRows == 1) {
-            return true;
+    //    나경시작
+    public boolean updateItem(ItemDto itemDto) {
+        // 조건이 안맞으면 ( 수량이 작다던가
+        if (itemDto != null ) {
+            int updatedRows = itemMapper.updateItem(itemDto);
+            if (updatedRows == 1) {
+                return true;
+            }
         }
+        return false;
     }
-    return false;
-}
 //    나경끝
 
 

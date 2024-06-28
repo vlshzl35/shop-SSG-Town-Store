@@ -15,7 +15,7 @@ public interface ItemMapper {
 
     ItemDto findById(long itemId); // 아이디로 한건조회
 
-//    int updateSaleStatus(int itemId);
+    //    int updateSaleStatus(int itemId);
     /* 희윤 시작 */
     List<ItemDto> findAllMatch(Category categoryName, Artist artistName, int salePrice, SaleStatus saleStatus);
     /* 희윤 끝 */
@@ -24,7 +24,7 @@ public interface ItemMapper {
 
     int updateItem(ItemDto itemDto); // 수정쿼리
 
-//    나경작업완료
+    //    나경작업완료
     // 희윤 등록 시작
     int insertItem(ItemDto itemDto);
 
