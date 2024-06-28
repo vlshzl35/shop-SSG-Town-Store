@@ -3,6 +3,7 @@ package com.sh.admin.refund.controller;
 import com.sh.admin.refund.model.dto.*;
 import com.sh.admin.refund.model.service.RefundCommandService;
 import com.sh.admin.refund.model.service.RefundQueryService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -22,8 +23,10 @@ public class RefundController {
     private final RefundCommandService refundCommandService;
 
     @GetMapping("/list")
-    public String refundList(Model model) {
+    public String refundList(Model model, HttpSession httpSession) {
         List<RefundDto> refunds = refundQueryService.findAll();
+        String adminName = (String) httpSession.getAttribute("adminName");
+        model.addAttribute("adminName", adminName);
         refunds.forEach((refund) -> {
             if (!(refund.getRefundStatus() == RefundStatus.환불요청)) {
                 refund.setProcessed("disabled"); // 환불요청이 아닌 것들 -> 환불완료, 환불취소의 경우에는 처리 불가를 표시한다.
