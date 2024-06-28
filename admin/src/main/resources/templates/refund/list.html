@@ -49,7 +49,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
     <!--  <link rel="stylesheet"-->
     <!--        type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">-->
-    <script type="text/javascript">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var message = /*[[${message}]]*/ null;
+        if (message != null) {
+            alert(message);
+        }
+        /*]]>*/
+
         function showHideRow(row) {
             $("#" + row).toggle();
         }
@@ -57,14 +64,13 @@
         function acceptConfirm(refundId, orderId) {
             if (confirm("환불을 승인하시겠습니까?")) {
                 location.href = `/refund/list/accept?refundId=${refundId}&orderId=${orderId}`;
-                alert("환불이 완료되었습니다.")
             }
         }
 
         function denyConfirm(refundId) {
             if (confirm("환불을 거부하시겠습니까?")) {
                 location.href = `/refund/list/deny?refundId=${refundId}`;
-                alert("환불이 거부되었습니다.")
+                // alert([[${message}]]);
             }
         }
     </script>

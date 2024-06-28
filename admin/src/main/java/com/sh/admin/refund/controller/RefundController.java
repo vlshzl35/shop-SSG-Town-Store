@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
 import java.net.http.HttpResponse;
@@ -59,7 +60,8 @@ public class RefundController {
     public String acceptRefund(
             @RequestParam("refundId") String refundId,
             @RequestParam("orderId") String orderId,
-            Model model) {
+            Model model,
+            RedirectAttributes redirectAttributes) {
         log.info(orderId, refundId);
         // 주문번호로 주문 테이블 조회
         RefundOrderDto refundOrderDto = refundQueryService.findOrder(Long.parseLong(orderId));
@@ -75,17 +77,20 @@ public class RefundController {
         // 환불번호로 환불 테이블 상태 업데이트
         int updateRefundResult = refundCommandService.update(Long.parseLong(refundId), RefundStatus.환불완료);
         log.debug("{}, {} -- 모두 1이면 환불 성공", updateRefundResult, updateOrderResult);
+        redirectAttributes.addFlashAttribute("message", "환불처리 되었습니다.");
         return "redirect:/refund/list";
     }
 
     @GetMapping({"/list/deny", "deny?refundId={refundId}"})
     public String denyRefund(
             @RequestParam("refundId") String refundId,
-            Model model) {
+            Model model,
+            RedirectAttributes redirectAttributes) {
         log.info(refundId);
         // 환불번호로 환불 테이블 상태 업데이트
         int updateRefundResult = refundCommandService.update(Long.parseLong(refundId), RefundStatus.환불취소);
         log.debug("{} -- 1이면 환불 성공", updateRefundResult);
+        redirectAttributes.addFlashAttribute("message", "환불취소 되었습니다.");
         return "redirect:/refund/list";
     }
 }
