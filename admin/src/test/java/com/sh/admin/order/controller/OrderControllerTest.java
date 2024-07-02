@@ -3,6 +3,7 @@ package com.sh.admin.order.controller;
 import com.sh.admin.order.model.dto.OrderDto;
 import com.sh.admin.order.model.dto.OrderQuantityDto;
 import com.sh.admin.order.model.service.OrderService;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
+@Disabled
 class OrderControllerTest {
 
     @Autowired

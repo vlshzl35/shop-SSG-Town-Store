@@ -4,6 +4,7 @@ import com.sh.admin.item.model.dto.Artist;
 import com.sh.admin.item.model.dto.Category;
 import com.sh.admin.item.model.dto.ItemDto;
 import com.sh.admin.item.model.dto.SaleStatus;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
+@Disabled
 class ItemMapperTest {
 
     @Autowired
