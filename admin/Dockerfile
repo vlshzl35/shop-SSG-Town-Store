@@ -1,6 +1,6 @@
-# base image
+#base image
 FROM amazoncorretto:17
-# image meta
+#image meta
 LABEL maintainer="vlshzl35<vlshzl35@naver.com>"
 
 # build시 사용할 변수 선언
