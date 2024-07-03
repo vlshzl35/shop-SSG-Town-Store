@@ -26,7 +26,7 @@ public class MemberController {
         model.addAttribute("members",members);
         String adminName = (String) httpSession.getAttribute("adminName");
         model.addAttribute("adminName", adminName);
-        return "/member/member";
+        return "member/member";
     }
     @PostMapping("/memberdelete")
     public ResponseEntity<?> deleteMember(@RequestBody MemberDto memberDTO) {
