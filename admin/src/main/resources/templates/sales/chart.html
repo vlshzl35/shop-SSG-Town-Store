@@ -10,7 +10,7 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
-    <title>Riho - Premium Admin Template</title>
+    <title>매출관리</title>
     <!-- Google font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -83,7 +83,7 @@
                         <script>
                             $(document).ready(function() {
                                 $.ajax({
-                                    url: 'http://localhost:8080/sales/api-weeklychart',
+                                    url: '[[@{/sales/api-weeklychart}]]',
                                     method: 'GET',
                                     dataType: 'json',
                                     success: function (data) {
@@ -152,7 +152,7 @@
                         <script>
                             $(document).ready(function() {
                                 $.ajax({
-                                    url: 'http://localhost:8080/sales/api-monthlychart',
+                                    url: '[[@{/sales/api-monthlychart}]]',
                                     method: 'GET',
                                     dataType: 'json',
                                     success: function (data) {
@@ -221,7 +221,7 @@
                         <script>
                             $(document).ready(function() {
                                 $.ajax({
-                                    url: 'http://localhost:8080/sales/api-yearlychart',
+                                    url: '[[@{/sales/api-yearlychart}]]',
                                     method: 'GET',
                                     dataType: 'json',
                                     success: function (data) {

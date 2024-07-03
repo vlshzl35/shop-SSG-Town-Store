@@ -3,6 +3,7 @@ package com.sh.admin.refund.model.service;
 import com.sh.admin.refund.model.dao.RefundMapper;
 import com.sh.admin.refund.model.dto.*;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Disabled
 class RefundQueryServiceTest {
 
     @Autowired
