@@ -17,6 +17,9 @@ Spring CRUD 기반의 쇼핑몰(굿즈샵)관리자 페이지<br>
 
 ## 시퀀스 다이어그램 링크 
 <https://whimsical.com/ssgsmtown-sequence-FLK77PUW23x8kuNW3FBR9A>
+
+## 시연 영상
+<https://www.youtube.com/watch?v=EOK2_Uj6QkE>
 * * *
 
 ## 주요 기능
